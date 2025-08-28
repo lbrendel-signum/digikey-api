@@ -95,9 +95,7 @@ class HTTPServerHandler(BaseHTTPRequestHandler):
             self.server.stop = 1
         else:
             raise DigikeyOauthException(
-                "Digikey did not return authorization token in request: {}".format(
-                    self.path
-                )
+                "Digikey did not return authorization token in request: {}".format(self.path)
             )
 
     # Disable logging from the HTTP Server
@@ -237,15 +235,11 @@ class TokenHandler:
             requests.exceptions.HTTPError,
         ):
             raise DigikeyOauthException(
-                "REFRESH - Cannot request new token with refresh token: {}.".format(
-                    error_message
-                )
+                "REFRESH - Cannot request new token with refresh token: {}.".format(error_message)
             )
         else:
             token_json = r.json()
-            logger.debug(
-                f"REFRESH - Got access token with value: {token_json['access_token']}"
-            )
+            logger.debug(f"REFRESH - Got access token with value: {token_json['access_token']}")
             logger.info("REFRESH - Successfully retrieved access token.")
 
         # Create epoch timestamp from expires in, with 1 minute margin
@@ -274,9 +268,7 @@ class TokenHandler:
             with open(self._token_storage_path, "r") as f:
                 token_json = json.load(f)
         except (EnvironmentError, JSONDecodeError):
-            logger.warning(
-                "Oauth2 token storage does not exist or malformed, creating new."
-            )
+            logger.warning("Oauth2 token storage does not exist or malformed, creating new.")
 
         token = None
         if token_json is not None:

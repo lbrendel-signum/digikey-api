@@ -60,9 +60,7 @@ class ApiClient(object):
         "object": object,
     }
 
-    def __init__(
-        self, configuration=None, header_name=None, header_value=None, cookie=None
-    ):
+    def __init__(self, configuration=None, header_name=None, header_value=None, cookie=None):
         if configuration is None:
             configuration = Configuration()
         self.configuration = configuration
@@ -126,9 +124,7 @@ class ApiClient(object):
             header_params["Cookie"] = self.cookie
         if header_params:
             header_params = self.sanitize_for_serialization(header_params)
-            header_params = dict(
-                self.parameters_to_tuples(header_params, collection_formats)
-            )
+            header_params = dict(self.parameters_to_tuples(header_params, collection_formats))
 
         # path parameters
         if path_params:
@@ -227,10 +223,7 @@ class ApiClient(object):
                 if getattr(obj, attr) is not None
             }
 
-        return {
-            key: self.sanitize_for_serialization(val)
-            for key, val in six.iteritems(obj_dict)
-        }
+        return {key: self.sanitize_for_serialization(val) for key, val in six.iteritems(obj_dict)}
 
     def deserialize(self, response, response_type):
         """Deserializes response into an object.
@@ -272,9 +265,7 @@ class ApiClient(object):
 
             if klass.startswith("dict("):
                 sub_kls = re.match(r"dict\(([^,]*), (.*)\)", klass).group(2)
-                return {
-                    k: self.__deserialize(v, sub_kls) for k, v in six.iteritems(data)
-                }
+                return {k: self.__deserialize(v, sub_kls) for k, v in six.iteritems(data)}
 
             # convert str to class
             if klass in self.NATIVE_TYPES_MAPPING:
@@ -465,8 +456,7 @@ class ApiClient(object):
             )
         else:
             raise ValueError(
-                "http method must be `GET`, `HEAD`, `OPTIONS`,"
-                " `POST`, `PATCH`, `PUT` or `DELETE`."
+                "http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`."
             )
 
     def parameters_to_tuples(self, params, collection_formats):
@@ -519,10 +509,7 @@ class ApiClient(object):
                     with open(n, "rb") as f:
                         filename = os.path.basename(f.name)
                         filedata = f.read()
-                        mimetype = (
-                            mimetypes.guess_type(filename)[0]
-                            or "application/octet-stream"
-                        )
+                        mimetype = mimetypes.guess_type(filename)[0] or "application/octet-stream"
                         params.append(tuple([k, tuple([filename, filedata, mimetype])]))
 
         return params
@@ -579,9 +566,7 @@ class ApiClient(object):
                 elif auth_setting["in"] == "query":
                     querys.append((auth_setting["key"], auth_setting["value"]))
                 else:
-                    raise ValueError(
-                        "Authentication token must be in `query` or `header`"
-                    )
+                    raise ValueError("Authentication token must be in `query` or `header`")
 
     def __deserialize_file(self, response):
         """Deserializes body to file
@@ -598,9 +583,7 @@ class ApiClient(object):
 
         content_disposition = response.getheader("Content-Disposition")
         if content_disposition:
-            filename = re.search(
-                r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition
-            ).group(1)
+            filename = re.search(r'filename=[\'"]?([^\'"\s]+)[\'"]?', content_disposition).group(1)
             path = os.path.join(os.path.dirname(path), filename)
 
         with open(path, "wb") as f:
@@ -678,9 +661,7 @@ class ApiClient(object):
         :return: model object.
         """
 
-        if not klass.swagger_types and not self.__hasattr(
-            klass, "get_real_child_model"
-        ):
+        if not klass.swagger_types and not self.__hasattr(klass, "get_real_child_model"):
             return data
 
         kwargs = {}

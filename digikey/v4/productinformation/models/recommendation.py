@@ -41,9 +41,7 @@ class Recommendation(object):
         "search_locale_used": "SearchLocaleUsed",
     }
 
-    def __init__(
-        self, product_number=None, recommended_products=None, search_locale_used=None
-    ):  # noqa: E501
+    def __init__(self, product_number=None, recommended_products=None, search_locale_used=None):  # noqa: E501
         """Recommendation - a model defined in Swagger"""  # noqa: E501
         self._product_number = None
         self._recommended_products = None

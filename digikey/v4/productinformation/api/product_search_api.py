@@ -67,9 +67,7 @@ class ProductSearchApi(object):
             )  # noqa: E501
             return data
 
-    def alternate_packaging_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def alternate_packaging_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve Alternate Packaging for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -115,8 +113,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method alternate_packaging" % key
+                    "Got an unexpected keyword argument '%s' to method alternate_packaging" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -147,34 +144,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -223,18 +210,12 @@ class ProductSearchApi(object):
         """
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
-            return self.associations_with_http_info(
-                product_number, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            return self.associations_with_http_info(product_number, x_digikey_client_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.associations_with_http_info(
-                product_number, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            (data) = self.associations_with_http_info(product_number, x_digikey_client_id, **kwargs)  # noqa: E501
             return data
 
-    def associations_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def associations_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve Associations for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -280,8 +261,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method associations" % key
+                    "Got an unexpected keyword argument '%s' to method associations" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -312,34 +292,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -428,9 +398,7 @@ class ProductSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -501,8 +469,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method categories_by_id" % key
+                    "Got an unexpected keyword argument '%s' to method categories_by_id" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -529,9 +496,7 @@ class ProductSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -554,9 +519,7 @@ class ProductSearchApi(object):
             collection_formats=collection_formats,
         )
 
-    def digi_reel_pricing(
-        self, product_number, requested_quantity, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def digi_reel_pricing(self, product_number, requested_quantity, x_digikey_client_id, **kwargs):  # noqa: E501
         """Calculate the DigiReel pricing for the given DigiKeyProductNumber and RequestedQuantity  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -640,8 +603,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method digi_reel_pricing" % key
+                    "Got an unexpected keyword argument '%s' to method digi_reel_pricing" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -679,34 +641,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -809,8 +761,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method keyword_search" % key
+                    "Got an unexpected keyword argument '%s' to method keyword_search" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -836,25 +787,17 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -863,9 +806,7 @@ class ProductSearchApi(object):
         if "body" in params:
             body_params = params["body"]
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params["Content-Type"] = self.api_client.select_header_content_type(  # noqa: E501
@@ -962,8 +903,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method manufacturers" % key
+                    "Got an unexpected keyword argument '%s' to method manufacturers" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -987,32 +927,22 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1060,13 +990,9 @@ class ProductSearchApi(object):
         """
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
-            return self.media_with_http_info(
-                product_number, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            return self.media_with_http_info(product_number, x_digikey_client_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.media_with_http_info(
-                product_number, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            (data) = self.media_with_http_info(product_number, x_digikey_client_id, **kwargs)  # noqa: E501
             return data
 
     def media_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
@@ -1113,16 +1039,12 @@ class ProductSearchApi(object):
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method media" % key
-                )
+                raise TypeError("Got an unexpected keyword argument '%s' to method media" % key)
             params[key] = val
         del params["kwargs"]
         # verify the required parameter 'product_number' is set
         if "product_number" not in params or params["product_number"] is None:
-            raise ValueError(
-                "Missing the required parameter `product_number` when calling `media`"
-            )  # noqa: E501
+            raise ValueError("Missing the required parameter `product_number` when calling `media`")  # noqa: E501
         # verify the required parameter 'x_digikey_client_id' is set
         if "x_digikey_client_id" not in params or params["x_digikey_client_id"] is None:
             raise ValueError(
@@ -1145,34 +1067,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1325,34 +1237,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1411,9 +1313,7 @@ class ProductSearchApi(object):
             )  # noqa: E501
             return data
 
-    def product_details_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def product_details_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Enter a manufacturer part number/DigiKey part number and receive all of the production information fields for a single-matched product. MyPricing is shown if applicable.  If the manufacturer part number has more than one match, we will respond with an error.  # noqa: E501
 
         Works best with a Digi-Key product number. MyPricing is shown if applicable.  Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1461,8 +1361,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method product_details" % key
+                    "Got an unexpected keyword argument '%s' to method product_details" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -1495,34 +1394,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1580,9 +1469,7 @@ class ProductSearchApi(object):
             )  # noqa: E501
             return data
 
-    def product_pricing_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def product_pricing_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Enter a manufacturer part number/DigiKey part number or partial manufacturer part number/DigiKey part number and receive product information fields for each matched product. MyPricing is shown if applicable.  # noqa: E501
 
         Allows you to use inStock and excludeMarketplace as limit. If there are multiple matching parts, you can see the additional ones by incrementing your input using the offset and limit fields. Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1628,8 +1515,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method product_pricing" % key
+                    "Got an unexpected keyword argument '%s' to method product_pricing" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -1666,13 +1552,9 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_client_id" in params:
             header_params["X-DIGIKEY-Client-Id"] = params["x_digikey_client_id"]  # noqa: E501
 
@@ -1681,9 +1563,7 @@ class ProductSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1742,9 +1622,7 @@ class ProductSearchApi(object):
             )  # noqa: E501
             return data
 
-    def recommended_products_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def recommended_products_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Returns a list of recommended products for the given Product number.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1793,8 +1671,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method recommended_products" % key
+                    "Got an unexpected keyword argument '%s' to method recommended_products" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -1833,32 +1710,22 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501
@@ -1908,18 +1775,14 @@ class ProductSearchApi(object):
         """
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
-            return self.substitutions_with_http_info(
-                product_number, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            return self.substitutions_with_http_info(product_number, x_digikey_client_id, **kwargs)  # noqa: E501
         else:
             (data) = self.substitutions_with_http_info(
                 product_number, x_digikey_client_id, **kwargs
             )  # noqa: E501
             return data
 
-    def substitutions_with_http_info(
-        self, product_number, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def substitutions_with_http_info(self, product_number, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve Substitutions for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -1967,8 +1830,7 @@ class ProductSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method substitutions" % key
+                    "Got an unexpected keyword argument '%s' to method substitutions" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -2001,34 +1863,24 @@ class ProductSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_customer_id" in params:
             header_params["X-DIGIKEY-Customer-Id"] = params["x_digikey_customer_id"]  # noqa: E501
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2ApplicationSecurity"]  # noqa: E501

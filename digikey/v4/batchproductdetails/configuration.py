@@ -58,9 +58,7 @@ class Configuration(object):
 
         # Logging Settings
         self.logger = {}
-        self.logger["package_logger"] = logging.getLogger(
-            "digikey.v3.batchproductdetails"
-        )
+        self.logger["package_logger"] = logging.getLogger("digikey.v3.batchproductdetails")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         # Log format
         self.logger_format = "%(asctime)s %(levelname)s %(message)s"
@@ -214,9 +212,9 @@ class Configuration(object):
 
         :return: The token for basic HTTP authentication.
         """
-        return urllib3.util.make_headers(
-            basic_auth=self.username + ":" + self.password
-        ).get("authorization")
+        return urllib3.util.make_headers(basic_auth=self.username + ":" + self.password).get(
+            "authorization"
+        )
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.

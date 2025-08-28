@@ -43,9 +43,7 @@ class FilterValue(object):
         "range_filter_type": "RangeFilterType",
     }
 
-    def __init__(
-        self, product_count=None, value_id=None, value_name=None, range_filter_type=None
-    ):  # noqa: E501
+    def __init__(self, product_count=None, value_id=None, value_name=None, range_filter_type=None):  # noqa: E501
         """FilterValue - a model defined in Swagger"""  # noqa: E501
         self._product_count = None
         self._value_id = None

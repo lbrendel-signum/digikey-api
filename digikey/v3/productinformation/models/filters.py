@@ -41,9 +41,7 @@ class Filters(object):
         "parametric_filters": "ParametricFilters",
     }
 
-    def __init__(
-        self, taxonomy_ids=None, manufacturer_ids=None, parametric_filters=None
-    ):  # noqa: E501
+    def __init__(self, taxonomy_ids=None, manufacturer_ids=None, parametric_filters=None):  # noqa: E501
         """Filters - a model defined in Swagger"""  # noqa: E501
 
         self._taxonomy_ids = None

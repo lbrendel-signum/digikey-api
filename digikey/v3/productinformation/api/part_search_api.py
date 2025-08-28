@@ -133,16 +133,12 @@ class PartSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method digi_reel_pricing" % key
+                    "Got an unexpected keyword argument '%s' to method digi_reel_pricing" % key
                 )
             params[key] = val
         del params["kwargs"]
         # verify the required parameter 'digi_key_part_number' is set
-        if (
-            "digi_key_part_number" not in params
-            or params["digi_key_part_number"] is None
-        ):
+        if "digi_key_part_number" not in params or params["digi_key_part_number"] is None:
             raise ValueError(
                 "Missing the required parameter `digi_key_part_number` when calling `digi_reel_pricing`"
             )  # noqa: E501
@@ -182,13 +178,9 @@ class PartSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -201,9 +193,7 @@ class PartSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2AccessCodeSecurity"]  # noqa: E501
@@ -251,18 +241,14 @@ class PartSearchApi(object):
         """
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
-            return self.keyword_search_with_http_info(
-                authorization, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            return self.keyword_search_with_http_info(authorization, x_digikey_client_id, **kwargs)  # noqa: E501
         else:
             (data) = self.keyword_search_with_http_info(
                 authorization, x_digikey_client_id, **kwargs
             )  # noqa: E501
             return data
 
-    def keyword_search_with_http_info(
-        self, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def keyword_search_with_http_info(self, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """KeywordSearch can search for any product in the Digi-Key catalog.  # noqa: E501
 
         Search by keyword, then narrow down the search using available filters and search options.<br />  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States. <br />  Note that KeywordSearch results have cached pricing and availability. If real time pricing and availability is  needed, make a ProductDetails call.<br />  # noqa: E501
@@ -306,8 +292,7 @@ class PartSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method keyword_search" % key
+                    "Got an unexpected keyword argument '%s' to method keyword_search" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -338,13 +323,9 @@ class PartSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -359,9 +340,7 @@ class PartSearchApi(object):
         if "body" in params:
             body_params = params["body"]
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params["Content-Type"] = self.api_client.select_header_content_type(  # noqa: E501
@@ -389,9 +368,7 @@ class PartSearchApi(object):
             collection_formats=collection_formats,
         )
 
-    def manufacturer_product_details(
-        self, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def manufacturer_product_details(self, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Create list of ProductDetails from the matches of the requested manufacturer product name.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -501,13 +478,9 @@ class PartSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -522,9 +495,7 @@ class PartSearchApi(object):
         if "body" in params:
             body_params = params["body"]
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params["Content-Type"] = self.api_client.select_header_content_type(  # noqa: E501
@@ -552,9 +523,7 @@ class PartSearchApi(object):
             collection_formats=collection_formats,
         )
 
-    def product_details(
-        self, digi_key_part_number, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def product_details(self, digi_key_part_number, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -634,16 +603,12 @@ class PartSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method product_details" % key
+                    "Got an unexpected keyword argument '%s' to method product_details" % key
                 )
             params[key] = val
         del params["kwargs"]
         # verify the required parameter 'digi_key_part_number' is set
-        if (
-            "digi_key_part_number" not in params
-            or params["digi_key_part_number"] is None
-        ):
+        if "digi_key_part_number" not in params or params["digi_key_part_number"] is None:
             raise ValueError(
                 "Missing the required parameter `digi_key_part_number` when calling `product_details`"
             )  # noqa: E501
@@ -676,13 +641,9 @@ class PartSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -695,9 +656,7 @@ class PartSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2AccessCodeSecurity"]  # noqa: E501
@@ -720,9 +679,7 @@ class PartSearchApi(object):
             collection_formats=collection_formats,
         )
 
-    def suggested_parts(
-        self, part_number, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def suggested_parts(self, part_number, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve detailed product information and two suggested products  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -799,8 +756,7 @@ class PartSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method suggested_parts" % key
+                    "Got an unexpected keyword argument '%s' to method suggested_parts" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -836,13 +792,9 @@ class PartSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -855,9 +807,7 @@ class PartSearchApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2AccessCodeSecurity"]  # noqa: E501

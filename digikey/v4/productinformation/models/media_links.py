@@ -45,9 +45,7 @@ class MediaLinks(object):
         "url": "Url",
     }
 
-    def __init__(
-        self, media_type=None, title=None, small_photo=None, thumbnail=None, url=None
-    ):  # noqa: E501
+    def __init__(self, media_type=None, title=None, small_photo=None, thumbnail=None, url=None):  # noqa: E501
         """MediaLinks - a model defined in Swagger"""  # noqa: E501
         self._media_type = None
         self._title = None

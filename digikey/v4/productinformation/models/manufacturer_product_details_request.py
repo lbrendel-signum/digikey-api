@@ -105,9 +105,7 @@ class ManufacturerProductDetailsRequest(object):
         :type: str
         """
         if manufacturer_product is None:
-            raise ValueError(
-                "Invalid value for `manufacturer_product`, must not be `None`"
-            )  # noqa: E501
+            raise ValueError("Invalid value for `manufacturer_product`, must not be `None`")  # noqa: E501
         if manufacturer_product is not None and len(manufacturer_product) > 250:
             raise ValueError(
                 "Invalid value for `manufacturer_product`, length must be less than or equal to `250`"

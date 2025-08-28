@@ -55,18 +55,12 @@ class OrderDetailsApi(object):
         """
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
-            return self.order_history_with_http_info(
-                authorization, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            return self.order_history_with_http_info(authorization, x_digikey_client_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.order_history_with_http_info(
-                authorization, x_digikey_client_id, **kwargs
-            )  # noqa: E501
+            (data) = self.order_history_with_http_info(authorization, x_digikey_client_id, **kwargs)  # noqa: E501
             return data
 
-    def order_history_with_http_info(
-        self, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def order_history_with_http_info(self, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieves a list of SalesOrderIds and dates for all SalesOrders within a date range belonging to a CustomerId.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -107,8 +101,7 @@ class OrderDetailsApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method order_history" % key
+                    "Got an unexpected keyword argument '%s' to method order_history" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -133,9 +126,7 @@ class OrderDetailsApi(object):
         if "open_only" in params:
             query_params.append(("OpenOnly", params["open_only"]))  # noqa: E501
         if "include_company_orders" in params:
-            query_params.append(
-                ("IncludeCompanyOrders", params["include_company_orders"])
-            )  # noqa: E501
+            query_params.append(("IncludeCompanyOrders", params["include_company_orders"]))  # noqa: E501
         if "start_date" in params:
             query_params.append(("StartDate", params["start_date"]))  # noqa: E501
         if "end_date" in params:
@@ -154,9 +145,7 @@ class OrderDetailsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2AccessCodeSecurity"]  # noqa: E501
@@ -179,9 +168,7 @@ class OrderDetailsApi(object):
             collection_formats=collection_formats,
         )
 
-    def order_status(
-        self, sales_order_id, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def order_status(self, sales_order_id, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve order status for given SalesOrderId  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -244,8 +231,7 @@ class OrderDetailsApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method order_status" % key
+                    "Got an unexpected keyword argument '%s' to method order_status" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -286,9 +272,7 @@ class OrderDetailsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # Authentication setting
         auth_settings = ["apiKeySecurity", "oauth2AccessCodeSecurity"]  # noqa: E501

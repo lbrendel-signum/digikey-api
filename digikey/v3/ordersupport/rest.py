@@ -136,9 +136,7 @@ class RESTClientObject(object):
         assert method in ["GET", "HEAD", "DELETE", "POST", "PUT", "PATCH", "OPTIONS"]
 
         if post_params and body:
-            raise ValueError(
-                "body parameter cannot be used with post_params parameter."
-            )
+            raise ValueError("body parameter cannot be used with post_params parameter.")
 
         post_params = post_params or {}
         headers = headers or {}
@@ -148,9 +146,7 @@ class RESTClientObject(object):
             if isinstance(_request_timeout, (int,) if six.PY3 else (int, long)):  # noqa: E501,F821
                 timeout = urllib3.Timeout(total=_request_timeout)
             elif isinstance(_request_timeout, tuple) and len(_request_timeout) == 2:
-                timeout = urllib3.Timeout(
-                    connect=_request_timeout[0], read=_request_timeout[1]
-                )
+                timeout = urllib3.Timeout(connect=_request_timeout[0], read=_request_timeout[1])
 
         if "Content-Type" not in headers:
             headers["Content-Type"] = "application/json"

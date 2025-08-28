@@ -245,9 +245,7 @@ class FilterOptions(object):
         if not set(market_place_filters).issubset(set(allowed_values)):
             raise ValueError(
                 "Invalid values for `market_place_filters` [{0}], must be a subset of [{1}]".format(  # noqa: E501
-                    ", ".join(
-                        map(str, set(market_place_filters) - set(allowed_values))
-                    ),  # noqa: E501
+                    ", ".join(map(str, set(market_place_filters) - set(allowed_values))),  # noqa: E501
                     ", ".join(map(str, allowed_values)),
                 )
             )

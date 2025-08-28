@@ -66,9 +66,7 @@ class BatchSearchApi(object):
             )  # noqa: E501
             return data
 
-    def batch_product_details_with_http_info(
-        self, authorization, x_digikey_client_id, **kwargs
-    ):  # noqa: E501
+    def batch_product_details_with_http_info(self, authorization, x_digikey_client_id, **kwargs):  # noqa: E501
         """Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -112,8 +110,7 @@ class BatchSearchApi(object):
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method batch_product_details" % key
+                    "Got an unexpected keyword argument '%s' to method batch_product_details" % key
                 )
             params[key] = val
         del params["kwargs"]
@@ -146,13 +143,9 @@ class BatchSearchApi(object):
         if "x_digikey_locale_site" in params:
             header_params["X-DIGIKEY-Locale-Site"] = params["x_digikey_locale_site"]  # noqa: E501
         if "x_digikey_locale_language" in params:
-            header_params["X-DIGIKEY-Locale-Language"] = params[
-                "x_digikey_locale_language"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Language"] = params["x_digikey_locale_language"]  # noqa: E501
         if "x_digikey_locale_currency" in params:
-            header_params["X-DIGIKEY-Locale-Currency"] = params[
-                "x_digikey_locale_currency"
-            ]  # noqa: E501
+            header_params["X-DIGIKEY-Locale-Currency"] = params["x_digikey_locale_currency"]  # noqa: E501
         if "x_digikey_locale_ship_to_country" in params:
             header_params["X-DIGIKEY-Locale-ShipToCountry"] = params[
                 "x_digikey_locale_ship_to_country"
@@ -167,9 +160,7 @@ class BatchSearchApi(object):
         if "body" in params:
             body_params = params["body"]
         # HTTP header `Accept`
-        header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(["application/json"])  # noqa: E501
 
         # HTTP header `Content-Type`
         header_params["Content-Type"] = self.api_client.select_header_content_type(  # noqa: E501

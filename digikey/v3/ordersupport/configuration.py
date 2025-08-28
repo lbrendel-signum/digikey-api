@@ -212,9 +212,9 @@ class Configuration(object):
 
         :return: The token for basic HTTP authentication.
         """
-        return urllib3.util.make_headers(
-            basic_auth=self.username + ":" + self.password
-        ).get("authorization")
+        return urllib3.util.make_headers(basic_auth=self.username + ":" + self.password).get(
+            "authorization"
+        )
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.

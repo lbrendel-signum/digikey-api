@@ -30,3 +30,23 @@ test = [
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
 ]
+
+[tool.ruff]
+line-length = 100
+lint.select = ["ALL"]
+lint.ignore = [
+    "FA100",
+    "FA102",
+    "TRY003",
+    "D400",
+    "D415",
+    "RUF012",
+    "B019",
+    "TD003",
+    "G004",
+    "EM101",
+    "EM102",
+    "D203",
+    "D212",
+    "COM812"
+]

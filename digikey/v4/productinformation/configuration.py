@@ -65,9 +65,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.access_token = ""
         # Logging Settings
         self.logger = {}
-        self.logger["package_logger"] = logging.getLogger(
-            "digikey.v4.productinformation"
-        )
+        self.logger["package_logger"] = logging.getLogger("digikey.v4.productinformation")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         # Log format
         self.logger_format = "%(asctime)s %(levelname)s %(message)s"
@@ -225,9 +223,9 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         """
         token = ""
         if self.username or self.password:
-            token = urllib3.util.make_headers(
-                basic_auth=self.username + ":" + self.password
-            ).get("authorization")
+            token = urllib3.util.make_headers(basic_auth=self.username + ":" + self.password).get(
+                "authorization"
+            )
         return token
 
     def auth_settings(self):

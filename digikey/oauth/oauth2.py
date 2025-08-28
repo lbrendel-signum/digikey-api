@@ -2,12 +2,11 @@ import json
 import logging
 import os
 import ssl
-import typing as t
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from json.decoder import JSONDecodeError
 from pathlib import Path
-from urllib.parse import urlencode, urlparse, parse_qs
+from urllib.parse import parse_qs, urlencode, urlparse
 from webbrowser import open_new
 
 import requests
@@ -58,7 +57,7 @@ class Oauth2Token:
         return self.type + " " + self.access_token
 
     def __repr__(self):
-        return "<Token: expires={}>".format(self.expires.astimezone().isoformat())
+        return f"<Token: expires={self.expires.astimezone().isoformat()}>"
 
 
 class HTTPServerHandler(BaseHTTPRequestHandler):
@@ -95,7 +94,7 @@ class HTTPServerHandler(BaseHTTPRequestHandler):
             self.server.stop = 1
         else:
             raise DigikeyOauthException(
-                "Digikey did not return authorization token in request: {}".format(self.path)
+                f"Digikey did not return authorization token in request: {self.path}"
             )
 
     # Disable logging from the HTTP Server
@@ -110,9 +109,9 @@ class TokenHandler:
 
     def __init__(
         self,
-        a_id: t.Optional[str] = None,
-        a_secret: t.Optional[str] = None,
-        a_token_storage_path: t.Optional[str] = None,
+        a_id: str | None = None,
+        a_secret: str | None = None,
+        a_token_storage_path: str | None = None,
         version: int = 2,
         sandbox: bool = False,
     ):
@@ -198,7 +197,7 @@ class TokenHandler:
             requests.exceptions.HTTPError,
         ) as e:
             raise DigikeyOauthException(
-                "TOKEN - Cannot request new token with auth code: {}".format(e)
+                f"TOKEN - Cannot request new token with auth code: {e}"
             )
         else:
             token_json = r.json()
@@ -235,7 +234,7 @@ class TokenHandler:
             requests.exceptions.HTTPError,
         ):
             raise DigikeyOauthException(
-                "REFRESH - Cannot request new token with refresh token: {}.".format(error_message)
+                f"REFRESH - Cannot request new token with refresh token: {error_message}."
             )
         else:
             token_json = r.json()
@@ -251,7 +250,7 @@ class TokenHandler:
     def save(self, json_data):
         with open(self._token_storage_path, "w") as f:
             json.dump(json_data, f)
-            logger.debug("Saved token to: {}".format(self._token_storage_path))
+            logger.debug(f"Saved token to: {self._token_storage_path}")
 
     def get_access_token(self) -> Oauth2Token:
         """
@@ -261,13 +260,12 @@ class TokenHandler:
                appId:      The assigned App ID
                appSecret:  The assigned App Secret
         """
-
         # Check if a token already exists on the storage
         token_json = None
         try:
-            with open(self._token_storage_path, "r") as f:
+            with open(self._token_storage_path) as f:
                 token_json = json.load(f)
-        except (EnvironmentError, JSONDecodeError):
+        except (OSError, JSONDecodeError):
             logger.warning("Oauth2 token storage does not exist or malformed, creating new.")
 
         token = None
@@ -316,7 +314,7 @@ class TokenHandler:
                 os.remove(Path(filename))
                 os.remove(self._ca_cert)
             except OSError as e:
-                logger.error("Cannot remove temporary certificates: {}".format(e))
+                logger.error(f"Cannot remove temporary certificates: {e}")
 
             # Get the acccess token from the auth code
             token_json = self.__exchange_for_token(httpd.auth_code)

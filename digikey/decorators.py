@@ -13,9 +13,11 @@ def wrap_exception_in(exc_type, catch=Exception):
     """
     Wraps raised exception in another exception type, and only includes
     the original exception type name in the new exception message.
+
     Args:
         exc_type: Exception type
         catch: optional, Exception type to catch
+
     """
 
     def wrapper(func):

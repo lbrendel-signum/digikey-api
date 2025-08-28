@@ -235,7 +235,7 @@ class TokenHandler:
         except (
             requests.exceptions.RequestException,
             requests.exceptions.HTTPError,
-        ) as e:
+        ):
             raise DigikeyOauthException(
                 "REFRESH - Cannot request new token with refresh token: {}.".format(
                     error_message

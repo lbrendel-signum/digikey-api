@@ -194,7 +194,7 @@ def salesorder_history(*args, **kwargs) -> [SalesOrderHistoryItem]:
         and type(kwargs["end_date"]) == str
     ):
         logger.info(
-            f"Searching for orders in date range "
+            "Searching for orders in date range "
             + kwargs["start_date"]
             + " to "
             + kwargs["end_date"]

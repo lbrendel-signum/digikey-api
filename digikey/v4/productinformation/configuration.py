@@ -21,8 +21,8 @@ from six.moves import http_client as httplib
 
 
 class TypeWithDefault(type):
-    def __init__(cls, name, bases, dct):
-        super(TypeWithDefault, cls).__init__(name, bases, dct)
+    def __init__(cls, name, bases, dct) -> None:
+        super().__init__(name, bases, dct)
         cls._default = None
 
     def __call__(cls):
@@ -30,7 +30,7 @@ class TypeWithDefault(type):
             cls._default = type.__call__(cls)
         return copy.copy(cls._default)
 
-    def set_default(cls, default):
+    def set_default(cls, default) -> None:
         cls._default = copy.copy(default)
 
 
@@ -42,7 +42,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
     Do not edit the class manually.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Constructor"""
         # Default Base url
         self.host = "https://api.digikey.com/products/v4"
@@ -116,7 +116,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         return self.__logger_file
 
     @logger_file.setter
-    def logger_file(self, value):
+    def logger_file(self, value) -> None:
         """
         The logger file.
 
@@ -157,7 +157,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         return self.__debug
 
     @debug.setter
-    def debug(self, value):
+    def debug(self, value) -> None:
         """
         Debug status
 
@@ -192,7 +192,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         return self.__logger_format
 
     @logger_format.setter
-    def logger_format(self, value):
+    def logger_format(self, value) -> None:
         """
         The logger format.
 
@@ -218,8 +218,9 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         if key:
             prefix = self.api_key_prefix.get(identifier)
             if prefix:
-                return "%s %s" % (prefix, key)
+                return f"{prefix} {key}"
             return key
+        return None
 
     def get_basic_auth_token(self):
         """
@@ -255,7 +256,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
             },
         }
 
-    def to_debug_report(self):
+    def to_debug_report(self) -> str:
         """
         Gets the essential information for debugging.
 

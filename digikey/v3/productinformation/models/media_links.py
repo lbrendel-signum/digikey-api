@@ -45,7 +45,7 @@ class MediaLinks:
         "url": "Url",
     }
 
-    def __init__(self, media_type=None, title=None, small_photo=None, thumbnail=None, url=None):
+    def __init__(self, media_type=None, title=None, small_photo=None, thumbnail=None, url=None) -> None:
         """MediaLinks - a model defined in Swagger"""
         self._media_type = None
         self._title = None
@@ -78,7 +78,7 @@ class MediaLinks:
         return self._media_type
 
     @media_type.setter
-    def media_type(self, media_type):
+    def media_type(self, media_type) -> None:
         """
         Sets the media_type of this MediaLinks.
 
@@ -102,7 +102,7 @@ class MediaLinks:
         return self._title
 
     @title.setter
-    def title(self, title):
+    def title(self, title) -> None:
         """
         Sets the title of this MediaLinks.
 
@@ -126,7 +126,7 @@ class MediaLinks:
         return self._small_photo
 
     @small_photo.setter
-    def small_photo(self, small_photo):
+    def small_photo(self, small_photo) -> None:
         """
         Sets the small_photo of this MediaLinks.
 
@@ -150,7 +150,7 @@ class MediaLinks:
         return self._thumbnail
 
     @thumbnail.setter
-    def thumbnail(self, thumbnail):
+    def thumbnail(self, thumbnail) -> None:
         """
         Sets the thumbnail of this MediaLinks.
 
@@ -174,7 +174,7 @@ class MediaLinks:
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url) -> None:
         """
         Sets the url of this MediaLinks.
 
@@ -192,9 +192,7 @@ class MediaLinks:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -218,7 +216,7 @@ class MediaLinks:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

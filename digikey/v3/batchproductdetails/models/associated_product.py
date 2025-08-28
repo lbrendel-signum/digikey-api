@@ -79,7 +79,7 @@ class AssociatedProduct:
         quantity_on_order=None,
         dk_plus_restriction=None,
         supplier_direct_ship=None,
-    ):
+    ) -> None:
         """AssociatedProduct - a model defined in Swagger"""
         self._product_url = None
         self._manufacturer_part_number = None
@@ -139,7 +139,7 @@ class AssociatedProduct:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this AssociatedProduct.
 
@@ -163,7 +163,7 @@ class AssociatedProduct:
         return self._manufacturer_part_number
 
     @manufacturer_part_number.setter
-    def manufacturer_part_number(self, manufacturer_part_number):
+    def manufacturer_part_number(self, manufacturer_part_number) -> None:
         """
         Sets the manufacturer_part_number of this AssociatedProduct.
 
@@ -187,7 +187,7 @@ class AssociatedProduct:
         return self._minimum_order_quantity
 
     @minimum_order_quantity.setter
-    def minimum_order_quantity(self, minimum_order_quantity):
+    def minimum_order_quantity(self, minimum_order_quantity) -> None:
         """
         Sets the minimum_order_quantity of this AssociatedProduct.
 
@@ -211,7 +211,7 @@ class AssociatedProduct:
         return self._non_stock
 
     @non_stock.setter
-    def non_stock(self, non_stock):
+    def non_stock(self, non_stock) -> None:
         """
         Sets the non_stock of this AssociatedProduct.
 
@@ -233,7 +233,7 @@ class AssociatedProduct:
         return self._packaging
 
     @packaging.setter
-    def packaging(self, packaging):
+    def packaging(self, packaging) -> None:
         """
         Sets the packaging of this AssociatedProduct.
 
@@ -255,7 +255,7 @@ class AssociatedProduct:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this AssociatedProduct.
 
@@ -279,7 +279,7 @@ class AssociatedProduct:
         return self._digi_key_part_number
 
     @digi_key_part_number.setter
-    def digi_key_part_number(self, digi_key_part_number):
+    def digi_key_part_number(self, digi_key_part_number) -> None:
         """
         Sets the digi_key_part_number of this AssociatedProduct.
 
@@ -303,7 +303,7 @@ class AssociatedProduct:
         return self._product_description
 
     @product_description.setter
-    def product_description(self, product_description):
+    def product_description(self, product_description) -> None:
         """
         Sets the product_description of this AssociatedProduct.
 
@@ -327,7 +327,7 @@ class AssociatedProduct:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this AssociatedProduct.
 
@@ -349,7 +349,7 @@ class AssociatedProduct:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this AssociatedProduct.
 
@@ -371,7 +371,7 @@ class AssociatedProduct:
         return self._manufacturer_public_quantity
 
     @manufacturer_public_quantity.setter
-    def manufacturer_public_quantity(self, manufacturer_public_quantity):
+    def manufacturer_public_quantity(self, manufacturer_public_quantity) -> None:
         """
         Sets the manufacturer_public_quantity of this AssociatedProduct.
 
@@ -395,7 +395,7 @@ class AssociatedProduct:
         return self._quantity_on_order
 
     @quantity_on_order.setter
-    def quantity_on_order(self, quantity_on_order):
+    def quantity_on_order(self, quantity_on_order) -> None:
         """
         Sets the quantity_on_order of this AssociatedProduct.
 
@@ -419,7 +419,7 @@ class AssociatedProduct:
         return self._dk_plus_restriction
 
     @dk_plus_restriction.setter
-    def dk_plus_restriction(self, dk_plus_restriction):
+    def dk_plus_restriction(self, dk_plus_restriction) -> None:
         """
         Sets the dk_plus_restriction of this AssociatedProduct.
 
@@ -443,7 +443,7 @@ class AssociatedProduct:
         return self._supplier_direct_ship
 
     @supplier_direct_ship.setter
-    def supplier_direct_ship(self, supplier_direct_ship):
+    def supplier_direct_ship(self, supplier_direct_ship) -> None:
         """
         Sets the supplier_direct_ship of this AssociatedProduct.
 
@@ -461,9 +461,7 @@ class AssociatedProduct:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -487,7 +485,7 @@ class AssociatedProduct:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

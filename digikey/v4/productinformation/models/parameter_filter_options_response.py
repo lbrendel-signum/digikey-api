@@ -52,7 +52,7 @@ class ParameterFilterOptionsResponse:
         parameter_id=None,
         parameter_name=None,
         filter_values=None,
-    ):
+    ) -> None:
         """ParameterFilterOptionsResponse - a model defined in Swagger"""
         self._category = None
         self._parameter_type = None
@@ -82,7 +82,7 @@ class ParameterFilterOptionsResponse:
         return self._category
 
     @category.setter
-    def category(self, category):
+    def category(self, category) -> None:
         """
         Sets the category of this ParameterFilterOptionsResponse.
 
@@ -104,7 +104,7 @@ class ParameterFilterOptionsResponse:
         return self._parameter_type
 
     @parameter_type.setter
-    def parameter_type(self, parameter_type):
+    def parameter_type(self, parameter_type) -> None:
         """
         Sets the parameter_type of this ParameterFilterOptionsResponse.
 
@@ -128,7 +128,7 @@ class ParameterFilterOptionsResponse:
         return self._parameter_id
 
     @parameter_id.setter
-    def parameter_id(self, parameter_id):
+    def parameter_id(self, parameter_id) -> None:
         """
         Sets the parameter_id of this ParameterFilterOptionsResponse.
 
@@ -152,7 +152,7 @@ class ParameterFilterOptionsResponse:
         return self._parameter_name
 
     @parameter_name.setter
-    def parameter_name(self, parameter_name):
+    def parameter_name(self, parameter_name) -> None:
         """
         Sets the parameter_name of this ParameterFilterOptionsResponse.
 
@@ -176,7 +176,7 @@ class ParameterFilterOptionsResponse:
         return self._filter_values
 
     @filter_values.setter
-    def filter_values(self, filter_values):
+    def filter_values(self, filter_values) -> None:
         """
         Sets the filter_values of this ParameterFilterOptionsResponse.
 
@@ -194,9 +194,7 @@ class ParameterFilterOptionsResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -220,7 +218,7 @@ class ParameterFilterOptionsResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

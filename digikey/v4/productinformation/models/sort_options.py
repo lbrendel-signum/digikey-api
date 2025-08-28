@@ -33,7 +33,7 @@ class SortOptions:
 
     attribute_map = {"field": "Field", "sort_order": "SortOrder"}
 
-    def __init__(self, field=None, sort_order=None):
+    def __init__(self, field=None, sort_order=None) -> None:
         """SortOptions - a model defined in Swagger"""
         self._field = None
         self._sort_order = None
@@ -56,7 +56,7 @@ class SortOptions:
         return self._field
 
     @field.setter
-    def field(self, field):
+    def field(self, field) -> None:
         """
         Sets the field of this SortOptions.
 
@@ -98,7 +98,7 @@ class SortOptions:
         return self._sort_order
 
     @sort_order.setter
-    def sort_order(self, sort_order):
+    def sort_order(self, sort_order) -> None:
         """
         Sets the sort_order of this SortOptions.
 
@@ -122,9 +122,7 @@ class SortOptions:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -148,7 +146,7 @@ class SortOptions:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

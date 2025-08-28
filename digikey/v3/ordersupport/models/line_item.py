@@ -85,7 +85,7 @@ class LineItem:
         invoice_id=None,
         default_shipping=None,
         schedule=None,
-    ):
+    ) -> None:
         """LineItem - a model defined in Swagger"""
         self._po_line_item_number = None
         self._digi_key_part_number = None
@@ -151,7 +151,7 @@ class LineItem:
         return self._po_line_item_number
 
     @po_line_item_number.setter
-    def po_line_item_number(self, po_line_item_number):
+    def po_line_item_number(self, po_line_item_number) -> None:
         """
         Sets the po_line_item_number of this LineItem.
 
@@ -175,7 +175,7 @@ class LineItem:
         return self._digi_key_part_number
 
     @digi_key_part_number.setter
-    def digi_key_part_number(self, digi_key_part_number):
+    def digi_key_part_number(self, digi_key_part_number) -> None:
         """
         Sets the digi_key_part_number of this LineItem.
 
@@ -199,7 +199,7 @@ class LineItem:
         return self._manufacturer_part_number
 
     @manufacturer_part_number.setter
-    def manufacturer_part_number(self, manufacturer_part_number):
+    def manufacturer_part_number(self, manufacturer_part_number) -> None:
         """
         Sets the manufacturer_part_number of this LineItem.
 
@@ -223,7 +223,7 @@ class LineItem:
         return self._product_description
 
     @product_description.setter
-    def product_description(self, product_description):
+    def product_description(self, product_description) -> None:
         """
         Sets the product_description of this LineItem.
 
@@ -247,7 +247,7 @@ class LineItem:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this LineItem.
 
@@ -271,7 +271,7 @@ class LineItem:
         return self._country_of_origin
 
     @country_of_origin.setter
-    def country_of_origin(self, country_of_origin):
+    def country_of_origin(self, country_of_origin) -> None:
         """
         Sets the country_of_origin of this LineItem.
 
@@ -295,7 +295,7 @@ class LineItem:
         return self._quantity
 
     @quantity.setter
-    def quantity(self, quantity):
+    def quantity(self, quantity) -> None:
         """
         Sets the quantity of this LineItem.
 
@@ -319,7 +319,7 @@ class LineItem:
         return self._customer_reference
 
     @customer_reference.setter
-    def customer_reference(self, customer_reference):
+    def customer_reference(self, customer_reference) -> None:
         """
         Sets the customer_reference of this LineItem.
 
@@ -343,7 +343,7 @@ class LineItem:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this LineItem.
 
@@ -367,7 +367,7 @@ class LineItem:
         return self._total_price
 
     @total_price.setter
-    def total_price(self, total_price):
+    def total_price(self, total_price) -> None:
         """
         Sets the total_price of this LineItem.
 
@@ -391,7 +391,7 @@ class LineItem:
         return self._quantity_backorder
 
     @quantity_backorder.setter
-    def quantity_backorder(self, quantity_backorder):
+    def quantity_backorder(self, quantity_backorder) -> None:
         """
         Sets the quantity_backorder of this LineItem.
 
@@ -413,7 +413,7 @@ class LineItem:
         return self._back_order_details
 
     @back_order_details.setter
-    def back_order_details(self, back_order_details):
+    def back_order_details(self, back_order_details) -> None:
         """
         Sets the back_order_details of this LineItem.
 
@@ -435,7 +435,7 @@ class LineItem:
         return self._quantity_shipped
 
     @quantity_shipped.setter
-    def quantity_shipped(self, quantity_shipped):
+    def quantity_shipped(self, quantity_shipped) -> None:
         """
         Sets the quantity_shipped of this LineItem.
 
@@ -459,7 +459,7 @@ class LineItem:
         return self._invoice_id
 
     @invoice_id.setter
-    def invoice_id(self, invoice_id):
+    def invoice_id(self, invoice_id) -> None:
         """
         Sets the invoice_id of this LineItem.
 
@@ -481,7 +481,7 @@ class LineItem:
         return self._default_shipping
 
     @default_shipping.setter
-    def default_shipping(self, default_shipping):
+    def default_shipping(self, default_shipping) -> None:
         """
         Sets the default_shipping of this LineItem.
 
@@ -503,7 +503,7 @@ class LineItem:
         return self._schedule
 
     @schedule.setter
-    def schedule(self, schedule):
+    def schedule(self, schedule) -> None:
         """
         Sets the schedule of this LineItem.
 
@@ -521,9 +521,7 @@ class LineItem:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -547,7 +545,7 @@ class LineItem:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

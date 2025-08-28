@@ -41,7 +41,7 @@ class Filters:
         "parametric_filters": "ParametricFilters",
     }
 
-    def __init__(self, taxonomy_ids=None, manufacturer_ids=None, parametric_filters=None):
+    def __init__(self, taxonomy_ids=None, manufacturer_ids=None, parametric_filters=None) -> None:
         """Filters - a model defined in Swagger"""
         self._taxonomy_ids = None
         self._manufacturer_ids = None
@@ -68,7 +68,7 @@ class Filters:
         return self._taxonomy_ids
 
     @taxonomy_ids.setter
-    def taxonomy_ids(self, taxonomy_ids):
+    def taxonomy_ids(self, taxonomy_ids) -> None:
         """
         Sets the taxonomy_ids of this Filters.
 
@@ -92,7 +92,7 @@ class Filters:
         return self._manufacturer_ids
 
     @manufacturer_ids.setter
-    def manufacturer_ids(self, manufacturer_ids):
+    def manufacturer_ids(self, manufacturer_ids) -> None:
         """
         Sets the manufacturer_ids of this Filters.
 
@@ -116,7 +116,7 @@ class Filters:
         return self._parametric_filters
 
     @parametric_filters.setter
-    def parametric_filters(self, parametric_filters):
+    def parametric_filters(self, parametric_filters) -> None:
         """
         Sets the parametric_filters of this Filters.
 
@@ -134,9 +134,7 @@ class Filters:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -160,7 +158,7 @@ class Filters:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

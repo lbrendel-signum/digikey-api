@@ -58,7 +58,7 @@ class ProductSubstitute:
         manufacturer_product_number=None,
         unit_price=None,
         quantity_available=None,
-    ):
+    ) -> None:
         """ProductSubstitute - a model defined in Swagger"""
         self._substitute_type = None
         self._product_url = None
@@ -96,7 +96,7 @@ class ProductSubstitute:
         return self._substitute_type
 
     @substitute_type.setter
-    def substitute_type(self, substitute_type):
+    def substitute_type(self, substitute_type) -> None:
         """
         Sets the substitute_type of this ProductSubstitute.
 
@@ -120,7 +120,7 @@ class ProductSubstitute:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this ProductSubstitute.
 
@@ -144,7 +144,7 @@ class ProductSubstitute:
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description) -> None:
         """
         Sets the description of this ProductSubstitute.
 
@@ -166,7 +166,7 @@ class ProductSubstitute:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this ProductSubstitute.
 
@@ -188,7 +188,7 @@ class ProductSubstitute:
         return self._manufacturer_product_number
 
     @manufacturer_product_number.setter
-    def manufacturer_product_number(self, manufacturer_product_number):
+    def manufacturer_product_number(self, manufacturer_product_number) -> None:
         """
         Sets the manufacturer_product_number of this ProductSubstitute.
 
@@ -212,7 +212,7 @@ class ProductSubstitute:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this ProductSubstitute.
 
@@ -236,7 +236,7 @@ class ProductSubstitute:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this ProductSubstitute.
 
@@ -254,9 +254,7 @@ class ProductSubstitute:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -280,7 +278,7 @@ class ProductSubstitute:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

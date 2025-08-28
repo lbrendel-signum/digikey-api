@@ -36,7 +36,7 @@ class Filters:
         "exclude_marketplace": "ExcludeMarketplace",
     }
 
-    def __init__(self, is_in_stock=None, exclude_marketplace=None):
+    def __init__(self, is_in_stock=None, exclude_marketplace=None) -> None:
         """Filters - a model defined in Swagger"""
         self._is_in_stock = None
         self._exclude_marketplace = None
@@ -59,7 +59,7 @@ class Filters:
         return self._is_in_stock
 
     @is_in_stock.setter
-    def is_in_stock(self, is_in_stock):
+    def is_in_stock(self, is_in_stock) -> None:
         """
         Sets the is_in_stock of this Filters.
 
@@ -83,7 +83,7 @@ class Filters:
         return self._exclude_marketplace
 
     @exclude_marketplace.setter
-    def exclude_marketplace(self, exclude_marketplace):
+    def exclude_marketplace(self, exclude_marketplace) -> None:
         """
         Sets the exclude_marketplace of this Filters.
 
@@ -101,9 +101,7 @@ class Filters:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -127,7 +125,7 @@ class Filters:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

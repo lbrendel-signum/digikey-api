@@ -58,7 +58,7 @@ class DKProblemDetails:
         instance=None,
         correlation_id=None,
         errors=None,
-    ):
+    ) -> None:
         """DKProblemDetails - a model defined in Swagger"""
         self._type = None
         self._title = None
@@ -94,7 +94,7 @@ class DKProblemDetails:
         return self._type
 
     @type.setter
-    def type(self, type):
+    def type(self, type) -> None:
         """
         Sets the type of this DKProblemDetails.
 
@@ -114,7 +114,7 @@ class DKProblemDetails:
         return self._title
 
     @title.setter
-    def title(self, title):
+    def title(self, title) -> None:
         """
         Sets the title of this DKProblemDetails.
 
@@ -134,7 +134,7 @@ class DKProblemDetails:
         return self._status
 
     @status.setter
-    def status(self, status):
+    def status(self, status) -> None:
         """
         Sets the status of this DKProblemDetails.
 
@@ -154,7 +154,7 @@ class DKProblemDetails:
         return self._detail
 
     @detail.setter
-    def detail(self, detail):
+    def detail(self, detail) -> None:
         """
         Sets the detail of this DKProblemDetails.
 
@@ -174,7 +174,7 @@ class DKProblemDetails:
         return self._instance
 
     @instance.setter
-    def instance(self, instance):
+    def instance(self, instance) -> None:
         """
         Sets the instance of this DKProblemDetails.
 
@@ -194,7 +194,7 @@ class DKProblemDetails:
         return self._correlation_id
 
     @correlation_id.setter
-    def correlation_id(self, correlation_id):
+    def correlation_id(self, correlation_id) -> None:
         """
         Sets the correlation_id of this DKProblemDetails.
 
@@ -214,7 +214,7 @@ class DKProblemDetails:
         return self._errors
 
     @errors.setter
-    def errors(self, errors):
+    def errors(self, errors) -> None:
         """
         Sets the errors of this DKProblemDetails.
 
@@ -230,9 +230,7 @@ class DKProblemDetails:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -256,7 +254,7 @@ class DKProblemDetails:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

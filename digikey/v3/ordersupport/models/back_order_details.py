@@ -36,7 +36,7 @@ class BackOrderDetails:
         "back_order_estimates": "BackOrderEstimates",
     }
 
-    def __init__(self, quantity=None, back_order_estimates=None):
+    def __init__(self, quantity=None, back_order_estimates=None) -> None:
         """BackOrderDetails - a model defined in Swagger"""
         self._quantity = None
         self._back_order_estimates = None
@@ -60,7 +60,7 @@ class BackOrderDetails:
         return self._quantity
 
     @quantity.setter
-    def quantity(self, quantity):
+    def quantity(self, quantity) -> None:
         """
         Sets the quantity of this BackOrderDetails.
 
@@ -84,7 +84,7 @@ class BackOrderDetails:
         return self._back_order_estimates
 
     @back_order_estimates.setter
-    def back_order_estimates(self, back_order_estimates):
+    def back_order_estimates(self, back_order_estimates) -> None:
         """
         Sets the back_order_estimates of this BackOrderDetails.
 
@@ -102,9 +102,7 @@ class BackOrderDetails:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -128,7 +126,7 @@ class BackOrderDetails:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

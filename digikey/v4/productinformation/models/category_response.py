@@ -33,7 +33,7 @@ class CategoryResponse:
 
     attribute_map = {"category": "Category", "search_locale_used": "SearchLocaleUsed"}
 
-    def __init__(self, category=None, search_locale_used=None):
+    def __init__(self, category=None, search_locale_used=None) -> None:
         """CategoryResponse - a model defined in Swagger"""
         self._category = None
         self._search_locale_used = None
@@ -54,7 +54,7 @@ class CategoryResponse:
         return self._category
 
     @category.setter
-    def category(self, category):
+    def category(self, category) -> None:
         """
         Sets the category of this CategoryResponse.
 
@@ -74,7 +74,7 @@ class CategoryResponse:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this CategoryResponse.
 
@@ -90,9 +90,7 @@ class CategoryResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -116,7 +114,7 @@ class CategoryResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

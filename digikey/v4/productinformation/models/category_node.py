@@ -61,7 +61,7 @@ class CategoryNode:
         image_url=None,
         seo_description=None,
         child_categories=None,
-    ):
+    ) -> None:
         """CategoryNode - a model defined in Swagger"""
         self._category_id = None
         self._parent_id = None
@@ -102,7 +102,7 @@ class CategoryNode:
         return self._category_id
 
     @category_id.setter
-    def category_id(self, category_id):
+    def category_id(self, category_id) -> None:
         """
         Sets the category_id of this CategoryNode.
 
@@ -126,7 +126,7 @@ class CategoryNode:
         return self._parent_id
 
     @parent_id.setter
-    def parent_id(self, parent_id):
+    def parent_id(self, parent_id) -> None:
         """
         Sets the parent_id of this CategoryNode.
 
@@ -150,7 +150,7 @@ class CategoryNode:
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name) -> None:
         """
         Sets the name of this CategoryNode.
 
@@ -174,7 +174,7 @@ class CategoryNode:
         return self._product_count
 
     @product_count.setter
-    def product_count(self, product_count):
+    def product_count(self, product_count) -> None:
         """
         Sets the product_count of this CategoryNode.
 
@@ -198,7 +198,7 @@ class CategoryNode:
         return self._new_product_count
 
     @new_product_count.setter
-    def new_product_count(self, new_product_count):
+    def new_product_count(self, new_product_count) -> None:
         """
         Sets the new_product_count of this CategoryNode.
 
@@ -222,7 +222,7 @@ class CategoryNode:
         return self._image_url
 
     @image_url.setter
-    def image_url(self, image_url):
+    def image_url(self, image_url) -> None:
         """
         Sets the image_url of this CategoryNode.
 
@@ -246,7 +246,7 @@ class CategoryNode:
         return self._seo_description
 
     @seo_description.setter
-    def seo_description(self, seo_description):
+    def seo_description(self, seo_description) -> None:
         """
         Sets the seo_description of this CategoryNode.
 
@@ -270,7 +270,7 @@ class CategoryNode:
         return self._child_categories
 
     @child_categories.setter
-    def child_categories(self, child_categories):
+    def child_categories(self, child_categories) -> None:
         """
         Sets the child_categories of this CategoryNode.
 
@@ -288,9 +288,7 @@ class CategoryNode:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -314,7 +312,7 @@ class CategoryNode:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

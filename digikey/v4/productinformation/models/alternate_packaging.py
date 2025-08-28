@@ -33,7 +33,7 @@ class AlternatePackaging:
 
     attribute_map = {"alternate_packaging": "AlternatePackaging"}
 
-    def __init__(self, alternate_packaging=None):
+    def __init__(self, alternate_packaging=None) -> None:
         """AlternatePackaging - a model defined in Swagger"""
         self._alternate_packaging = None
         self.discriminator = None
@@ -53,7 +53,7 @@ class AlternatePackaging:
         return self._alternate_packaging
 
     @alternate_packaging.setter
-    def alternate_packaging(self, alternate_packaging):
+    def alternate_packaging(self, alternate_packaging) -> None:
         """
         Sets the alternate_packaging of this AlternatePackaging.
 
@@ -71,9 +71,7 @@ class AlternatePackaging:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -97,7 +95,7 @@ class AlternatePackaging:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

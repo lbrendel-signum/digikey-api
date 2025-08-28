@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 
 class Oauth2Token:
-    def __init__(self, token):
+    def __init__(self, token) -> None:
         self._token = token
 
     @property
@@ -56,22 +56,20 @@ class Oauth2Token:
     def get_authorization(self) -> str:
         return self.type + " " + self.access_token
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Token: expires={self.expires.astimezone().isoformat()}>"
 
 
 class HTTPServerHandler(BaseHTTPRequestHandler):
-    """
-    HTTP Server callbacks to handle Digikey OAuth redirects
-    """
+    """HTTP Server callbacks to handle Digikey OAuth redirects"""
 
-    def __init__(self, request, address, server, a_id, a_secret):
+    def __init__(self, request, address, server, a_id, a_secret) -> None:
         self.app_id = a_id
         self.app_secret = a_secret
         self.auth_code = None
         super().__init__(request, address, server)
 
-    def do_GET(self):
+    def do_GET(self) -> None:
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
@@ -98,14 +96,12 @@ class HTTPServerHandler(BaseHTTPRequestHandler):
             )
 
     # Disable logging from the HTTP Server
-    def log_message(self, format, *args):
+    def log_message(self, format, *args) -> None:
         return
 
 
 class TokenHandler:
-    """
-    Functions used to handle Digikey oAuth
-    """
+    """Functions used to handle Digikey oAuth"""
 
     def __init__(
         self,
@@ -114,8 +110,8 @@ class TokenHandler:
         a_token_storage_path: str | None = None,
         version: int = 2,
         sandbox: bool = False,
-    ):
-        if version == 3 or version == 4:
+    ) -> None:
+        if version in {3, 4}:
             if sandbox:
                 self.auth_url = AUTH_URL_V3_SB
                 self.token_url = TOKEN_URL_V3_SB
@@ -247,7 +243,7 @@ class TokenHandler:
         )
         return token_json
 
-    def save(self, json_data):
+    def save(self, json_data) -> None:
         with open(self._token_storage_path, "w") as f:
             json.dump(json_data, f)
             logger.debug(f"Saved token to: {self._token_storage_path}")
@@ -281,7 +277,7 @@ class TokenHandler:
                 token_json = self.__refresh_token(token.refresh_token)
                 self.save(token_json)
             except DigikeyOauthException:
-                logger.error(
+                logger.exception(
                     "REFRESH - Failed to use refresh token, starting new authorization flow."
                 )
                 token_json = None
@@ -314,7 +310,7 @@ class TokenHandler:
                 os.remove(Path(filename))
                 os.remove(self._ca_cert)
             except OSError as e:
-                logger.error(f"Cannot remove temporary certificates: {e}")
+                logger.exception(f"Cannot remove temporary certificates: {e}")
 
             # Get the acccess token from the auth code
             token_json = self.__exchange_for_token(httpd.auth_code)

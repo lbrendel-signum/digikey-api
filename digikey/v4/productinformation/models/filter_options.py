@@ -58,7 +58,7 @@ class FilterOptions:
         parametric_filters=None,
         top_categories=None,
         market_place_filters=None,
-    ):
+    ) -> None:
         """FilterOptions - a model defined in Swagger"""
         self._manufacturers = None
         self._packaging = None
@@ -96,7 +96,7 @@ class FilterOptions:
         return self._manufacturers
 
     @manufacturers.setter
-    def manufacturers(self, manufacturers):
+    def manufacturers(self, manufacturers) -> None:
         """
         Sets the manufacturers of this FilterOptions.
 
@@ -120,7 +120,7 @@ class FilterOptions:
         return self._packaging
 
     @packaging.setter
-    def packaging(self, packaging):
+    def packaging(self, packaging) -> None:
         """
         Sets the packaging of this FilterOptions.
 
@@ -144,7 +144,7 @@ class FilterOptions:
         return self._status
 
     @status.setter
-    def status(self, status):
+    def status(self, status) -> None:
         """
         Sets the status of this FilterOptions.
 
@@ -168,7 +168,7 @@ class FilterOptions:
         return self._series
 
     @series.setter
-    def series(self, series):
+    def series(self, series) -> None:
         """
         Sets the series of this FilterOptions.
 
@@ -192,7 +192,7 @@ class FilterOptions:
         return self._parametric_filters
 
     @parametric_filters.setter
-    def parametric_filters(self, parametric_filters):
+    def parametric_filters(self, parametric_filters) -> None:
         """
         Sets the parametric_filters of this FilterOptions.
 
@@ -216,7 +216,7 @@ class FilterOptions:
         return self._top_categories
 
     @top_categories.setter
-    def top_categories(self, top_categories):
+    def top_categories(self, top_categories) -> None:
         """
         Sets the top_categories of this FilterOptions.
 
@@ -240,7 +240,7 @@ class FilterOptions:
         return self._market_place_filters
 
     @market_place_filters.setter
-    def market_place_filters(self, market_place_filters):
+    def market_place_filters(self, market_place_filters) -> None:
         """
         Sets the market_place_filters of this FilterOptions.
 
@@ -251,11 +251,14 @@ class FilterOptions:
         """
         allowed_values = ["NoFilter", "ExcludeMarketPlace", "MarketPlaceOnly"]
         if not set(market_place_filters).issubset(set(allowed_values)):
-            raise ValueError(
-                "Invalid values for `market_place_filters` [{0}], must be a subset of [{1}]".format(
+            msg = (
+                "Invalid values for `market_place_filters` [{}], must be a subset of [{}]".format(
                     ", ".join(map(str, set(market_place_filters) - set(allowed_values))),
                     ", ".join(map(str, allowed_values)),
                 )
+            )
+            raise ValueError(
+                msg
             )
 
         self._market_place_filters = market_place_filters
@@ -267,9 +270,7 @@ class FilterOptions:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -293,7 +294,7 @@ class FilterOptions:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

@@ -61,7 +61,7 @@ class ShippingDetail:
         invoice_id=None,
         canceled_or_voided=None,
         delivery_date=None,
-    ):
+    ) -> None:
         """ShippingDetail - a model defined in Swagger"""
         self._carrier = None
         self._carrier_package_id = None
@@ -103,7 +103,7 @@ class ShippingDetail:
         return self._carrier
 
     @carrier.setter
-    def carrier(self, carrier):
+    def carrier(self, carrier) -> None:
         """
         Sets the carrier of this ShippingDetail.
 
@@ -127,7 +127,7 @@ class ShippingDetail:
         return self._carrier_package_id
 
     @carrier_package_id.setter
-    def carrier_package_id(self, carrier_package_id):
+    def carrier_package_id(self, carrier_package_id) -> None:
         """
         Sets the carrier_package_id of this ShippingDetail.
 
@@ -151,7 +151,7 @@ class ShippingDetail:
         return self._date_transaction
 
     @date_transaction.setter
-    def date_transaction(self, date_transaction):
+    def date_transaction(self, date_transaction) -> None:
         """
         Sets the date_transaction of this ShippingDetail.
 
@@ -175,7 +175,7 @@ class ShippingDetail:
         return self._shipping_method
 
     @shipping_method.setter
-    def shipping_method(self, shipping_method):
+    def shipping_method(self, shipping_method) -> None:
         """
         Sets the shipping_method of this ShippingDetail.
 
@@ -197,7 +197,7 @@ class ShippingDetail:
         return self._tracking_url
 
     @tracking_url.setter
-    def tracking_url(self, tracking_url):
+    def tracking_url(self, tracking_url) -> None:
         """
         Sets the tracking_url of this ShippingDetail.
 
@@ -219,7 +219,7 @@ class ShippingDetail:
         return self._invoice_id
 
     @invoice_id.setter
-    def invoice_id(self, invoice_id):
+    def invoice_id(self, invoice_id) -> None:
         """
         Sets the invoice_id of this ShippingDetail.
 
@@ -243,7 +243,7 @@ class ShippingDetail:
         return self._canceled_or_voided
 
     @canceled_or_voided.setter
-    def canceled_or_voided(self, canceled_or_voided):
+    def canceled_or_voided(self, canceled_or_voided) -> None:
         """
         Sets the canceled_or_voided of this ShippingDetail.
 
@@ -256,7 +256,7 @@ class ShippingDetail:
 
     @property
     def delivery_date(self):
-        """
+        r"""
         Gets the delivery_date of this ShippingDetail.  # noqa: E501
 
         Date that the tracking number reports of delivery. If Tracking Number is not initiated by carrier or if  tracking number is expired the value of DeliveryDate will be empty  \"\"  # noqa: E501
@@ -267,8 +267,8 @@ class ShippingDetail:
         return self._delivery_date
 
     @delivery_date.setter
-    def delivery_date(self, delivery_date):
-        """
+    def delivery_date(self, delivery_date) -> None:
+        r"""
         Sets the delivery_date of this ShippingDetail.
 
         Date that the tracking number reports of delivery. If Tracking Number is not initiated by carrier or if  tracking number is expired the value of DeliveryDate will be empty  \"\"  # noqa: E501
@@ -285,9 +285,7 @@ class ShippingDetail:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -311,7 +309,7 @@ class ShippingDetail:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

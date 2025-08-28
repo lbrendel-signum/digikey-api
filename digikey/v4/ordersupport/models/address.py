@@ -67,7 +67,7 @@ class Address:
         province=None,
         postal_code=None,
         country=None,
-    ):
+    ) -> None:
         """Address - a model defined in Swagger"""
         self._company = None
         self._first_name = None
@@ -115,7 +115,7 @@ class Address:
         return self._company
 
     @company.setter
-    def company(self, company):
+    def company(self, company) -> None:
         """
         Sets the company of this Address.
 
@@ -139,7 +139,7 @@ class Address:
         return self._first_name
 
     @first_name.setter
-    def first_name(self, first_name):
+    def first_name(self, first_name) -> None:
         """
         Sets the first_name of this Address.
 
@@ -163,7 +163,7 @@ class Address:
         return self._last_name
 
     @last_name.setter
-    def last_name(self, last_name):
+    def last_name(self, last_name) -> None:
         """
         Sets the last_name of this Address.
 
@@ -187,7 +187,7 @@ class Address:
         return self._address_line_one
 
     @address_line_one.setter
-    def address_line_one(self, address_line_one):
+    def address_line_one(self, address_line_one) -> None:
         """
         Sets the address_line_one of this Address.
 
@@ -211,7 +211,7 @@ class Address:
         return self._address_line_two
 
     @address_line_two.setter
-    def address_line_two(self, address_line_two):
+    def address_line_two(self, address_line_two) -> None:
         """
         Sets the address_line_two of this Address.
 
@@ -235,7 +235,7 @@ class Address:
         return self._address_line_three
 
     @address_line_three.setter
-    def address_line_three(self, address_line_three):
+    def address_line_three(self, address_line_three) -> None:
         """
         Sets the address_line_three of this Address.
 
@@ -259,7 +259,7 @@ class Address:
         return self._city
 
     @city.setter
-    def city(self, city):
+    def city(self, city) -> None:
         """
         Sets the city of this Address.
 
@@ -283,7 +283,7 @@ class Address:
         return self._province
 
     @province.setter
-    def province(self, province):
+    def province(self, province) -> None:
         """
         Sets the province of this Address.
 
@@ -307,7 +307,7 @@ class Address:
         return self._postal_code
 
     @postal_code.setter
-    def postal_code(self, postal_code):
+    def postal_code(self, postal_code) -> None:
         """
         Sets the postal_code of this Address.
 
@@ -331,7 +331,7 @@ class Address:
         return self._country
 
     @country.setter
-    def country(self, country):
+    def country(self, country) -> None:
         """
         Sets the country of this Address.
 
@@ -349,9 +349,7 @@ class Address:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -375,7 +373,7 @@ class Address:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

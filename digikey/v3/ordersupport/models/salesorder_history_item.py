@@ -49,7 +49,7 @@ class SalesorderHistoryItem:
         customer_id=None,
         date_entered=None,
         purchase_order=None,
-    ):
+    ) -> None:
         """SalesorderHistoryItem - a model defined in Swagger"""
         self._salesorder_id = None
         self._customer_id = None
@@ -79,7 +79,7 @@ class SalesorderHistoryItem:
         return self._salesorder_id
 
     @salesorder_id.setter
-    def salesorder_id(self, salesorder_id):
+    def salesorder_id(self, salesorder_id) -> None:
         """
         Sets the salesorder_id of this SalesorderHistoryItem.
 
@@ -103,7 +103,7 @@ class SalesorderHistoryItem:
         return self._customer_id
 
     @customer_id.setter
-    def customer_id(self, customer_id):
+    def customer_id(self, customer_id) -> None:
         """
         Sets the customer_id of this SalesorderHistoryItem.
 
@@ -127,7 +127,7 @@ class SalesorderHistoryItem:
         return self._date_entered
 
     @date_entered.setter
-    def date_entered(self, date_entered):
+    def date_entered(self, date_entered) -> None:
         """
         Sets the date_entered of this SalesorderHistoryItem.
 
@@ -151,7 +151,7 @@ class SalesorderHistoryItem:
         return self._purchase_order
 
     @purchase_order.setter
-    def purchase_order(self, purchase_order):
+    def purchase_order(self, purchase_order) -> None:
         """
         Sets the purchase_order of this SalesorderHistoryItem.
 
@@ -169,9 +169,7 @@ class SalesorderHistoryItem:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -195,7 +193,7 @@ class SalesorderHistoryItem:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

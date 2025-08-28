@@ -33,7 +33,7 @@ class TopCategoryNode:
 
     attribute_map = {"id": "Id", "name": "Name", "product_count": "ProductCount"}
 
-    def __init__(self, id=None, name=None, product_count=None):
+    def __init__(self, id=None, name=None, product_count=None) -> None:
         """TopCategoryNode - a model defined in Swagger"""
         self._id = None
         self._name = None
@@ -59,7 +59,7 @@ class TopCategoryNode:
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id) -> None:
         """
         Sets the id of this TopCategoryNode.
 
@@ -83,7 +83,7 @@ class TopCategoryNode:
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name) -> None:
         """
         Sets the name of this TopCategoryNode.
 
@@ -107,7 +107,7 @@ class TopCategoryNode:
         return self._product_count
 
     @product_count.setter
-    def product_count(self, product_count):
+    def product_count(self, product_count) -> None:
         """
         Sets the product_count of this TopCategoryNode.
 
@@ -125,9 +125,7 @@ class TopCategoryNode:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -151,7 +149,7 @@ class TopCategoryNode:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

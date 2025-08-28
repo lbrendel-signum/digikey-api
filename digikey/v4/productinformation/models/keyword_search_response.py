@@ -61,7 +61,7 @@ class KeywordSearchResponse:
         exact_manufacturer_products=None,
         exact_digi_key_product=None,
         search_locale_used=None,
-    ):
+    ) -> None:
         """KeywordSearchResponse - a model defined in Swagger"""
         self._limited_taxonomy = None
         self._filter_options = None
@@ -101,7 +101,7 @@ class KeywordSearchResponse:
         return self._limited_taxonomy
 
     @limited_taxonomy.setter
-    def limited_taxonomy(self, limited_taxonomy):
+    def limited_taxonomy(self, limited_taxonomy) -> None:
         """
         Sets the limited_taxonomy of this KeywordSearchResponse.
 
@@ -123,7 +123,7 @@ class KeywordSearchResponse:
         return self._filter_options
 
     @filter_options.setter
-    def filter_options(self, filter_options):
+    def filter_options(self, filter_options) -> None:
         """
         Sets the filter_options of this KeywordSearchResponse.
 
@@ -147,7 +147,7 @@ class KeywordSearchResponse:
         return self._products
 
     @products.setter
-    def products(self, products):
+    def products(self, products) -> None:
         """
         Sets the products of this KeywordSearchResponse.
 
@@ -171,7 +171,7 @@ class KeywordSearchResponse:
         return self._products_count
 
     @products_count.setter
-    def products_count(self, products_count):
+    def products_count(self, products_count) -> None:
         """
         Sets the products_count of this KeywordSearchResponse.
 
@@ -195,7 +195,7 @@ class KeywordSearchResponse:
         return self._exact_manufacturer_products_count
 
     @exact_manufacturer_products_count.setter
-    def exact_manufacturer_products_count(self, exact_manufacturer_products_count):
+    def exact_manufacturer_products_count(self, exact_manufacturer_products_count) -> None:
         """
         Sets the exact_manufacturer_products_count of this KeywordSearchResponse.
 
@@ -219,7 +219,7 @@ class KeywordSearchResponse:
         return self._exact_manufacturer_products
 
     @exact_manufacturer_products.setter
-    def exact_manufacturer_products(self, exact_manufacturer_products):
+    def exact_manufacturer_products(self, exact_manufacturer_products) -> None:
         """
         Sets the exact_manufacturer_products of this KeywordSearchResponse.
 
@@ -241,7 +241,7 @@ class KeywordSearchResponse:
         return self._exact_digi_key_product
 
     @exact_digi_key_product.setter
-    def exact_digi_key_product(self, exact_digi_key_product):
+    def exact_digi_key_product(self, exact_digi_key_product) -> None:
         """
         Sets the exact_digi_key_product of this KeywordSearchResponse.
 
@@ -261,7 +261,7 @@ class KeywordSearchResponse:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this KeywordSearchResponse.
 
@@ -277,9 +277,7 @@ class KeywordSearchResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -303,7 +301,7 @@ class KeywordSearchResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

@@ -43,7 +43,7 @@ class IsoSearchLocale:
         "ship_to_country": "ShipToCountry",
     }
 
-    def __init__(self, site=None, language=None, currency=None, ship_to_country=None):
+    def __init__(self, site=None, language=None, currency=None, ship_to_country=None) -> None:
         """IsoSearchLocale - a model defined in Swagger"""
         self._site = None
         self._language = None
@@ -73,7 +73,7 @@ class IsoSearchLocale:
         return self._site
 
     @site.setter
-    def site(self, site):
+    def site(self, site) -> None:
         """
         Sets the site of this IsoSearchLocale.
 
@@ -97,7 +97,7 @@ class IsoSearchLocale:
         return self._language
 
     @language.setter
-    def language(self, language):
+    def language(self, language) -> None:
         """
         Sets the language of this IsoSearchLocale.
 
@@ -121,7 +121,7 @@ class IsoSearchLocale:
         return self._currency
 
     @currency.setter
-    def currency(self, currency):
+    def currency(self, currency) -> None:
         """
         Sets the currency of this IsoSearchLocale.
 
@@ -145,7 +145,7 @@ class IsoSearchLocale:
         return self._ship_to_country
 
     @ship_to_country.setter
-    def ship_to_country(self, ship_to_country):
+    def ship_to_country(self, ship_to_country) -> None:
         """
         Sets the ship_to_country of this IsoSearchLocale.
 
@@ -163,9 +163,7 @@ class IsoSearchLocale:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -189,7 +187,7 @@ class IsoSearchLocale:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

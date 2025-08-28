@@ -100,7 +100,7 @@ class ProductPricing:
         contains_mercury=None,
         is_end_of_life=None,
         product_variations=None,
-    ):
+    ) -> None:
         """ProductPricing - a model defined in Swagger"""
         self._manufacturer_product_number = None
         self._manufacturer = None
@@ -180,7 +180,7 @@ class ProductPricing:
         return self._manufacturer_product_number
 
     @manufacturer_product_number.setter
-    def manufacturer_product_number(self, manufacturer_product_number):
+    def manufacturer_product_number(self, manufacturer_product_number) -> None:
         """
         Sets the manufacturer_product_number of this ProductPricing.
 
@@ -202,7 +202,7 @@ class ProductPricing:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this ProductPricing.
 
@@ -222,7 +222,7 @@ class ProductPricing:
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description) -> None:
         """
         Sets the description of this ProductPricing.
 
@@ -244,7 +244,7 @@ class ProductPricing:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this ProductPricing.
 
@@ -268,7 +268,7 @@ class ProductPricing:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this ProductPricing.
 
@@ -292,7 +292,7 @@ class ProductPricing:
         return self._is_discontinued
 
     @is_discontinued.setter
-    def is_discontinued(self, is_discontinued):
+    def is_discontinued(self, is_discontinued) -> None:
         """
         Sets the is_discontinued of this ProductPricing.
 
@@ -316,7 +316,7 @@ class ProductPricing:
         return self._normally_stocking
 
     @normally_stocking.setter
-    def normally_stocking(self, normally_stocking):
+    def normally_stocking(self, normally_stocking) -> None:
         """
         Sets the normally_stocking of this ProductPricing.
 
@@ -340,7 +340,7 @@ class ProductPricing:
         return self._is_obsolete
 
     @is_obsolete.setter
-    def is_obsolete(self, is_obsolete):
+    def is_obsolete(self, is_obsolete) -> None:
         """
         Sets the is_obsolete of this ProductPricing.
 
@@ -364,7 +364,7 @@ class ProductPricing:
         return self._manufacturer_lead_weeks
 
     @manufacturer_lead_weeks.setter
-    def manufacturer_lead_weeks(self, manufacturer_lead_weeks):
+    def manufacturer_lead_weeks(self, manufacturer_lead_weeks) -> None:
         """
         Sets the manufacturer_lead_weeks of this ProductPricing.
 
@@ -388,7 +388,7 @@ class ProductPricing:
         return self._manufacturer_public_quantity
 
     @manufacturer_public_quantity.setter
-    def manufacturer_public_quantity(self, manufacturer_public_quantity):
+    def manufacturer_public_quantity(self, manufacturer_public_quantity) -> None:
         """
         Sets the manufacturer_public_quantity of this ProductPricing.
 
@@ -412,7 +412,7 @@ class ProductPricing:
         return self._standard_package
 
     @standard_package.setter
-    def standard_package(self, standard_package):
+    def standard_package(self, standard_package) -> None:
         """
         Sets the standard_package of this ProductPricing.
 
@@ -436,7 +436,7 @@ class ProductPricing:
         return self._export_control_class_number
 
     @export_control_class_number.setter
-    def export_control_class_number(self, export_control_class_number):
+    def export_control_class_number(self, export_control_class_number) -> None:
         """
         Sets the export_control_class_number of this ProductPricing.
 
@@ -460,7 +460,7 @@ class ProductPricing:
         return self._htsus_code
 
     @htsus_code.setter
-    def htsus_code(self, htsus_code):
+    def htsus_code(self, htsus_code) -> None:
         """
         Sets the htsus_code of this ProductPricing.
 
@@ -484,7 +484,7 @@ class ProductPricing:
         return self._moisture_sensitivity_level
 
     @moisture_sensitivity_level.setter
-    def moisture_sensitivity_level(self, moisture_sensitivity_level):
+    def moisture_sensitivity_level(self, moisture_sensitivity_level) -> None:
         """
         Sets the moisture_sensitivity_level of this ProductPricing.
 
@@ -508,7 +508,7 @@ class ProductPricing:
         return self._is_bo_not_allowed
 
     @is_bo_not_allowed.setter
-    def is_bo_not_allowed(self, is_bo_not_allowed):
+    def is_bo_not_allowed(self, is_bo_not_allowed) -> None:
         """
         Sets the is_bo_not_allowed of this ProductPricing.
 
@@ -532,7 +532,7 @@ class ProductPricing:
         return self._is_ncnr
 
     @is_ncnr.setter
-    def is_ncnr(self, is_ncnr):
+    def is_ncnr(self, is_ncnr) -> None:
         """
         Sets the is_ncnr of this ProductPricing.
 
@@ -556,7 +556,7 @@ class ProductPricing:
         return self._categories
 
     @categories.setter
-    def categories(self, categories):
+    def categories(self, categories) -> None:
         """
         Sets the categories of this ProductPricing.
 
@@ -580,7 +580,7 @@ class ProductPricing:
         return self._contains_lithium
 
     @contains_lithium.setter
-    def contains_lithium(self, contains_lithium):
+    def contains_lithium(self, contains_lithium) -> None:
         """
         Sets the contains_lithium of this ProductPricing.
 
@@ -604,7 +604,7 @@ class ProductPricing:
         return self._contains_mercury
 
     @contains_mercury.setter
-    def contains_mercury(self, contains_mercury):
+    def contains_mercury(self, contains_mercury) -> None:
         """
         Sets the contains_mercury of this ProductPricing.
 
@@ -628,7 +628,7 @@ class ProductPricing:
         return self._is_end_of_life
 
     @is_end_of_life.setter
-    def is_end_of_life(self, is_end_of_life):
+    def is_end_of_life(self, is_end_of_life) -> None:
         """
         Sets the is_end_of_life of this ProductPricing.
 
@@ -652,7 +652,7 @@ class ProductPricing:
         return self._product_variations
 
     @product_variations.setter
-    def product_variations(self, product_variations):
+    def product_variations(self, product_variations) -> None:
         """
         Sets the product_variations of this ProductPricing.
 
@@ -670,9 +670,7 @@ class ProductPricing:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -696,7 +694,7 @@ class ProductPricing:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

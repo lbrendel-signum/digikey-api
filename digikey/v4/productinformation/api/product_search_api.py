@@ -26,13 +26,13 @@ class ProductSearchApi:
     Ref: https://github.com/swagger-api/swagger-codegen
     """
 
-    def __init__(self, api_client=None):
+    def __init__(self, api_client=None) -> None:
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
 
     def alternate_packaging(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Alternate Packaging for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -61,13 +61,12 @@ class ProductSearchApi:
             return self.alternate_packaging_with_http_info(
                 product_number, x_digikey_client_id, **kwargs
             )
-        (data) = self.alternate_packaging_with_http_info(
+        return self.alternate_packaging_with_http_info(
             product_number, x_digikey_client_id, **kwargs
         )
-        return data
 
     def alternate_packaging_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Alternate Packaging for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -111,8 +110,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method alternate_packaging"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method alternate_packaging" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -184,7 +184,7 @@ class ProductSearchApi:
         )
 
     def associations(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Associations for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -211,11 +211,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.associations_with_http_info(product_number, x_digikey_client_id, **kwargs)
-        (data) = self.associations_with_http_info(product_number, x_digikey_client_id, **kwargs)
-        return data
+        return self.associations_with_http_info(product_number, x_digikey_client_id, **kwargs)
 
     def associations_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Associations for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -259,8 +258,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method associations"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method associations" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -332,7 +332,7 @@ class ProductSearchApi:
         )
 
     def categories(self, **kwargs):
-        """
+        r"""
         Returns all Product Categories. Category Id can be used in KeywordRequestDto.Filters.TaxonomyIds to restrict a  keyword search to a given category  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -349,11 +349,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.categories_with_http_info(**kwargs)
-        (data) = self.categories_with_http_info(**kwargs)
-        return data
+        return self.categories_with_http_info(**kwargs)
 
     def categories_with_http_info(self, **kwargs):
-        """
+        r"""
         Returns all Product Categories. Category Id can be used in KeywordRequestDto.Filters.TaxonomyIds to restrict a  keyword search to a given category  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -376,8 +375,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method categories"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method categories" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -421,7 +421,7 @@ class ProductSearchApi:
         )
 
     def categories_by_id(self, category_id, **kwargs):
-        """
+        r"""
         Returns Category for given Id. Category Id can be used in KeywordRequestDto.Filters.TaxonomyIds to restrict a  keyword search to a given category  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -439,11 +439,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.categories_by_id_with_http_info(category_id, **kwargs)
-        (data) = self.categories_by_id_with_http_info(category_id, **kwargs)
-        return data
+        return self.categories_by_id_with_http_info(category_id, **kwargs)
 
     def categories_by_id_with_http_info(self, category_id, **kwargs):
-        """
+        r"""
         Returns Category for given Id. Category Id can be used in KeywordRequestDto.Filters.TaxonomyIds to restrict a  keyword search to a given category  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -467,8 +466,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method categories_by_id"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method categories_by_id" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -519,7 +519,7 @@ class ProductSearchApi:
         )
 
     def digi_reel_pricing(self, product_number, requested_quantity, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Calculate the DigiReel pricing for the given DigiKeyProductNumber and RequestedQuantity  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -548,15 +548,14 @@ class ProductSearchApi:
             return self.digi_reel_pricing_with_http_info(
                 product_number, requested_quantity, x_digikey_client_id, **kwargs
             )
-        (data) = self.digi_reel_pricing_with_http_info(
+        return self.digi_reel_pricing_with_http_info(
             product_number, requested_quantity, x_digikey_client_id, **kwargs
         )
-        return data
 
     def digi_reel_pricing_with_http_info(
         self, product_number, requested_quantity, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Calculate the DigiReel pricing for the given DigiKeyProductNumber and RequestedQuantity  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -601,8 +600,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method digi_reel_pricing"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method digi_reel_pricing" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -681,7 +681,7 @@ class ProductSearchApi:
         )
 
     def keyword_search(self, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter parameters, keywords, or a manufacturer part number/DigiKey part number and receive many fields of product information for each match. Note that MyPricing is not returned.  # noqa: E501
 
         Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -709,11 +709,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.keyword_search_with_http_info(x_digikey_client_id, **kwargs)
-        (data) = self.keyword_search_with_http_info(x_digikey_client_id, **kwargs)
-        return data
+        return self.keyword_search_with_http_info(x_digikey_client_id, **kwargs)
 
     def keyword_search_with_http_info(self, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter parameters, keywords, or a manufacturer part number/DigiKey part number and receive many fields of product information for each match. Note that MyPricing is not returned.  # noqa: E501
 
         Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -759,8 +758,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method keyword_search"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method keyword_search" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -834,7 +834,7 @@ class ProductSearchApi:
         )
 
     def manufacturers(self, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Returns all Product Manufacturers. ManufacturersId can be used in KeywordRequestDto.Filters.ManufacturerIds to  restrict a keyword search to a given Manufacturer  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -858,11 +858,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.manufacturers_with_http_info(x_digikey_client_id, **kwargs)
-        (data) = self.manufacturers_with_http_info(x_digikey_client_id, **kwargs)
-        return data
+        return self.manufacturers_with_http_info(x_digikey_client_id, **kwargs)
 
     def manufacturers_with_http_info(self, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Returns all Product Manufacturers. ManufacturersId can be used in KeywordRequestDto.Filters.ManufacturerIds to  restrict a keyword search to a given Manufacturer  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -901,8 +900,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method manufacturers"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method manufacturers" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -965,7 +965,7 @@ class ProductSearchApi:
         )
 
     def media(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve all media for a given product  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -991,11 +991,10 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.media_with_http_info(product_number, x_digikey_client_id, **kwargs)
-        (data) = self.media_with_http_info(product_number, x_digikey_client_id, **kwargs)
-        return data
+        return self.media_with_http_info(product_number, x_digikey_client_id, **kwargs)
 
     def media_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve all media for a given product  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1038,7 +1037,8 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
-                raise TypeError("Got an unexpected keyword argument '%s' to method media" % key)
+                msg = f"Got an unexpected keyword argument '{key}' to method media"
+                raise TypeError(msg)
             params[key] = val
         del params["kwargs"]
         # verify the required parameter 'product_number' is set
@@ -1109,7 +1109,7 @@ class ProductSearchApi:
     def package_type_by_quantity(
         self, product_number, requested_quantity, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Provide a product number and quantity to receive product information such as pricing, available quantity, and the  best  packaging type for the requested quantity of the product.  For example, given a requested quantity larger than a standard reel, this will return information about the  standard tape and reel as well as either cut tape or DKR depending on the provided preference.  Made for Cut Tape, Tape and Reel, and Digi-Reel products only. Other packaging types can be searched for, but  results may vary.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1139,15 +1139,14 @@ class ProductSearchApi:
             return self.package_type_by_quantity_with_http_info(
                 product_number, requested_quantity, x_digikey_client_id, **kwargs
             )
-        (data) = self.package_type_by_quantity_with_http_info(
+        return self.package_type_by_quantity_with_http_info(
             product_number, requested_quantity, x_digikey_client_id, **kwargs
         )
-        return data
 
     def package_type_by_quantity_with_http_info(
         self, product_number, requested_quantity, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Provide a product number and quantity to receive product information such as pricing, available quantity, and the  best  packaging type for the requested quantity of the product.  For example, given a requested quantity larger than a standard reel, this will return information about the  standard tape and reel as well as either cut tape or DKR depending on the provided preference.  Made for Cut Tape, Tape and Reel, and Digi-Reel products only. Other packaging types can be searched for, but  results may vary.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1194,9 +1193,12 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = (
+                    f"Got an unexpected keyword argument '{key}'"
+                    " to method package_type_by_quantity"
+                )
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method package_type_by_quantity" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -1277,7 +1279,7 @@ class ProductSearchApi:
         )
 
     def product_details(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter a manufacturer part number/DigiKey part number and receive all of the production information fields for a single-matched product. MyPricing is shown if applicable.  If the manufacturer part number has more than one match, we will respond with an error.  # noqa: E501
 
         Works best with a Digi-Key product number. MyPricing is shown if applicable.  Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1307,13 +1309,12 @@ class ProductSearchApi:
             return self.product_details_with_http_info(
                 product_number, x_digikey_client_id, **kwargs
             )
-        (data) = self.product_details_with_http_info(
+        return self.product_details_with_http_info(
             product_number, x_digikey_client_id, **kwargs
         )
-        return data
 
     def product_details_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter a manufacturer part number/DigiKey part number and receive all of the production information fields for a single-matched product. MyPricing is shown if applicable.  If the manufacturer part number has more than one match, we will respond with an error.  # noqa: E501
 
         Works best with a Digi-Key product number. MyPricing is shown if applicable.  Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1359,8 +1360,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method product_details"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method product_details" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -1434,7 +1436,7 @@ class ProductSearchApi:
         )
 
     def product_pricing(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter a manufacturer part number/DigiKey part number or partial manufacturer part number/DigiKey part number and receive product information fields for each matched product. MyPricing is shown if applicable.  # noqa: E501
 
         Allows you to use inStock and excludeMarketplace as limit. If there are multiple matching parts, you can see the additional ones by incrementing your input using the offset and limit fields. Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1463,13 +1465,12 @@ class ProductSearchApi:
             return self.product_pricing_with_http_info(
                 product_number, x_digikey_client_id, **kwargs
             )
-        (data) = self.product_pricing_with_http_info(
+        return self.product_pricing_with_http_info(
             product_number, x_digikey_client_id, **kwargs
         )
-        return data
 
     def product_pricing_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Enter a manufacturer part number/DigiKey part number or partial manufacturer part number/DigiKey part number and receive product information fields for each matched product. MyPricing is shown if applicable.  # noqa: E501
 
         Allows you to use inStock and excludeMarketplace as limit. If there are multiple matching parts, you can see the additional ones by incrementing your input using the offset and limit fields. Locale information is required in the headers for accurate pricing and currencies. Locale and currencies will be set to default values if not populated or populated with invalid values. Check the “Settings Used” fields to see which values we used for the response.  # noqa: E501
@@ -1513,8 +1514,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method product_pricing"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method product_pricing" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -1586,7 +1588,7 @@ class ProductSearchApi:
         )
 
     def recommended_products(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Returns a list of recommended products for the given Product number.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1616,13 +1618,12 @@ class ProductSearchApi:
             return self.recommended_products_with_http_info(
                 product_number, x_digikey_client_id, **kwargs
             )
-        (data) = self.recommended_products_with_http_info(
+        return self.recommended_products_with_http_info(
             product_number, x_digikey_client_id, **kwargs
         )
-        return data
 
     def recommended_products_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Returns a list of recommended products for the given Product number.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1669,8 +1670,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method recommended_products"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method recommended_products" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -1748,7 +1750,7 @@ class ProductSearchApi:
         )
 
     def substitutions(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Substitutions for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -1776,13 +1778,12 @@ class ProductSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.substitutions_with_http_info(product_number, x_digikey_client_id, **kwargs)
-        (data) = self.substitutions_with_http_info(
+        return self.substitutions_with_http_info(
             product_number, x_digikey_client_id, **kwargs
         )
-        return data
 
     def substitutions_with_http_info(self, product_number, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve Substitutions for a given product  # noqa: E501
 
         Works best with a Digi-Key Product number. Some manufacturer product numbers conflict with unrelated products and  may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -1828,8 +1829,9 @@ class ProductSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method substitutions"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method substitutions" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]

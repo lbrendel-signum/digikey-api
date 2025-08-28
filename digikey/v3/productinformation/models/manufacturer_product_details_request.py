@@ -58,7 +58,7 @@ class ManufacturerProductDetailsRequest:
         sort=None,
         requested_quantity=None,
         search_options=None,
-    ):
+    ) -> None:
         """ManufacturerProductDetailsRequest - a model defined in Swagger"""
         self._manufacturer_product = None
         self._record_count = None
@@ -96,7 +96,7 @@ class ManufacturerProductDetailsRequest:
         return self._manufacturer_product
 
     @manufacturer_product.setter
-    def manufacturer_product(self, manufacturer_product):
+    def manufacturer_product(self, manufacturer_product) -> None:
         """
         Sets the manufacturer_product of this ManufacturerProductDetailsRequest.
 
@@ -131,7 +131,7 @@ class ManufacturerProductDetailsRequest:
         return self._record_count
 
     @record_count.setter
-    def record_count(self, record_count):
+    def record_count(self, record_count) -> None:
         """
         Sets the record_count of this ManufacturerProductDetailsRequest.
 
@@ -164,7 +164,7 @@ class ManufacturerProductDetailsRequest:
         return self._record_start_position
 
     @record_start_position.setter
-    def record_start_position(self, record_start_position):
+    def record_start_position(self, record_start_position) -> None:
         """
         Sets the record_start_position of this ManufacturerProductDetailsRequest.
 
@@ -186,7 +186,7 @@ class ManufacturerProductDetailsRequest:
         return self._filters
 
     @filters.setter
-    def filters(self, filters):
+    def filters(self, filters) -> None:
         """
         Sets the filters of this ManufacturerProductDetailsRequest.
 
@@ -206,7 +206,7 @@ class ManufacturerProductDetailsRequest:
         return self._sort
 
     @sort.setter
-    def sort(self, sort):
+    def sort(self, sort) -> None:
         """
         Sets the sort of this ManufacturerProductDetailsRequest.
 
@@ -228,7 +228,7 @@ class ManufacturerProductDetailsRequest:
         return self._requested_quantity
 
     @requested_quantity.setter
-    def requested_quantity(self, requested_quantity):
+    def requested_quantity(self, requested_quantity) -> None:
         """
         Sets the requested_quantity of this ManufacturerProductDetailsRequest.
 
@@ -252,7 +252,7 @@ class ManufacturerProductDetailsRequest:
         return self._search_options
 
     @search_options.setter
-    def search_options(self, search_options):
+    def search_options(self, search_options) -> None:
         """
         Sets the search_options of this ManufacturerProductDetailsRequest.
 
@@ -270,9 +270,7 @@ class ManufacturerProductDetailsRequest:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -296,7 +294,7 @@ class ManufacturerProductDetailsRequest:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

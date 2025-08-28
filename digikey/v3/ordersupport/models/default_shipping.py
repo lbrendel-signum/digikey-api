@@ -36,7 +36,7 @@ class DefaultShipping:
         "estimated_in_house_date": "EstimatedInHouseDate",
     }
 
-    def __init__(self, digi_key_release_date=None, estimated_in_house_date=None):
+    def __init__(self, digi_key_release_date=None, estimated_in_house_date=None) -> None:
         """DefaultShipping - a model defined in Swagger"""
         self._digi_key_release_date = None
         self._estimated_in_house_date = None
@@ -60,7 +60,7 @@ class DefaultShipping:
         return self._digi_key_release_date
 
     @digi_key_release_date.setter
-    def digi_key_release_date(self, digi_key_release_date):
+    def digi_key_release_date(self, digi_key_release_date) -> None:
         """
         Sets the digi_key_release_date of this DefaultShipping.
 
@@ -84,7 +84,7 @@ class DefaultShipping:
         return self._estimated_in_house_date
 
     @estimated_in_house_date.setter
-    def estimated_in_house_date(self, estimated_in_house_date):
+    def estimated_in_house_date(self, estimated_in_house_date) -> None:
         """
         Sets the estimated_in_house_date of this DefaultShipping.
 
@@ -102,9 +102,7 @@ class DefaultShipping:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -128,7 +126,7 @@ class DefaultShipping:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

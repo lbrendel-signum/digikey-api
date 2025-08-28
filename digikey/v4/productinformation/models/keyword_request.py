@@ -52,7 +52,7 @@ class KeywordRequest:
         offset=None,
         filter_options_request=None,
         sort_options=None,
-    ):
+    ) -> None:
         """KeywordRequest - a model defined in Swagger"""
         self._keywords = None
         self._limit = None
@@ -84,7 +84,7 @@ class KeywordRequest:
         return self._keywords
 
     @keywords.setter
-    def keywords(self, keywords):
+    def keywords(self, keywords) -> None:
         """
         Sets the keywords of this KeywordRequest.
 
@@ -108,7 +108,7 @@ class KeywordRequest:
         return self._limit
 
     @limit.setter
-    def limit(self, limit):
+    def limit(self, limit) -> None:
         """
         Sets the limit of this KeywordRequest.
 
@@ -132,7 +132,7 @@ class KeywordRequest:
         return self._offset
 
     @offset.setter
-    def offset(self, offset):
+    def offset(self, offset) -> None:
         """
         Sets the offset of this KeywordRequest.
 
@@ -154,7 +154,7 @@ class KeywordRequest:
         return self._filter_options_request
 
     @filter_options_request.setter
-    def filter_options_request(self, filter_options_request):
+    def filter_options_request(self, filter_options_request) -> None:
         """
         Sets the filter_options_request of this KeywordRequest.
 
@@ -174,7 +174,7 @@ class KeywordRequest:
         return self._sort_options
 
     @sort_options.setter
-    def sort_options(self, sort_options):
+    def sort_options(self, sort_options) -> None:
         """
         Sets the sort_options of this KeywordRequest.
 
@@ -190,9 +190,7 @@ class KeywordRequest:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -216,7 +214,7 @@ class KeywordRequest:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

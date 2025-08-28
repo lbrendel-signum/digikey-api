@@ -33,7 +33,7 @@ class ProductDetailsResponse:
 
     attribute_map = {"product_details": "ProductDetails"}
 
-    def __init__(self, product_details=None):
+    def __init__(self, product_details=None) -> None:
         """ProductDetailsResponse - a model defined in Swagger"""
         self._product_details = None
         self.discriminator = None
@@ -54,7 +54,7 @@ class ProductDetailsResponse:
         return self._product_details
 
     @product_details.setter
-    def product_details(self, product_details):
+    def product_details(self, product_details) -> None:
         """
         Sets the product_details of this ProductDetailsResponse.
 
@@ -72,9 +72,7 @@ class ProductDetailsResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -98,7 +96,7 @@ class ProductDetailsResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

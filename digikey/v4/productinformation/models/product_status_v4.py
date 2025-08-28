@@ -33,7 +33,7 @@ class ProductStatusV4:
 
     attribute_map = {"id": "Id", "status": "Status"}
 
-    def __init__(self, id=None, status=None):
+    def __init__(self, id=None, status=None) -> None:
         """ProductStatusV4 - a model defined in Swagger"""
         self._id = None
         self._status = None
@@ -54,7 +54,7 @@ class ProductStatusV4:
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id) -> None:
         """
         Sets the id of this ProductStatusV4.
 
@@ -74,7 +74,7 @@ class ProductStatusV4:
         return self._status
 
     @status.setter
-    def status(self, status):
+    def status(self, status) -> None:
         """
         Sets the status of this ProductStatusV4.
 
@@ -90,9 +90,7 @@ class ProductStatusV4:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -116,7 +114,7 @@ class ProductStatusV4:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

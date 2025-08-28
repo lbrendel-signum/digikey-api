@@ -106,7 +106,7 @@ class PackageTypeByQuantityProduct:
         supplier=None,
         stock_note=None,
         package_types=None,
-    ):
+    ) -> None:
         """PackageTypeByQuantityProduct - a model defined in Swagger"""
         self._recommended_quantity = None
         self._digi_key_product_number = None
@@ -192,7 +192,7 @@ class PackageTypeByQuantityProduct:
         return self._recommended_quantity
 
     @recommended_quantity.setter
-    def recommended_quantity(self, recommended_quantity):
+    def recommended_quantity(self, recommended_quantity) -> None:
         """
         Sets the recommended_quantity of this PackageTypeByQuantityProduct.
 
@@ -216,7 +216,7 @@ class PackageTypeByQuantityProduct:
         return self._digi_key_product_number
 
     @digi_key_product_number.setter
-    def digi_key_product_number(self, digi_key_product_number):
+    def digi_key_product_number(self, digi_key_product_number) -> None:
         """
         Sets the digi_key_product_number of this PackageTypeByQuantityProduct.
 
@@ -240,7 +240,7 @@ class PackageTypeByQuantityProduct:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this PackageTypeByQuantityProduct.
 
@@ -264,7 +264,7 @@ class PackageTypeByQuantityProduct:
         return self._product_description
 
     @product_description.setter
-    def product_description(self, product_description):
+    def product_description(self, product_description) -> None:
         """
         Sets the product_description of this PackageTypeByQuantityProduct.
 
@@ -288,7 +288,7 @@ class PackageTypeByQuantityProduct:
         return self._detailed_description
 
     @detailed_description.setter
-    def detailed_description(self, detailed_description):
+    def detailed_description(self, detailed_description) -> None:
         """
         Sets the detailed_description of this PackageTypeByQuantityProduct.
 
@@ -312,7 +312,7 @@ class PackageTypeByQuantityProduct:
         return self._manufacturer_name
 
     @manufacturer_name.setter
-    def manufacturer_name(self, manufacturer_name):
+    def manufacturer_name(self, manufacturer_name) -> None:
         """
         Sets the manufacturer_name of this PackageTypeByQuantityProduct.
 
@@ -336,7 +336,7 @@ class PackageTypeByQuantityProduct:
         return self._manufacturer_product_number
 
     @manufacturer_product_number.setter
-    def manufacturer_product_number(self, manufacturer_product_number):
+    def manufacturer_product_number(self, manufacturer_product_number) -> None:
         """
         Sets the manufacturer_product_number of this PackageTypeByQuantityProduct.
 
@@ -360,7 +360,7 @@ class PackageTypeByQuantityProduct:
         return self._minimum_order_quantity
 
     @minimum_order_quantity.setter
-    def minimum_order_quantity(self, minimum_order_quantity):
+    def minimum_order_quantity(self, minimum_order_quantity) -> None:
         """
         Sets the minimum_order_quantity of this PackageTypeByQuantityProduct.
 
@@ -384,7 +384,7 @@ class PackageTypeByQuantityProduct:
         return self._primary_datasheet_url
 
     @primary_datasheet_url.setter
-    def primary_datasheet_url(self, primary_datasheet_url):
+    def primary_datasheet_url(self, primary_datasheet_url) -> None:
         """
         Sets the primary_datasheet_url of this PackageTypeByQuantityProduct.
 
@@ -408,7 +408,7 @@ class PackageTypeByQuantityProduct:
         return self._primary_photo_url
 
     @primary_photo_url.setter
-    def primary_photo_url(self, primary_photo_url):
+    def primary_photo_url(self, primary_photo_url) -> None:
         """
         Sets the primary_photo_url of this PackageTypeByQuantityProduct.
 
@@ -432,7 +432,7 @@ class PackageTypeByQuantityProduct:
         return self._product_status
 
     @product_status.setter
-    def product_status(self, product_status):
+    def product_status(self, product_status) -> None:
         """
         Sets the product_status of this PackageTypeByQuantityProduct.
 
@@ -456,7 +456,7 @@ class PackageTypeByQuantityProduct:
         return self._manufacturer_lead_weeks
 
     @manufacturer_lead_weeks.setter
-    def manufacturer_lead_weeks(self, manufacturer_lead_weeks):
+    def manufacturer_lead_weeks(self, manufacturer_lead_weeks) -> None:
         """
         Sets the manufacturer_lead_weeks of this PackageTypeByQuantityProduct.
 
@@ -480,7 +480,7 @@ class PackageTypeByQuantityProduct:
         return self._manufacturer_warehouse_quantity
 
     @manufacturer_warehouse_quantity.setter
-    def manufacturer_warehouse_quantity(self, manufacturer_warehouse_quantity):
+    def manufacturer_warehouse_quantity(self, manufacturer_warehouse_quantity) -> None:
         """
         Sets the manufacturer_warehouse_quantity of this PackageTypeByQuantityProduct.
 
@@ -504,7 +504,7 @@ class PackageTypeByQuantityProduct:
         return self._rohs_status
 
     @rohs_status.setter
-    def rohs_status(self, rohs_status):
+    def rohs_status(self, rohs_status) -> None:
         """
         Sets the rohs_status of this PackageTypeByQuantityProduct.
 
@@ -528,7 +528,7 @@ class PackageTypeByQuantityProduct:
         return self._ro_hs_compliant
 
     @ro_hs_compliant.setter
-    def ro_hs_compliant(self, ro_hs_compliant):
+    def ro_hs_compliant(self, ro_hs_compliant) -> None:
         """
         Sets the ro_hs_compliant of this PackageTypeByQuantityProduct.
 
@@ -552,7 +552,7 @@ class PackageTypeByQuantityProduct:
         return self._quantity_on_order
 
     @quantity_on_order.setter
-    def quantity_on_order(self, quantity_on_order):
+    def quantity_on_order(self, quantity_on_order) -> None:
         """
         Sets the quantity_on_order of this PackageTypeByQuantityProduct.
 
@@ -576,7 +576,7 @@ class PackageTypeByQuantityProduct:
         return self._standard_pricing
 
     @standard_pricing.setter
-    def standard_pricing(self, standard_pricing):
+    def standard_pricing(self, standard_pricing) -> None:
         """
         Sets the standard_pricing of this PackageTypeByQuantityProduct.
 
@@ -600,7 +600,7 @@ class PackageTypeByQuantityProduct:
         return self._my_pricing
 
     @my_pricing.setter
-    def my_pricing(self, my_pricing):
+    def my_pricing(self, my_pricing) -> None:
         """
         Sets the my_pricing of this PackageTypeByQuantityProduct.
 
@@ -624,7 +624,7 @@ class PackageTypeByQuantityProduct:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this PackageTypeByQuantityProduct.
 
@@ -648,7 +648,7 @@ class PackageTypeByQuantityProduct:
         return self._market_place
 
     @market_place.setter
-    def market_place(self, market_place):
+    def market_place(self, market_place) -> None:
         """
         Sets the market_place of this PackageTypeByQuantityProduct.
 
@@ -672,7 +672,7 @@ class PackageTypeByQuantityProduct:
         return self._supplier
 
     @supplier.setter
-    def supplier(self, supplier):
+    def supplier(self, supplier) -> None:
         """
         Sets the supplier of this PackageTypeByQuantityProduct.
 
@@ -696,7 +696,7 @@ class PackageTypeByQuantityProduct:
         return self._stock_note
 
     @stock_note.setter
-    def stock_note(self, stock_note):
+    def stock_note(self, stock_note) -> None:
         """
         Sets the stock_note of this PackageTypeByQuantityProduct.
 
@@ -718,7 +718,7 @@ class PackageTypeByQuantityProduct:
         return self._package_types
 
     @package_types.setter
-    def package_types(self, package_types):
+    def package_types(self, package_types) -> None:
         """
         Sets the package_types of this PackageTypeByQuantityProduct.
 
@@ -734,9 +734,7 @@ class PackageTypeByQuantityProduct:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -760,7 +758,7 @@ class PackageTypeByQuantityProduct:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

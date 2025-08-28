@@ -49,7 +49,7 @@ class ProductAssociations:
         mating_products=None,
         associated_products=None,
         for_use_with_products=None,
-    ):
+    ) -> None:
         """ProductAssociations - a model defined in Swagger"""
         self._kits = None
         self._mating_products = None
@@ -78,7 +78,7 @@ class ProductAssociations:
         return self._kits
 
     @kits.setter
-    def kits(self, kits):
+    def kits(self, kits) -> None:
         """
         Sets the kits of this ProductAssociations.
 
@@ -102,7 +102,7 @@ class ProductAssociations:
         return self._mating_products
 
     @mating_products.setter
-    def mating_products(self, mating_products):
+    def mating_products(self, mating_products) -> None:
         """
         Sets the mating_products of this ProductAssociations.
 
@@ -126,7 +126,7 @@ class ProductAssociations:
         return self._associated_products
 
     @associated_products.setter
-    def associated_products(self, associated_products):
+    def associated_products(self, associated_products) -> None:
         """
         Sets the associated_products of this ProductAssociations.
 
@@ -150,7 +150,7 @@ class ProductAssociations:
         return self._for_use_with_products
 
     @for_use_with_products.setter
-    def for_use_with_products(self, for_use_with_products):
+    def for_use_with_products(self, for_use_with_products) -> None:
         """
         Sets the for_use_with_products of this ProductAssociations.
 
@@ -168,9 +168,7 @@ class ProductAssociations:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -194,7 +192,7 @@ class ProductAssociations:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

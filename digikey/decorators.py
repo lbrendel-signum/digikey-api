@@ -1,3 +1,4 @@
+import contextlib
 import functools
 import logging
 
@@ -26,13 +27,11 @@ def wrap_exception_in(exc_type, catch=Exception):
             try:
                 return func(*args, **kwargs)
             except catch as exc:
-                logger.error("Wrapped error: %s", str(exc))
+                logger.exception("Wrapped error: %s", str(exc))
                 message = type(exc).__name__
                 # Add HTTP status code, if one is attached to 'exc'.
-                try:
+                with contextlib.suppress(AttributeError):
                     message += f" {exc.response.status_code}"
-                except AttributeError:
-                    pass
                 raise exc_type(message) from exc
 
         return inner

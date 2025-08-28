@@ -52,7 +52,7 @@ class Classifications:
         moisture_sensitivity_level=None,
         export_control_class_number=None,
         htsus_code=None,
-    ):
+    ) -> None:
         """Classifications - a model defined in Swagger"""
         self._reach_status = None
         self._rohs_status = None
@@ -84,7 +84,7 @@ class Classifications:
         return self._reach_status
 
     @reach_status.setter
-    def reach_status(self, reach_status):
+    def reach_status(self, reach_status) -> None:
         """
         Sets the reach_status of this Classifications.
 
@@ -108,7 +108,7 @@ class Classifications:
         return self._rohs_status
 
     @rohs_status.setter
-    def rohs_status(self, rohs_status):
+    def rohs_status(self, rohs_status) -> None:
         """
         Sets the rohs_status of this Classifications.
 
@@ -132,7 +132,7 @@ class Classifications:
         return self._moisture_sensitivity_level
 
     @moisture_sensitivity_level.setter
-    def moisture_sensitivity_level(self, moisture_sensitivity_level):
+    def moisture_sensitivity_level(self, moisture_sensitivity_level) -> None:
         """
         Sets the moisture_sensitivity_level of this Classifications.
 
@@ -156,7 +156,7 @@ class Classifications:
         return self._export_control_class_number
 
     @export_control_class_number.setter
-    def export_control_class_number(self, export_control_class_number):
+    def export_control_class_number(self, export_control_class_number) -> None:
         """
         Sets the export_control_class_number of this Classifications.
 
@@ -180,7 +180,7 @@ class Classifications:
         return self._htsus_code
 
     @htsus_code.setter
-    def htsus_code(self, htsus_code):
+    def htsus_code(self, htsus_code) -> None:
         """
         Sets the htsus_code of this Classifications.
 
@@ -198,9 +198,7 @@ class Classifications:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -224,7 +222,7 @@ class Classifications:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

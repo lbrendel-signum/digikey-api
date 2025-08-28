@@ -41,7 +41,7 @@ class ProductPricingResponse:
         "settings_used": "SettingsUsed",
     }
 
-    def __init__(self, product_pricings=None, products_count=None, settings_used=None):
+    def __init__(self, product_pricings=None, products_count=None, settings_used=None) -> None:
         """ProductPricingResponse - a model defined in Swagger"""
         self._product_pricings = None
         self._products_count = None
@@ -67,7 +67,7 @@ class ProductPricingResponse:
         return self._product_pricings
 
     @product_pricings.setter
-    def product_pricings(self, product_pricings):
+    def product_pricings(self, product_pricings) -> None:
         """
         Sets the product_pricings of this ProductPricingResponse.
 
@@ -91,7 +91,7 @@ class ProductPricingResponse:
         return self._products_count
 
     @products_count.setter
-    def products_count(self, products_count):
+    def products_count(self, products_count) -> None:
         """
         Sets the products_count of this ProductPricingResponse.
 
@@ -113,7 +113,7 @@ class ProductPricingResponse:
         return self._settings_used
 
     @settings_used.setter
-    def settings_used(self, settings_used):
+    def settings_used(self, settings_used) -> None:
         """
         Sets the settings_used of this ProductPricingResponse.
 
@@ -129,9 +129,7 @@ class ProductPricingResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -155,7 +153,7 @@ class ProductPricingResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

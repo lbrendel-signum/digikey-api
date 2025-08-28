@@ -30,10 +30,10 @@ class Configuration:
 
     _default = None
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Constructor"""
         if self._default:
-            for key in self._default.__dict__.keys():
+            for key in self._default.__dict__:
                 self.__dict__[key] = copy.copy(self._default.__dict__[key])
             return
 
@@ -96,7 +96,7 @@ class Configuration:
         self.safe_chars_for_path_param = ""
 
     @classmethod
-    def set_default(cls, default):
+    def set_default(cls, default) -> None:
         cls._default = default
 
     @property
@@ -113,7 +113,7 @@ class Configuration:
         return self.__logger_file
 
     @logger_file.setter
-    def logger_file(self, value):
+    def logger_file(self, value) -> None:
         """
         The logger file.
 
@@ -154,7 +154,7 @@ class Configuration:
         return self.__debug
 
     @debug.setter
-    def debug(self, value):
+    def debug(self, value) -> None:
         """
         Debug status
 
@@ -189,7 +189,7 @@ class Configuration:
         return self.__logger_format
 
     @logger_format.setter
-    def logger_format(self, value):
+    def logger_format(self, value) -> None:
         """
         The logger format.
 
@@ -212,6 +212,7 @@ class Configuration:
             return self.api_key_prefix[identifier] + " " + self.api_key[identifier]
         if self.api_key.get(identifier):
             return self.api_key[identifier]
+        return None
 
     def get_basic_auth_token(self):
         """
@@ -244,7 +245,7 @@ class Configuration:
             },
         }
 
-    def to_debug_report(self):
+    def to_debug_report(self) -> str:
         """
         Gets the essential information for debugging.
 

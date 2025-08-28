@@ -43,7 +43,7 @@ class TopCategory:
         "image_url": "ImageUrl",
     }
 
-    def __init__(self, root_category=None, category=None, score=None, image_url=None):
+    def __init__(self, root_category=None, category=None, score=None, image_url=None) -> None:
         """TopCategory - a model defined in Swagger"""
         self._root_category = None
         self._category = None
@@ -70,7 +70,7 @@ class TopCategory:
         return self._root_category
 
     @root_category.setter
-    def root_category(self, root_category):
+    def root_category(self, root_category) -> None:
         """
         Sets the root_category of this TopCategory.
 
@@ -90,7 +90,7 @@ class TopCategory:
         return self._category
 
     @category.setter
-    def category(self, category):
+    def category(self, category) -> None:
         """
         Sets the category of this TopCategory.
 
@@ -112,7 +112,7 @@ class TopCategory:
         return self._score
 
     @score.setter
-    def score(self, score):
+    def score(self, score) -> None:
         """
         Sets the score of this TopCategory.
 
@@ -136,7 +136,7 @@ class TopCategory:
         return self._image_url
 
     @image_url.setter
-    def image_url(self, image_url):
+    def image_url(self, image_url) -> None:
         """
         Sets the image_url of this TopCategory.
 
@@ -154,9 +154,7 @@ class TopCategory:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -180,7 +178,7 @@ class TopCategory:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

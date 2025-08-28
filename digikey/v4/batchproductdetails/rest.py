@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 
 class RESTResponse(io.IOBase):
-    def __init__(self, resp):
+    def __init__(self, resp) -> None:
         self.urllib3_response = resp
         self.status = resp.status
         self.reason = resp.reason
@@ -48,7 +48,7 @@ class RESTResponse(io.IOBase):
 
 
 class RESTClientObject:
-    def __init__(self, configuration, pools_size=4, maxsize=None):
+    def __init__(self, configuration, pools_size=4, maxsize=None) -> None:
         # urllib3.PoolManager will pass all kw parameters to connectionpool
         # https://github.com/shazow/urllib3/blob/f9409436f83aeb79fbaf090181cd81b784f1b8ce/urllib3/poolmanager.py#L75  # noqa: E501
         # https://github.com/shazow/urllib3/blob/f9409436f83aeb79fbaf090181cd81b784f1b8ce/urllib3/connectionpool.py#L680  # noqa: E501
@@ -56,10 +56,7 @@ class RESTClientObject:
         # Custom SSL certificates and client certificates: http://urllib3.readthedocs.io/en/latest/advanced-usage.html  # noqa: E501
 
         # cert_reqs
-        if configuration.verify_ssl:
-            cert_reqs = ssl.CERT_REQUIRED
-        else:
-            cert_reqs = ssl.CERT_NONE
+        cert_reqs = ssl.CERT_REQUIRED if configuration.verify_ssl else ssl.CERT_NONE
 
         # ca_certs
         if configuration.ssl_ca_cert:
@@ -379,7 +376,7 @@ class RESTClientObject:
 
 
 class ApiException(Exception):
-    def __init__(self, status=None, reason=None, http_resp=None):
+    def __init__(self, status=None, reason=None, http_resp=None) -> None:
         if http_resp:
             self.status = http_resp.status
             self.reason = http_resp.reason
@@ -391,7 +388,7 @@ class ApiException(Exception):
             self.body = None
             self.headers = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Custom error messages for exception"""
         error_message = f"({self.status})\nReason: {self.reason}\n"
         if self.headers:

@@ -61,7 +61,7 @@ class KeywordSearchRequest:
         requested_quantity=None,
         search_options=None,
         exclude_market_place_products=None,
-    ):
+    ) -> None:
         """KeywordSearchRequest - a model defined in Swagger"""
         self._keywords = None
         self._record_count = None
@@ -102,7 +102,7 @@ class KeywordSearchRequest:
         return self._keywords
 
     @keywords.setter
-    def keywords(self, keywords):
+    def keywords(self, keywords) -> None:
         """
         Sets the keywords of this KeywordSearchRequest.
 
@@ -137,7 +137,7 @@ class KeywordSearchRequest:
         return self._record_count
 
     @record_count.setter
-    def record_count(self, record_count):
+    def record_count(self, record_count) -> None:
         """
         Sets the record_count of this KeywordSearchRequest.
 
@@ -170,7 +170,7 @@ class KeywordSearchRequest:
         return self._record_start_position
 
     @record_start_position.setter
-    def record_start_position(self, record_start_position):
+    def record_start_position(self, record_start_position) -> None:
         """
         Sets the record_start_position of this KeywordSearchRequest.
 
@@ -192,7 +192,7 @@ class KeywordSearchRequest:
         return self._filters
 
     @filters.setter
-    def filters(self, filters):
+    def filters(self, filters) -> None:
         """
         Sets the filters of this KeywordSearchRequest.
 
@@ -212,7 +212,7 @@ class KeywordSearchRequest:
         return self._sort
 
     @sort.setter
-    def sort(self, sort):
+    def sort(self, sort) -> None:
         """
         Sets the sort of this KeywordSearchRequest.
 
@@ -234,7 +234,7 @@ class KeywordSearchRequest:
         return self._requested_quantity
 
     @requested_quantity.setter
-    def requested_quantity(self, requested_quantity):
+    def requested_quantity(self, requested_quantity) -> None:
         """
         Sets the requested_quantity of this KeywordSearchRequest.
 
@@ -258,7 +258,7 @@ class KeywordSearchRequest:
         return self._search_options
 
     @search_options.setter
-    def search_options(self, search_options):
+    def search_options(self, search_options) -> None:
         """
         Sets the search_options of this KeywordSearchRequest.
 
@@ -282,7 +282,7 @@ class KeywordSearchRequest:
         return self._exclude_market_place_products
 
     @exclude_market_place_products.setter
-    def exclude_market_place_products(self, exclude_market_place_products):
+    def exclude_market_place_products(self, exclude_market_place_products) -> None:
         """
         Sets the exclude_market_place_products of this KeywordSearchRequest.
 
@@ -300,9 +300,7 @@ class KeywordSearchRequest:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -326,7 +324,7 @@ class KeywordSearchRequest:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

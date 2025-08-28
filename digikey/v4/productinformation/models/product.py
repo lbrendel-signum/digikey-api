@@ -112,7 +112,7 @@ class Product:
         series=None,
         shipping_info=None,
         classifications=None,
-    ):
+    ) -> None:
         """Product - a model defined in Swagger"""
         self._description = None
         self._manufacturer = None
@@ -202,7 +202,7 @@ class Product:
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description) -> None:
         """
         Sets the description of this Product.
 
@@ -222,7 +222,7 @@ class Product:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this Product.
 
@@ -244,7 +244,7 @@ class Product:
         return self._manufacturer_product_number
 
     @manufacturer_product_number.setter
-    def manufacturer_product_number(self, manufacturer_product_number):
+    def manufacturer_product_number(self, manufacturer_product_number) -> None:
         """
         Sets the manufacturer_product_number of this Product.
 
@@ -268,7 +268,7 @@ class Product:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this Product.
 
@@ -292,7 +292,7 @@ class Product:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this Product.
 
@@ -316,7 +316,7 @@ class Product:
         return self._datasheet_url
 
     @datasheet_url.setter
-    def datasheet_url(self, datasheet_url):
+    def datasheet_url(self, datasheet_url) -> None:
         """
         Sets the datasheet_url of this Product.
 
@@ -340,7 +340,7 @@ class Product:
         return self._photo_url
 
     @photo_url.setter
-    def photo_url(self, photo_url):
+    def photo_url(self, photo_url) -> None:
         """
         Sets the photo_url of this Product.
 
@@ -362,7 +362,7 @@ class Product:
         return self._product_variations
 
     @product_variations.setter
-    def product_variations(self, product_variations):
+    def product_variations(self, product_variations) -> None:
         """
         Sets the product_variations of this Product.
 
@@ -384,7 +384,7 @@ class Product:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this Product.
 
@@ -406,7 +406,7 @@ class Product:
         return self._product_status
 
     @product_status.setter
-    def product_status(self, product_status):
+    def product_status(self, product_status) -> None:
         """
         Sets the product_status of this Product.
 
@@ -428,7 +428,7 @@ class Product:
         return self._back_order_not_allowed
 
     @back_order_not_allowed.setter
-    def back_order_not_allowed(self, back_order_not_allowed):
+    def back_order_not_allowed(self, back_order_not_allowed) -> None:
         """
         Sets the back_order_not_allowed of this Product.
 
@@ -452,7 +452,7 @@ class Product:
         return self._normally_stocking
 
     @normally_stocking.setter
-    def normally_stocking(self, normally_stocking):
+    def normally_stocking(self, normally_stocking) -> None:
         """
         Sets the normally_stocking of this Product.
 
@@ -476,7 +476,7 @@ class Product:
         return self._discontinued
 
     @discontinued.setter
-    def discontinued(self, discontinued):
+    def discontinued(self, discontinued) -> None:
         """
         Sets the discontinued of this Product.
 
@@ -500,7 +500,7 @@ class Product:
         return self._end_of_life
 
     @end_of_life.setter
-    def end_of_life(self, end_of_life):
+    def end_of_life(self, end_of_life) -> None:
         """
         Sets the end_of_life of this Product.
 
@@ -524,7 +524,7 @@ class Product:
         return self._ncnr
 
     @ncnr.setter
-    def ncnr(self, ncnr):
+    def ncnr(self, ncnr) -> None:
         """
         Sets the ncnr of this Product.
 
@@ -548,7 +548,7 @@ class Product:
         return self._primary_video_url
 
     @primary_video_url.setter
-    def primary_video_url(self, primary_video_url):
+    def primary_video_url(self, primary_video_url) -> None:
         """
         Sets the primary_video_url of this Product.
 
@@ -570,7 +570,7 @@ class Product:
         return self._parameters
 
     @parameters.setter
-    def parameters(self, parameters):
+    def parameters(self, parameters) -> None:
         """
         Sets the parameters of this Product.
 
@@ -590,7 +590,7 @@ class Product:
         return self._base_product_number
 
     @base_product_number.setter
-    def base_product_number(self, base_product_number):
+    def base_product_number(self, base_product_number) -> None:
         """
         Sets the base_product_number of this Product.
 
@@ -610,7 +610,7 @@ class Product:
         return self._category
 
     @category.setter
-    def category(self, category):
+    def category(self, category) -> None:
         """
         Sets the category of this Product.
 
@@ -632,7 +632,7 @@ class Product:
         return self._date_last_buy_chance
 
     @date_last_buy_chance.setter
-    def date_last_buy_chance(self, date_last_buy_chance):
+    def date_last_buy_chance(self, date_last_buy_chance) -> None:
         """
         Sets the date_last_buy_chance of this Product.
 
@@ -656,7 +656,7 @@ class Product:
         return self._manufacturer_lead_weeks
 
     @manufacturer_lead_weeks.setter
-    def manufacturer_lead_weeks(self, manufacturer_lead_weeks):
+    def manufacturer_lead_weeks(self, manufacturer_lead_weeks) -> None:
         """
         Sets the manufacturer_lead_weeks of this Product.
 
@@ -680,7 +680,7 @@ class Product:
         return self._manufacturer_public_quantity
 
     @manufacturer_public_quantity.setter
-    def manufacturer_public_quantity(self, manufacturer_public_quantity):
+    def manufacturer_public_quantity(self, manufacturer_public_quantity) -> None:
         """
         Sets the manufacturer_public_quantity of this Product.
 
@@ -702,7 +702,7 @@ class Product:
         return self._series
 
     @series.setter
-    def series(self, series):
+    def series(self, series) -> None:
         """
         Sets the series of this Product.
 
@@ -724,7 +724,7 @@ class Product:
         return self._shipping_info
 
     @shipping_info.setter
-    def shipping_info(self, shipping_info):
+    def shipping_info(self, shipping_info) -> None:
         """
         Sets the shipping_info of this Product.
 
@@ -746,7 +746,7 @@ class Product:
         return self._classifications
 
     @classifications.setter
-    def classifications(self, classifications):
+    def classifications(self, classifications) -> None:
         """
         Sets the classifications of this Product.
 
@@ -762,9 +762,7 @@ class Product:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -788,7 +786,7 @@ class Product:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

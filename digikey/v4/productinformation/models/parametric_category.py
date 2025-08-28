@@ -33,7 +33,7 @@ class ParametricCategory:
 
     attribute_map = {"parameter_id": "ParameterId", "filter_values": "FilterValues"}
 
-    def __init__(self, parameter_id=None, filter_values=None):
+    def __init__(self, parameter_id=None, filter_values=None) -> None:
         """ParametricCategory - a model defined in Swagger"""
         self._parameter_id = None
         self._filter_values = None
@@ -56,7 +56,7 @@ class ParametricCategory:
         return self._parameter_id
 
     @parameter_id.setter
-    def parameter_id(self, parameter_id):
+    def parameter_id(self, parameter_id) -> None:
         """
         Sets the parameter_id of this ParametricCategory.
 
@@ -80,7 +80,7 @@ class ParametricCategory:
         return self._filter_values
 
     @filter_values.setter
-    def filter_values(self, filter_values):
+    def filter_values(self, filter_values) -> None:
         """
         Sets the filter_values of this ParametricCategory.
 
@@ -98,9 +98,7 @@ class ParametricCategory:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -124,7 +122,7 @@ class ParametricCategory:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

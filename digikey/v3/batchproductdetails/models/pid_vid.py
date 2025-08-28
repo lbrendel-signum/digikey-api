@@ -43,7 +43,7 @@ class PidVid:
         "value": "Value",
     }
 
-    def __init__(self, parameter_id=None, value_id=None, parameter=None, value=None):
+    def __init__(self, parameter_id=None, value_id=None, parameter=None, value=None) -> None:
         """PidVid - a model defined in Swagger"""
         self._parameter_id = None
         self._value_id = None
@@ -73,7 +73,7 @@ class PidVid:
         return self._parameter_id
 
     @parameter_id.setter
-    def parameter_id(self, parameter_id):
+    def parameter_id(self, parameter_id) -> None:
         """
         Sets the parameter_id of this PidVid.
 
@@ -97,7 +97,7 @@ class PidVid:
         return self._value_id
 
     @value_id.setter
-    def value_id(self, value_id):
+    def value_id(self, value_id) -> None:
         """
         Sets the value_id of this PidVid.
 
@@ -121,7 +121,7 @@ class PidVid:
         return self._parameter
 
     @parameter.setter
-    def parameter(self, parameter):
+    def parameter(self, parameter) -> None:
         """
         Sets the parameter of this PidVid.
 
@@ -145,7 +145,7 @@ class PidVid:
         return self._value
 
     @value.setter
-    def value(self, value):
+    def value(self, value) -> None:
         """
         Sets the value of this PidVid.
 
@@ -163,9 +163,7 @@ class PidVid:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -189,7 +187,7 @@ class PidVid:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

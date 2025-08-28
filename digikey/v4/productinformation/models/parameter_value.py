@@ -52,7 +52,7 @@ class ParameterValue:
         parameter_type=None,
         value_id=None,
         value_text=None,
-    ):
+    ) -> None:
         """ParameterValue - a model defined in Swagger"""
         self._parameter_id = None
         self._parameter_text = None
@@ -84,7 +84,7 @@ class ParameterValue:
         return self._parameter_id
 
     @parameter_id.setter
-    def parameter_id(self, parameter_id):
+    def parameter_id(self, parameter_id) -> None:
         """
         Sets the parameter_id of this ParameterValue.
 
@@ -108,7 +108,7 @@ class ParameterValue:
         return self._parameter_text
 
     @parameter_text.setter
-    def parameter_text(self, parameter_text):
+    def parameter_text(self, parameter_text) -> None:
         """
         Sets the parameter_text of this ParameterValue.
 
@@ -132,7 +132,7 @@ class ParameterValue:
         return self._parameter_type
 
     @parameter_type.setter
-    def parameter_type(self, parameter_type):
+    def parameter_type(self, parameter_type) -> None:
         """
         Sets the parameter_type of this ParameterValue.
 
@@ -169,7 +169,7 @@ class ParameterValue:
         return self._value_id
 
     @value_id.setter
-    def value_id(self, value_id):
+    def value_id(self, value_id) -> None:
         """
         Sets the value_id of this ParameterValue.
 
@@ -193,7 +193,7 @@ class ParameterValue:
         return self._value_text
 
     @value_text.setter
-    def value_text(self, value_text):
+    def value_text(self, value_text) -> None:
         """
         Sets the value_text of this ParameterValue.
 
@@ -211,9 +211,7 @@ class ParameterValue:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -237,7 +235,7 @@ class ParameterValue:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

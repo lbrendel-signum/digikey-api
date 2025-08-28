@@ -33,7 +33,7 @@ class CategoryType:
 
     attribute_map = {"category_id": "CategoryId", "level": "Level", "name": "Name"}
 
-    def __init__(self, category_id=None, level=None, name=None):
+    def __init__(self, category_id=None, level=None, name=None) -> None:
         """CategoryType - a model defined in Swagger"""
         self._category_id = None
         self._level = None
@@ -59,7 +59,7 @@ class CategoryType:
         return self._category_id
 
     @category_id.setter
-    def category_id(self, category_id):
+    def category_id(self, category_id) -> None:
         """
         Sets the category_id of this CategoryType.
 
@@ -83,7 +83,7 @@ class CategoryType:
         return self._level
 
     @level.setter
-    def level(self, level):
+    def level(self, level) -> None:
         """
         Sets the level of this CategoryType.
 
@@ -107,7 +107,7 @@ class CategoryType:
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name) -> None:
         """
         Sets the name of this CategoryType.
 
@@ -125,9 +125,7 @@ class CategoryType:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -151,7 +149,7 @@ class CategoryType:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

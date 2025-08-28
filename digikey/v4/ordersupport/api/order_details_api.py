@@ -26,13 +26,13 @@ class OrderDetailsApi:
     Ref: https://github.com/swagger-api/swagger-codegen
     """
 
-    def __init__(self, api_client=None):
+    def __init__(self, api_client=None) -> None:
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
 
     def order_history(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieves a list of SalesOrderIds and dates for all SalesOrders within a date range belonging to a CustomerId.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -56,11 +56,10 @@ class OrderDetailsApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.order_history_with_http_info(authorization, x_digikey_client_id, **kwargs)
-        (data) = self.order_history_with_http_info(authorization, x_digikey_client_id, **kwargs)
-        return data
+        return self.order_history_with_http_info(authorization, x_digikey_client_id, **kwargs)
 
     def order_history_with_http_info(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieves a list of SalesOrderIds and dates for all SalesOrders within a date range belonging to a CustomerId.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -99,8 +98,9 @@ class OrderDetailsApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method order_history"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method order_history" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -168,7 +168,7 @@ class OrderDetailsApi:
         )
 
     def order_status(self, sales_order_id, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve order status for given SalesOrderId  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -190,15 +190,14 @@ class OrderDetailsApi:
             return self.order_status_with_http_info(
                 sales_order_id, authorization, x_digikey_client_id, **kwargs
             )
-        (data) = self.order_status_with_http_info(
+        return self.order_status_with_http_info(
             sales_order_id, authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def order_status_with_http_info(
         self, sales_order_id, authorization, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Retrieve order status for given SalesOrderId  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -229,8 +228,9 @@ class OrderDetailsApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method order_status"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method order_status" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]

@@ -47,7 +47,7 @@ class ApiClient:
         to the API
     """
 
-    PRIMITIVE_TYPES = (float, bool, bytes, six.text_type) + six.integer_types
+    PRIMITIVE_TYPES = (float, bool, bytes, six.text_type, *six.integer_types)
     NATIVE_TYPES_MAPPING = {
         "int": int,
         "long": int if six.PY3 else long,  # noqa: F821
@@ -59,7 +59,7 @@ class ApiClient:
         "object": object,
     }
 
-    def __init__(self, configuration=None, header_name=None, header_value=None, cookie=None):
+    def __init__(self, configuration=None, header_name=None, header_value=None, cookie=None) -> None:
         if configuration is None:
             configuration = Configuration()
         self.configuration = configuration
@@ -74,7 +74,7 @@ class ApiClient:
         # Set default User-Agent.
         self.user_agent = "Swagger-Codegen/0.1.0/python"
 
-    def __del__(self):
+    def __del__(self) -> None:
         if self._pool is not None:
             self._pool.close()
             self._pool.join()
@@ -91,10 +91,10 @@ class ApiClient:
         return self.default_headers["User-Agent"]
 
     @user_agent.setter
-    def user_agent(self, value):
+    def user_agent(self, value) -> None:
         self.default_headers["User-Agent"] = value
 
-    def set_default_header(self, header_name, header_value):
+    def set_default_header(self, header_name, header_value) -> None:
         self.default_headers[header_name] = header_value
 
     def __call_api(
@@ -132,7 +132,7 @@ class ApiClient:
             for k, v in path_params:
                 # specified safe chars, encode everything
                 resource_path = resource_path.replace(
-                    "{%s}" % k, quote(str(v), safe=config.safe_chars_for_path_param)
+                    f"{{{k}}}", quote(str(v), safe=config.safe_chars_for_path_param)
                 )
 
         # query parameters
@@ -173,10 +173,7 @@ class ApiClient:
         return_data = response_data
         if _preload_content:
             # deserialize response data
-            if response_type:
-                return_data = self.deserialize(response_data, response_type)
-            else:
-                return_data = None
+            return_data = self.deserialize(response_data, response_type) if response_type else None
 
         if _return_http_data_only:
             return return_data
@@ -356,7 +353,7 @@ class ApiClient:
                 _preload_content,
                 _request_timeout,
             )
-        thread = self.pool.apply_async(
+        return self.pool.apply_async(
             self.__call_api,
             (
                 resource_path,
@@ -375,7 +372,6 @@ class ApiClient:
                 _request_timeout,
             ),
         )
-        return thread
 
     def request(
         self,
@@ -511,7 +507,7 @@ class ApiClient:
                         filename = os.path.basename(f.name)
                         filedata = f.read()
                         mimetype = mimetypes.guess_type(filename)[0] or "application/octet-stream"
-                        params.append(tuple([k, tuple([filename, filedata, mimetype])]))
+                        params.append((k, (filename, filedata, mimetype)))
 
         return params
 
@@ -547,7 +543,7 @@ class ApiClient:
             return "application/json"
         return content_types[0]
 
-    def update_params_for_auth(self, headers, querys, auth_settings):
+    def update_params_for_auth(self, headers, querys, auth_settings) -> None:
         """
         Updates header and query params based on authentication setting.
 

@@ -55,7 +55,7 @@ class ApiErrorResponse:
         error_details=None,
         request_id=None,
         validation_errors=None,
-    ):
+    ) -> None:
         """ApiErrorResponse - a model defined in Swagger"""
         self._error_response_version = None
         self._status_code = None
@@ -89,7 +89,7 @@ class ApiErrorResponse:
         return self._error_response_version
 
     @error_response_version.setter
-    def error_response_version(self, error_response_version):
+    def error_response_version(self, error_response_version) -> None:
         """
         Sets the error_response_version of this ApiErrorResponse.
 
@@ -109,7 +109,7 @@ class ApiErrorResponse:
         return self._status_code
 
     @status_code.setter
-    def status_code(self, status_code):
+    def status_code(self, status_code) -> None:
         """
         Sets the status_code of this ApiErrorResponse.
 
@@ -129,7 +129,7 @@ class ApiErrorResponse:
         return self._error_message
 
     @error_message.setter
-    def error_message(self, error_message):
+    def error_message(self, error_message) -> None:
         """
         Sets the error_message of this ApiErrorResponse.
 
@@ -149,7 +149,7 @@ class ApiErrorResponse:
         return self._error_details
 
     @error_details.setter
-    def error_details(self, error_details):
+    def error_details(self, error_details) -> None:
         """
         Sets the error_details of this ApiErrorResponse.
 
@@ -169,7 +169,7 @@ class ApiErrorResponse:
         return self._request_id
 
     @request_id.setter
-    def request_id(self, request_id):
+    def request_id(self, request_id) -> None:
         """
         Sets the request_id of this ApiErrorResponse.
 
@@ -189,7 +189,7 @@ class ApiErrorResponse:
         return self._validation_errors
 
     @validation_errors.setter
-    def validation_errors(self, validation_errors):
+    def validation_errors(self, validation_errors) -> None:
         """
         Sets the validation_errors of this ApiErrorResponse.
 
@@ -205,9 +205,7 @@ class ApiErrorResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -231,7 +229,7 @@ class ApiErrorResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

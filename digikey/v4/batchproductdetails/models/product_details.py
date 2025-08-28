@@ -181,7 +181,7 @@ class ProductDetails:
         quantity_on_order=None,
         dk_plus_restriction=None,
         supplier_direct_ship=None,
-    ):
+    ) -> None:
         """ProductDetails - a model defined in Swagger"""
         self._my_pricing = None
         self._obsolete = None
@@ -343,7 +343,7 @@ class ProductDetails:
         return self._my_pricing
 
     @my_pricing.setter
-    def my_pricing(self, my_pricing):
+    def my_pricing(self, my_pricing) -> None:
         """
         Sets the my_pricing of this ProductDetails.
 
@@ -367,7 +367,7 @@ class ProductDetails:
         return self._obsolete
 
     @obsolete.setter
-    def obsolete(self, obsolete):
+    def obsolete(self, obsolete) -> None:
         """
         Sets the obsolete of this ProductDetails.
 
@@ -391,7 +391,7 @@ class ProductDetails:
         return self._media_links
 
     @media_links.setter
-    def media_links(self, media_links):
+    def media_links(self, media_links) -> None:
         """
         Sets the media_links of this ProductDetails.
 
@@ -415,7 +415,7 @@ class ProductDetails:
         return self._standard_package
 
     @standard_package.setter
-    def standard_package(self, standard_package):
+    def standard_package(self, standard_package) -> None:
         """
         Sets the standard_package of this ProductDetails.
 
@@ -437,7 +437,7 @@ class ProductDetails:
         return self._limited_taxonomy
 
     @limited_taxonomy.setter
-    def limited_taxonomy(self, limited_taxonomy):
+    def limited_taxonomy(self, limited_taxonomy) -> None:
         """
         Sets the limited_taxonomy of this ProductDetails.
 
@@ -459,7 +459,7 @@ class ProductDetails:
         return self._kits
 
     @kits.setter
-    def kits(self, kits):
+    def kits(self, kits) -> None:
         """
         Sets the kits of this ProductDetails.
 
@@ -483,7 +483,7 @@ class ProductDetails:
         return self._kit_contents
 
     @kit_contents.setter
-    def kit_contents(self, kit_contents):
+    def kit_contents(self, kit_contents) -> None:
         """
         Sets the kit_contents of this ProductDetails.
 
@@ -507,7 +507,7 @@ class ProductDetails:
         return self._mating_products
 
     @mating_products.setter
-    def mating_products(self, mating_products):
+    def mating_products(self, mating_products) -> None:
         """
         Sets the mating_products of this ProductDetails.
 
@@ -529,7 +529,7 @@ class ProductDetails:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this ProductDetails.
 
@@ -551,7 +551,7 @@ class ProductDetails:
         return self._associated_products
 
     @associated_products.setter
-    def associated_products(self, associated_products):
+    def associated_products(self, associated_products) -> None:
         """
         Sets the associated_products of this ProductDetails.
 
@@ -575,7 +575,7 @@ class ProductDetails:
         return self._for_use_with_products
 
     @for_use_with_products.setter
-    def for_use_with_products(self, for_use_with_products):
+    def for_use_with_products(self, for_use_with_products) -> None:
         """
         Sets the for_use_with_products of this ProductDetails.
 
@@ -599,7 +599,7 @@ class ProductDetails:
         return self._rohs_subs
 
     @rohs_subs.setter
-    def rohs_subs(self, rohs_subs):
+    def rohs_subs(self, rohs_subs) -> None:
         """
         Sets the rohs_subs of this ProductDetails.
 
@@ -623,7 +623,7 @@ class ProductDetails:
         return self._suggested_subs
 
     @suggested_subs.setter
-    def suggested_subs(self, suggested_subs):
+    def suggested_subs(self, suggested_subs) -> None:
         """
         Sets the suggested_subs of this ProductDetails.
 
@@ -647,7 +647,7 @@ class ProductDetails:
         return self._additional_value_fee
 
     @additional_value_fee.setter
-    def additional_value_fee(self, additional_value_fee):
+    def additional_value_fee(self, additional_value_fee) -> None:
         """
         Sets the additional_value_fee of this ProductDetails.
 
@@ -660,7 +660,7 @@ class ProductDetails:
 
     @property
     def reach_effective_date(self):
-        """
+        r"""
         Gets the reach_effective_date of this ProductDetails.  # noqa: E501
 
         REACH effective date is string in format \"MMM-yyyy\" or blank \"\".  REACH is a regulation of the European Union. See documentation from the European Chemicals Agency.  # noqa: E501
@@ -671,8 +671,8 @@ class ProductDetails:
         return self._reach_effective_date
 
     @reach_effective_date.setter
-    def reach_effective_date(self, reach_effective_date):
-        """
+    def reach_effective_date(self, reach_effective_date) -> None:
+        r"""
         Sets the reach_effective_date of this ProductDetails.
 
         REACH effective date is string in format \"MMM-yyyy\" or blank \"\".  REACH is a regulation of the European Union. See documentation from the European Chemicals Agency.  # noqa: E501
@@ -695,7 +695,7 @@ class ProductDetails:
         return self._standard_pricing
 
     @standard_pricing.setter
-    def standard_pricing(self, standard_pricing):
+    def standard_pricing(self, standard_pricing) -> None:
         """
         Sets the standard_pricing of this ProductDetails.
 
@@ -719,7 +719,7 @@ class ProductDetails:
         return self._ro_hs_status
 
     @ro_hs_status.setter
-    def ro_hs_status(self, ro_hs_status):
+    def ro_hs_status(self, ro_hs_status) -> None:
         """
         Sets the ro_hs_status of this ProductDetails.
 
@@ -743,7 +743,7 @@ class ProductDetails:
         return self._lead_status
 
     @lead_status.setter
-    def lead_status(self, lead_status):
+    def lead_status(self, lead_status) -> None:
         """
         Sets the lead_status of this ProductDetails.
 
@@ -767,7 +767,7 @@ class ProductDetails:
         return self._parameters
 
     @parameters.setter
-    def parameters(self, parameters):
+    def parameters(self, parameters) -> None:
         """
         Sets the parameters of this ProductDetails.
 
@@ -791,7 +791,7 @@ class ProductDetails:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this ProductDetails.
 
@@ -815,7 +815,7 @@ class ProductDetails:
         return self._primary_datasheet
 
     @primary_datasheet.setter
-    def primary_datasheet(self, primary_datasheet):
+    def primary_datasheet(self, primary_datasheet) -> None:
         """
         Sets the primary_datasheet of this ProductDetails.
 
@@ -839,7 +839,7 @@ class ProductDetails:
         return self._primary_photo
 
     @primary_photo.setter
-    def primary_photo(self, primary_photo):
+    def primary_photo(self, primary_photo) -> None:
         """
         Sets the primary_photo of this ProductDetails.
 
@@ -863,7 +863,7 @@ class ProductDetails:
         return self._primary_video
 
     @primary_video.setter
-    def primary_video(self, primary_video):
+    def primary_video(self, primary_video) -> None:
         """
         Sets the primary_video of this ProductDetails.
 
@@ -885,7 +885,7 @@ class ProductDetails:
         return self._series
 
     @series.setter
-    def series(self, series):
+    def series(self, series) -> None:
         """
         Sets the series of this ProductDetails.
 
@@ -907,7 +907,7 @@ class ProductDetails:
         return self._manufacturer_lead_weeks
 
     @manufacturer_lead_weeks.setter
-    def manufacturer_lead_weeks(self, manufacturer_lead_weeks):
+    def manufacturer_lead_weeks(self, manufacturer_lead_weeks) -> None:
         """
         Sets the manufacturer_lead_weeks of this ProductDetails.
 
@@ -931,7 +931,7 @@ class ProductDetails:
         return self._manufacturer_page_url
 
     @manufacturer_page_url.setter
-    def manufacturer_page_url(self, manufacturer_page_url):
+    def manufacturer_page_url(self, manufacturer_page_url) -> None:
         """
         Sets the manufacturer_page_url of this ProductDetails.
 
@@ -955,7 +955,7 @@ class ProductDetails:
         return self._product_status
 
     @product_status.setter
-    def product_status(self, product_status):
+    def product_status(self, product_status) -> None:
         """
         Sets the product_status of this ProductDetails.
 
@@ -979,7 +979,7 @@ class ProductDetails:
         return self._date_last_buy_chance
 
     @date_last_buy_chance.setter
-    def date_last_buy_chance(self, date_last_buy_chance):
+    def date_last_buy_chance(self, date_last_buy_chance) -> None:
         """
         Sets the date_last_buy_chance of this ProductDetails.
 
@@ -1003,7 +1003,7 @@ class ProductDetails:
         return self._alternate_packaging
 
     @alternate_packaging.setter
-    def alternate_packaging(self, alternate_packaging):
+    def alternate_packaging(self, alternate_packaging) -> None:
         """
         Sets the alternate_packaging of this ProductDetails.
 
@@ -1027,7 +1027,7 @@ class ProductDetails:
         return self._detailed_description
 
     @detailed_description.setter
-    def detailed_description(self, detailed_description):
+    def detailed_description(self, detailed_description) -> None:
         """
         Sets the detailed_description of this ProductDetails.
 
@@ -1051,7 +1051,7 @@ class ProductDetails:
         return self._reach_status
 
     @reach_status.setter
-    def reach_status(self, reach_status):
+    def reach_status(self, reach_status) -> None:
         """
         Sets the reach_status of this ProductDetails.
 
@@ -1075,7 +1075,7 @@ class ProductDetails:
         return self._export_control_class_number
 
     @export_control_class_number.setter
-    def export_control_class_number(self, export_control_class_number):
+    def export_control_class_number(self, export_control_class_number) -> None:
         """
         Sets the export_control_class_number of this ProductDetails.
 
@@ -1099,7 +1099,7 @@ class ProductDetails:
         return self._htsus_code
 
     @htsus_code.setter
-    def htsus_code(self, htsus_code):
+    def htsus_code(self, htsus_code) -> None:
         """
         Sets the htsus_code of this ProductDetails.
 
@@ -1123,7 +1123,7 @@ class ProductDetails:
         return self._tariff_description
 
     @tariff_description.setter
-    def tariff_description(self, tariff_description):
+    def tariff_description(self, tariff_description) -> None:
         """
         Sets the tariff_description of this ProductDetails.
 
@@ -1147,7 +1147,7 @@ class ProductDetails:
         return self._moisture_sensitivity_level
 
     @moisture_sensitivity_level.setter
-    def moisture_sensitivity_level(self, moisture_sensitivity_level):
+    def moisture_sensitivity_level(self, moisture_sensitivity_level) -> None:
         """
         Sets the moisture_sensitivity_level of this ProductDetails.
 
@@ -1171,7 +1171,7 @@ class ProductDetails:
         return self._manufacturer_part_number
 
     @manufacturer_part_number.setter
-    def manufacturer_part_number(self, manufacturer_part_number):
+    def manufacturer_part_number(self, manufacturer_part_number) -> None:
         """
         Sets the manufacturer_part_number of this ProductDetails.
 
@@ -1195,7 +1195,7 @@ class ProductDetails:
         return self._minimum_order_quantity
 
     @minimum_order_quantity.setter
-    def minimum_order_quantity(self, minimum_order_quantity):
+    def minimum_order_quantity(self, minimum_order_quantity) -> None:
         """
         Sets the minimum_order_quantity of this ProductDetails.
 
@@ -1219,7 +1219,7 @@ class ProductDetails:
         return self._non_stock
 
     @non_stock.setter
-    def non_stock(self, non_stock):
+    def non_stock(self, non_stock) -> None:
         """
         Sets the non_stock of this ProductDetails.
 
@@ -1241,7 +1241,7 @@ class ProductDetails:
         return self._packaging
 
     @packaging.setter
-    def packaging(self, packaging):
+    def packaging(self, packaging) -> None:
         """
         Sets the packaging of this ProductDetails.
 
@@ -1263,7 +1263,7 @@ class ProductDetails:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this ProductDetails.
 
@@ -1287,7 +1287,7 @@ class ProductDetails:
         return self._digi_key_part_number
 
     @digi_key_part_number.setter
-    def digi_key_part_number(self, digi_key_part_number):
+    def digi_key_part_number(self, digi_key_part_number) -> None:
         """
         Sets the digi_key_part_number of this ProductDetails.
 
@@ -1311,7 +1311,7 @@ class ProductDetails:
         return self._product_description
 
     @product_description.setter
-    def product_description(self, product_description):
+    def product_description(self, product_description) -> None:
         """
         Sets the product_description of this ProductDetails.
 
@@ -1335,7 +1335,7 @@ class ProductDetails:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this ProductDetails.
 
@@ -1357,7 +1357,7 @@ class ProductDetails:
         return self._manufacturer
 
     @manufacturer.setter
-    def manufacturer(self, manufacturer):
+    def manufacturer(self, manufacturer) -> None:
         """
         Sets the manufacturer of this ProductDetails.
 
@@ -1379,7 +1379,7 @@ class ProductDetails:
         return self._manufacturer_public_quantity
 
     @manufacturer_public_quantity.setter
-    def manufacturer_public_quantity(self, manufacturer_public_quantity):
+    def manufacturer_public_quantity(self, manufacturer_public_quantity) -> None:
         """
         Sets the manufacturer_public_quantity of this ProductDetails.
 
@@ -1403,7 +1403,7 @@ class ProductDetails:
         return self._quantity_on_order
 
     @quantity_on_order.setter
-    def quantity_on_order(self, quantity_on_order):
+    def quantity_on_order(self, quantity_on_order) -> None:
         """
         Sets the quantity_on_order of this ProductDetails.
 
@@ -1427,7 +1427,7 @@ class ProductDetails:
         return self._dk_plus_restriction
 
     @dk_plus_restriction.setter
-    def dk_plus_restriction(self, dk_plus_restriction):
+    def dk_plus_restriction(self, dk_plus_restriction) -> None:
         """
         Sets the dk_plus_restriction of this ProductDetails.
 
@@ -1451,7 +1451,7 @@ class ProductDetails:
         return self._supplier_direct_ship
 
     @supplier_direct_ship.setter
-    def supplier_direct_ship(self, supplier_direct_ship):
+    def supplier_direct_ship(self, supplier_direct_ship) -> None:
         """
         Sets the supplier_direct_ship of this ProductDetails.
 
@@ -1469,9 +1469,7 @@ class ProductDetails:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -1495,7 +1493,7 @@ class ProductDetails:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

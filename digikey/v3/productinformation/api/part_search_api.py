@@ -26,7 +26,7 @@ class PartSearchApi:
     Ref: https://github.com/swagger-api/swagger-codegen
     """
 
-    def __init__(self, api_client=None):
+    def __init__(self, api_client=None) -> None:
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
@@ -39,7 +39,7 @@ class PartSearchApi:
         x_digikey_client_id,
         **kwargs,
     ):
-        """
+        r"""
         Calculate the DigiReel pricing for the given DigiKeyPartNumber and RequestedQuantity  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -71,14 +71,13 @@ class PartSearchApi:
                 x_digikey_client_id,
                 **kwargs,
             )
-        (data) = self.digi_reel_pricing_with_http_info(
+        return self.digi_reel_pricing_with_http_info(
             digi_key_part_number,
             requested_quantity,
             authorization,
             x_digikey_client_id,
             **kwargs,
         )
-        return data
 
     def digi_reel_pricing_with_http_info(
         self,
@@ -88,7 +87,7 @@ class PartSearchApi:
         x_digikey_client_id,
         **kwargs,
     ):
-        """
+        r"""
         Calculate the DigiReel pricing for the given DigiKeyPartNumber and RequestedQuantity  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -131,8 +130,9 @@ class PartSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method digi_reel_pricing"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method digi_reel_pricing" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -216,7 +216,7 @@ class PartSearchApi:
         )
 
     def keyword_search(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         KeywordSearch can search for any product in the Digi-Key catalog.  # noqa: E501
 
         Search by keyword, then narrow down the search using available filters and search options.<br />  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States. <br />  Note that KeywordSearch results have cached pricing and availability. If real time pricing and availability is  needed, make a ProductDetails call.<br />  # noqa: E501
@@ -242,13 +242,12 @@ class PartSearchApi:
         kwargs["_return_http_data_only"] = True
         if kwargs.get("async_req"):
             return self.keyword_search_with_http_info(authorization, x_digikey_client_id, **kwargs)
-        (data) = self.keyword_search_with_http_info(
+        return self.keyword_search_with_http_info(
             authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def keyword_search_with_http_info(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         KeywordSearch can search for any product in the Digi-Key catalog.  # noqa: E501
 
         Search by keyword, then narrow down the search using available filters and search options.<br />  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States. <br />  Note that KeywordSearch results have cached pricing and availability. If real time pricing and availability is  needed, make a ProductDetails call.<br />  # noqa: E501
@@ -290,8 +289,9 @@ class PartSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method keyword_search"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method keyword_search" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -368,7 +368,7 @@ class PartSearchApi:
         )
 
     def manufacturer_product_details(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Create list of ProductDetails from the matches of the requested manufacturer product name.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -395,15 +395,14 @@ class PartSearchApi:
             return self.manufacturer_product_details_with_http_info(
                 authorization, x_digikey_client_id, **kwargs
             )
-        (data) = self.manufacturer_product_details_with_http_info(
+        return self.manufacturer_product_details_with_http_info(
             authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def manufacturer_product_details_with_http_info(
         self, authorization, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Create list of ProductDetails from the matches of the requested manufacturer product name.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -444,9 +443,12 @@ class PartSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = (
+                    f"Got an unexpected keyword argument '{key}'"
+                    " to method manufacturer_product_details"
+                )
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method manufacturer_product_details" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -523,7 +525,7 @@ class PartSearchApi:
         )
 
     def product_details(self, digi_key_part_number, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -551,15 +553,14 @@ class PartSearchApi:
             return self.product_details_with_http_info(
                 digi_key_part_number, authorization, x_digikey_client_id, **kwargs
             )
-        (data) = self.product_details_with_http_info(
+        return self.product_details_with_http_info(
             digi_key_part_number, authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def product_details_with_http_info(
         self, digi_key_part_number, authorization, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -601,8 +602,9 @@ class PartSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method product_details"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method product_details" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]
@@ -679,7 +681,7 @@ class PartSearchApi:
         )
 
     def suggested_parts(self, part_number, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve detailed product information and two suggested products  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -706,15 +708,14 @@ class PartSearchApi:
             return self.suggested_parts_with_http_info(
                 part_number, authorization, x_digikey_client_id, **kwargs
             )
-        (data) = self.suggested_parts_with_http_info(
+        return self.suggested_parts_with_http_info(
             part_number, authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def suggested_parts_with_http_info(
         self, part_number, authorization, x_digikey_client_id, **kwargs
     ):
-        """
+        r"""
         Retrieve detailed product information and two suggested products  # noqa: E501
 
         Works best with a Digi-Key part number. Some manufacturer part numbers conflict with unrelated parts and may not  return the correct product.  Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -754,8 +755,9 @@ class PartSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method suggested_parts"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method suggested_parts" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]

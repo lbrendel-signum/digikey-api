@@ -39,7 +39,7 @@ class ParameterFilterRequest:
         "parameter_filters": "ParameterFilters",
     }
 
-    def __init__(self, category_filter=None, parameter_filters=None):
+    def __init__(self, category_filter=None, parameter_filters=None) -> None:
         """ParameterFilterRequest - a model defined in Swagger"""
         self._category_filter = None
         self._parameter_filters = None
@@ -60,7 +60,7 @@ class ParameterFilterRequest:
         return self._category_filter
 
     @category_filter.setter
-    def category_filter(self, category_filter):
+    def category_filter(self, category_filter) -> None:
         """
         Sets the category_filter of this ParameterFilterRequest.
 
@@ -82,7 +82,7 @@ class ParameterFilterRequest:
         return self._parameter_filters
 
     @parameter_filters.setter
-    def parameter_filters(self, parameter_filters):
+    def parameter_filters(self, parameter_filters) -> None:
         """
         Sets the parameter_filters of this ParameterFilterRequest.
 
@@ -100,9 +100,7 @@ class ParameterFilterRequest:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -126,7 +124,7 @@ class ParameterFilterRequest:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

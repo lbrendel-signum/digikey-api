@@ -39,7 +39,7 @@ class KitPart:
         "kit_part_quantity": "KitPartQuantity",
     }
 
-    def __init__(self, associated_product=None, kit_part_quantity=None):
+    def __init__(self, associated_product=None, kit_part_quantity=None) -> None:
         """KitPart - a model defined in Swagger"""
         self._associated_product = None
         self._kit_part_quantity = None
@@ -61,7 +61,7 @@ class KitPart:
         return self._associated_product
 
     @associated_product.setter
-    def associated_product(self, associated_product):
+    def associated_product(self, associated_product) -> None:
         """
         Sets the associated_product of this KitPart.
 
@@ -83,7 +83,7 @@ class KitPart:
         return self._kit_part_quantity
 
     @kit_part_quantity.setter
-    def kit_part_quantity(self, kit_part_quantity):
+    def kit_part_quantity(self, kit_part_quantity) -> None:
         """
         Sets the kit_part_quantity of this KitPart.
 
@@ -101,9 +101,7 @@ class KitPart:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -127,7 +125,7 @@ class KitPart:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

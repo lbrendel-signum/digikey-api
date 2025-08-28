@@ -33,7 +33,7 @@ class ValuePair:
 
     attribute_map = {"value_id": "ValueId", "value": "Value"}
 
-    def __init__(self, value_id=None, value=None):
+    def __init__(self, value_id=None, value=None) -> None:
         """ValuePair - a model defined in Swagger"""
         self._value_id = None
         self._value = None
@@ -57,7 +57,7 @@ class ValuePair:
         return self._value_id
 
     @value_id.setter
-    def value_id(self, value_id):
+    def value_id(self, value_id) -> None:
         """
         Sets the value_id of this ValuePair.
 
@@ -81,7 +81,7 @@ class ValuePair:
         return self._value
 
     @value.setter
-    def value(self, value):
+    def value(self, value) -> None:
         """
         Sets the value of this ValuePair.
 
@@ -99,9 +99,7 @@ class ValuePair:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -125,7 +123,7 @@ class ValuePair:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

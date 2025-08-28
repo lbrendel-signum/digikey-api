@@ -33,7 +33,7 @@ class MediaResponse:
 
     attribute_map = {"media_links": "MediaLinks"}
 
-    def __init__(self, media_links=None):
+    def __init__(self, media_links=None) -> None:
         """MediaResponse - a model defined in Swagger"""
         self._media_links = None
         self.discriminator = None
@@ -53,7 +53,7 @@ class MediaResponse:
         return self._media_links
 
     @media_links.setter
-    def media_links(self, media_links):
+    def media_links(self, media_links) -> None:
         """
         Sets the media_links of this MediaResponse.
 
@@ -71,9 +71,7 @@ class MediaResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -97,7 +95,7 @@ class MediaResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

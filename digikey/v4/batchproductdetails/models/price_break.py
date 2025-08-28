@@ -41,7 +41,7 @@ class PriceBreak:
         "total_price": "TotalPrice",
     }
 
-    def __init__(self, break_quantity=None, unit_price=None, total_price=None):
+    def __init__(self, break_quantity=None, unit_price=None, total_price=None) -> None:
         """PriceBreak - a model defined in Swagger"""
         self._break_quantity = None
         self._unit_price = None
@@ -68,7 +68,7 @@ class PriceBreak:
         return self._break_quantity
 
     @break_quantity.setter
-    def break_quantity(self, break_quantity):
+    def break_quantity(self, break_quantity) -> None:
         """
         Sets the break_quantity of this PriceBreak.
 
@@ -92,7 +92,7 @@ class PriceBreak:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this PriceBreak.
 
@@ -116,7 +116,7 @@ class PriceBreak:
         return self._total_price
 
     @total_price.setter
-    def total_price(self, total_price):
+    def total_price(self, total_price) -> None:
         """
         Sets the total_price of this PriceBreak.
 
@@ -134,9 +134,7 @@ class PriceBreak:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -160,7 +158,7 @@ class PriceBreak:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

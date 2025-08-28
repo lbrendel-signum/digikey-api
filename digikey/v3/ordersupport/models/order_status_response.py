@@ -88,7 +88,7 @@ class OrderStatusResponse:
         billing_address=None,
         shipping_details=None,
         line_items=None,
-    ):
+    ) -> None:
         """OrderStatusResponse - a model defined in Swagger"""
         self._salesorder_id = None
         self._customer_id = None
@@ -157,7 +157,7 @@ class OrderStatusResponse:
         return self._salesorder_id
 
     @salesorder_id.setter
-    def salesorder_id(self, salesorder_id):
+    def salesorder_id(self, salesorder_id) -> None:
         """
         Sets the salesorder_id of this OrderStatusResponse.
 
@@ -181,7 +181,7 @@ class OrderStatusResponse:
         return self._customer_id
 
     @customer_id.setter
-    def customer_id(self, customer_id):
+    def customer_id(self, customer_id) -> None:
         """
         Sets the customer_id of this OrderStatusResponse.
 
@@ -205,7 +205,7 @@ class OrderStatusResponse:
         return self._billing_account
 
     @billing_account.setter
-    def billing_account(self, billing_account):
+    def billing_account(self, billing_account) -> None:
         """
         Sets the billing_account of this OrderStatusResponse.
 
@@ -229,7 +229,7 @@ class OrderStatusResponse:
         return self._email
 
     @email.setter
-    def email(self, email):
+    def email(self, email) -> None:
         """
         Sets the email of this OrderStatusResponse.
 
@@ -253,7 +253,7 @@ class OrderStatusResponse:
         return self._purchase_order
 
     @purchase_order.setter
-    def purchase_order(self, purchase_order):
+    def purchase_order(self, purchase_order) -> None:
         """
         Sets the purchase_order of this OrderStatusResponse.
 
@@ -277,7 +277,7 @@ class OrderStatusResponse:
         return self._payment_method
 
     @payment_method.setter
-    def payment_method(self, payment_method):
+    def payment_method(self, payment_method) -> None:
         """
         Sets the payment_method of this OrderStatusResponse.
 
@@ -301,7 +301,7 @@ class OrderStatusResponse:
         return self._supplier
 
     @supplier.setter
-    def supplier(self, supplier):
+    def supplier(self, supplier) -> None:
         """
         Sets the supplier of this OrderStatusResponse.
 
@@ -325,7 +325,7 @@ class OrderStatusResponse:
         return self._shipping_method
 
     @shipping_method.setter
-    def shipping_method(self, shipping_method):
+    def shipping_method(self, shipping_method) -> None:
         """
         Sets the shipping_method of this OrderStatusResponse.
 
@@ -349,7 +349,7 @@ class OrderStatusResponse:
         return self._backorder_shipping_method
 
     @backorder_shipping_method.setter
-    def backorder_shipping_method(self, backorder_shipping_method):
+    def backorder_shipping_method(self, backorder_shipping_method) -> None:
         """
         Sets the backorder_shipping_method of this OrderStatusResponse.
 
@@ -373,7 +373,7 @@ class OrderStatusResponse:
         return self._shipper_account_number
 
     @shipper_account_number.setter
-    def shipper_account_number(self, shipper_account_number):
+    def shipper_account_number(self, shipper_account_number) -> None:
         """
         Sets the shipper_account_number of this OrderStatusResponse.
 
@@ -397,7 +397,7 @@ class OrderStatusResponse:
         return self._backorder_shipper_account_number
 
     @backorder_shipper_account_number.setter
-    def backorder_shipper_account_number(self, backorder_shipper_account_number):
+    def backorder_shipper_account_number(self, backorder_shipper_account_number) -> None:
         """
         Sets the backorder_shipper_account_number of this OrderStatusResponse.
 
@@ -421,7 +421,7 @@ class OrderStatusResponse:
         return self._shipment_type
 
     @shipment_type.setter
-    def shipment_type(self, shipment_type):
+    def shipment_type(self, shipment_type) -> None:
         """
         Sets the shipment_type of this OrderStatusResponse.
 
@@ -445,7 +445,7 @@ class OrderStatusResponse:
         return self._currency
 
     @currency.setter
-    def currency(self, currency):
+    def currency(self, currency) -> None:
         """
         Sets the currency of this OrderStatusResponse.
 
@@ -467,7 +467,7 @@ class OrderStatusResponse:
         return self._shipping_address
 
     @shipping_address.setter
-    def shipping_address(self, shipping_address):
+    def shipping_address(self, shipping_address) -> None:
         """
         Sets the shipping_address of this OrderStatusResponse.
 
@@ -487,7 +487,7 @@ class OrderStatusResponse:
         return self._billing_address
 
     @billing_address.setter
-    def billing_address(self, billing_address):
+    def billing_address(self, billing_address) -> None:
         """
         Sets the billing_address of this OrderStatusResponse.
 
@@ -509,7 +509,7 @@ class OrderStatusResponse:
         return self._shipping_details
 
     @shipping_details.setter
-    def shipping_details(self, shipping_details):
+    def shipping_details(self, shipping_details) -> None:
         """
         Sets the shipping_details of this OrderStatusResponse.
 
@@ -533,7 +533,7 @@ class OrderStatusResponse:
         return self._line_items
 
     @line_items.setter
-    def line_items(self, line_items):
+    def line_items(self, line_items) -> None:
         """
         Sets the line_items of this OrderStatusResponse.
 
@@ -551,9 +551,7 @@ class OrderStatusResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -577,7 +575,7 @@ class OrderStatusResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

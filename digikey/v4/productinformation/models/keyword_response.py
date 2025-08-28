@@ -55,7 +55,7 @@ class KeywordResponse:
         filter_options=None,
         search_locale_used=None,
         applied_parametric_filters_dto=None,
-    ):
+    ) -> None:
         """KeywordResponse - a model defined in Swagger"""
         self._products = None
         self._products_count = None
@@ -88,7 +88,7 @@ class KeywordResponse:
         return self._products
 
     @products.setter
-    def products(self, products):
+    def products(self, products) -> None:
         """
         Sets the products of this KeywordResponse.
 
@@ -110,7 +110,7 @@ class KeywordResponse:
         return self._products_count
 
     @products_count.setter
-    def products_count(self, products_count):
+    def products_count(self, products_count) -> None:
         """
         Sets the products_count of this KeywordResponse.
 
@@ -132,7 +132,7 @@ class KeywordResponse:
         return self._exact_matches
 
     @exact_matches.setter
-    def exact_matches(self, exact_matches):
+    def exact_matches(self, exact_matches) -> None:
         """
         Sets the exact_matches of this KeywordResponse.
 
@@ -152,7 +152,7 @@ class KeywordResponse:
         return self._filter_options
 
     @filter_options.setter
-    def filter_options(self, filter_options):
+    def filter_options(self, filter_options) -> None:
         """
         Sets the filter_options of this KeywordResponse.
 
@@ -172,7 +172,7 @@ class KeywordResponse:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this KeywordResponse.
 
@@ -192,7 +192,7 @@ class KeywordResponse:
         return self._applied_parametric_filters_dto
 
     @applied_parametric_filters_dto.setter
-    def applied_parametric_filters_dto(self, applied_parametric_filters_dto):
+    def applied_parametric_filters_dto(self, applied_parametric_filters_dto) -> None:
         """
         Sets the applied_parametric_filters_dto of this KeywordResponse.
 
@@ -208,9 +208,7 @@ class KeywordResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -234,7 +232,7 @@ class KeywordResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

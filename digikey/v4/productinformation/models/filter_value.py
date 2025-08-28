@@ -43,7 +43,7 @@ class FilterValue:
         "range_filter_type": "RangeFilterType",
     }
 
-    def __init__(self, product_count=None, value_id=None, value_name=None, range_filter_type=None):
+    def __init__(self, product_count=None, value_id=None, value_name=None, range_filter_type=None) -> None:
         """FilterValue - a model defined in Swagger"""
         self._product_count = None
         self._value_id = None
@@ -72,7 +72,7 @@ class FilterValue:
         return self._product_count
 
     @product_count.setter
-    def product_count(self, product_count):
+    def product_count(self, product_count) -> None:
         """
         Sets the product_count of this FilterValue.
 
@@ -96,7 +96,7 @@ class FilterValue:
         return self._value_id
 
     @value_id.setter
-    def value_id(self, value_id):
+    def value_id(self, value_id) -> None:
         """
         Sets the value_id of this FilterValue.
 
@@ -120,7 +120,7 @@ class FilterValue:
         return self._value_name
 
     @value_name.setter
-    def value_name(self, value_name):
+    def value_name(self, value_name) -> None:
         """
         Sets the value_name of this FilterValue.
 
@@ -144,7 +144,7 @@ class FilterValue:
         return self._range_filter_type
 
     @range_filter_type.setter
-    def range_filter_type(self, range_filter_type):
+    def range_filter_type(self, range_filter_type) -> None:
         """
         Sets the range_filter_type of this FilterValue.
 
@@ -168,9 +168,7 @@ class FilterValue:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -194,7 +192,7 @@ class FilterValue:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

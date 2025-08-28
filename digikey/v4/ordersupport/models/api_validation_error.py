@@ -33,7 +33,7 @@ class ApiValidationError:
 
     attribute_map = {"field": "Field", "message": "Message"}
 
-    def __init__(self, field=None, message=None):
+    def __init__(self, field=None, message=None) -> None:
         """ApiValidationError - a model defined in Swagger"""
         self._field = None
         self._message = None
@@ -55,7 +55,7 @@ class ApiValidationError:
         return self._field
 
     @field.setter
-    def field(self, field):
+    def field(self, field) -> None:
         """
         Sets the field of this ApiValidationError.
 
@@ -75,7 +75,7 @@ class ApiValidationError:
         return self._message
 
     @message.setter
-    def message(self, message):
+    def message(self, message) -> None:
         """
         Sets the message of this ApiValidationError.
 
@@ -91,9 +91,7 @@ class ApiValidationError:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -117,7 +115,7 @@ class ApiValidationError:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

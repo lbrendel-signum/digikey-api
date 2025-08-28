@@ -41,7 +41,7 @@ class Recommendation:
         "search_locale_used": "SearchLocaleUsed",
     }
 
-    def __init__(self, product_number=None, recommended_products=None, search_locale_used=None):
+    def __init__(self, product_number=None, recommended_products=None, search_locale_used=None) -> None:
         """Recommendation - a model defined in Swagger"""
         self._product_number = None
         self._recommended_products = None
@@ -67,7 +67,7 @@ class Recommendation:
         return self._product_number
 
     @product_number.setter
-    def product_number(self, product_number):
+    def product_number(self, product_number) -> None:
         """
         Sets the product_number of this Recommendation.
 
@@ -91,7 +91,7 @@ class Recommendation:
         return self._recommended_products
 
     @recommended_products.setter
-    def recommended_products(self, recommended_products):
+    def recommended_products(self, recommended_products) -> None:
         """
         Sets the recommended_products of this Recommendation.
 
@@ -113,7 +113,7 @@ class Recommendation:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this Recommendation.
 
@@ -129,9 +129,7 @@ class Recommendation:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -155,7 +153,7 @@ class Recommendation:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

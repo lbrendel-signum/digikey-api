@@ -92,7 +92,7 @@ def unique(list_: list) -> list:
     return list(collections.OrderedDict.fromkeys(list_))
 
 
-def sortby_param_str_from_list(sortby: list[tuple[str, str]] = None) -> str:
+def sortby_param_str_from_list(sortby: list[tuple[str, str]] | None = None) -> str:
     """
     Turns a list of tuples into a string for sending as GET parameter
     >>> sortby_param_str_from_list([('avg_price', 'asc'), ('score', 'desc')])
@@ -106,7 +106,7 @@ def sortby_param_str_from_list(sortby: list[tuple[str, str]] = None) -> str:
     def exc_from_entry(entry):
         return DigikeyTypeError(
             'All "sortby" entries must be a tuple of a fieldname and one of '
-            '"asc" or "desc", not %s' % entry
+            f'"asc" or "desc", not {entry}'
         )
 
     out = []

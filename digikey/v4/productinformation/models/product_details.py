@@ -33,7 +33,7 @@ class ProductDetails:
 
     attribute_map = {"search_locale_used": "SearchLocaleUsed", "product": "Product"}
 
-    def __init__(self, search_locale_used=None, product=None):
+    def __init__(self, search_locale_used=None, product=None) -> None:
         """ProductDetails - a model defined in Swagger"""
         self._search_locale_used = None
         self._product = None
@@ -54,7 +54,7 @@ class ProductDetails:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this ProductDetails.
 
@@ -74,7 +74,7 @@ class ProductDetails:
         return self._product
 
     @product.setter
-    def product(self, product):
+    def product(self, product) -> None:
         """
         Sets the product of this ProductDetails.
 
@@ -90,9 +90,7 @@ class ProductDetails:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -116,7 +114,7 @@ class ProductDetails:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

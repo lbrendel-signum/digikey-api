@@ -52,7 +52,7 @@ class DigiReelPricing:
         extended_price=None,
         requested_quantity=None,
         search_locale_used=None,
-    ):
+    ) -> None:
         """DigiReelPricing - a model defined in Swagger"""
         self._reeling_fee = None
         self._unit_price = None
@@ -84,7 +84,7 @@ class DigiReelPricing:
         return self._reeling_fee
 
     @reeling_fee.setter
-    def reeling_fee(self, reeling_fee):
+    def reeling_fee(self, reeling_fee) -> None:
         """
         Sets the reeling_fee of this DigiReelPricing.
 
@@ -108,7 +108,7 @@ class DigiReelPricing:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this DigiReelPricing.
 
@@ -132,7 +132,7 @@ class DigiReelPricing:
         return self._extended_price
 
     @extended_price.setter
-    def extended_price(self, extended_price):
+    def extended_price(self, extended_price) -> None:
         """
         Sets the extended_price of this DigiReelPricing.
 
@@ -156,7 +156,7 @@ class DigiReelPricing:
         return self._requested_quantity
 
     @requested_quantity.setter
-    def requested_quantity(self, requested_quantity):
+    def requested_quantity(self, requested_quantity) -> None:
         """
         Sets the requested_quantity of this DigiReelPricing.
 
@@ -178,7 +178,7 @@ class DigiReelPricing:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this DigiReelPricing.
 
@@ -194,9 +194,7 @@ class DigiReelPricing:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -220,7 +218,7 @@ class DigiReelPricing:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

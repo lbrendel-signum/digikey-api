@@ -64,7 +64,7 @@ class FilterOptionsRequest:
         minimum_quantity_available=None,
         parameter_filter_request=None,
         search_options=None,
-    ):
+    ) -> None:
         """FilterOptionsRequest - a model defined in Swagger"""
         self._manufacturer_filter = None
         self._category_filter = None
@@ -108,7 +108,7 @@ class FilterOptionsRequest:
         return self._manufacturer_filter
 
     @manufacturer_filter.setter
-    def manufacturer_filter(self, manufacturer_filter):
+    def manufacturer_filter(self, manufacturer_filter) -> None:
         """
         Sets the manufacturer_filter of this FilterOptionsRequest.
 
@@ -132,7 +132,7 @@ class FilterOptionsRequest:
         return self._category_filter
 
     @category_filter.setter
-    def category_filter(self, category_filter):
+    def category_filter(self, category_filter) -> None:
         """
         Sets the category_filter of this FilterOptionsRequest.
 
@@ -156,7 +156,7 @@ class FilterOptionsRequest:
         return self._status_filter
 
     @status_filter.setter
-    def status_filter(self, status_filter):
+    def status_filter(self, status_filter) -> None:
         """
         Sets the status_filter of this FilterOptionsRequest.
 
@@ -180,7 +180,7 @@ class FilterOptionsRequest:
         return self._packaging_filter
 
     @packaging_filter.setter
-    def packaging_filter(self, packaging_filter):
+    def packaging_filter(self, packaging_filter) -> None:
         """
         Sets the packaging_filter of this FilterOptionsRequest.
 
@@ -204,7 +204,7 @@ class FilterOptionsRequest:
         return self._market_place_filter
 
     @market_place_filter.setter
-    def market_place_filter(self, market_place_filter):
+    def market_place_filter(self, market_place_filter) -> None:
         """
         Sets the market_place_filter of this FilterOptionsRequest.
 
@@ -234,7 +234,7 @@ class FilterOptionsRequest:
         return self._series_filter
 
     @series_filter.setter
-    def series_filter(self, series_filter):
+    def series_filter(self, series_filter) -> None:
         """
         Sets the series_filter of this FilterOptionsRequest.
 
@@ -258,7 +258,7 @@ class FilterOptionsRequest:
         return self._minimum_quantity_available
 
     @minimum_quantity_available.setter
-    def minimum_quantity_available(self, minimum_quantity_available):
+    def minimum_quantity_available(self, minimum_quantity_available) -> None:
         """
         Sets the minimum_quantity_available of this FilterOptionsRequest.
 
@@ -280,7 +280,7 @@ class FilterOptionsRequest:
         return self._parameter_filter_request
 
     @parameter_filter_request.setter
-    def parameter_filter_request(self, parameter_filter_request):
+    def parameter_filter_request(self, parameter_filter_request) -> None:
         """
         Sets the parameter_filter_request of this FilterOptionsRequest.
 
@@ -302,7 +302,7 @@ class FilterOptionsRequest:
         return self._search_options
 
     @search_options.setter
-    def search_options(self, search_options):
+    def search_options(self, search_options) -> None:
         """
         Sets the search_options of this FilterOptionsRequest.
 
@@ -324,11 +324,14 @@ class FilterOptionsRequest:
             "RohsCompliant",
         ]
         if not set(search_options).issubset(set(allowed_values)):
-            raise ValueError(
-                "Invalid values for `search_options` [{0}], must be a subset of [{1}]".format(
+            msg = (
+                "Invalid values for `search_options` [{}], must be a subset of [{}]".format(
                     ", ".join(map(str, set(search_options) - set(allowed_values))),
                     ", ".join(map(str, allowed_values)),
                 )
+            )
+            raise ValueError(
+                msg
             )
 
         self._search_options = search_options
@@ -340,9 +343,7 @@ class FilterOptionsRequest:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -366,7 +367,7 @@ class FilterOptionsRequest:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

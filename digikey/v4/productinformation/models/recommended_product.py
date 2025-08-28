@@ -61,7 +61,7 @@ class RecommendedProduct:
         quantity_available=None,
         unit_price=None,
         product_url=None,
-    ):
+    ) -> None:
         """RecommendedProduct - a model defined in Swagger"""
         self._digi_key_product_number = None
         self._manufacturer_product_number = None
@@ -102,7 +102,7 @@ class RecommendedProduct:
         return self._digi_key_product_number
 
     @digi_key_product_number.setter
-    def digi_key_product_number(self, digi_key_product_number):
+    def digi_key_product_number(self, digi_key_product_number) -> None:
         """
         Sets the digi_key_product_number of this RecommendedProduct.
 
@@ -126,7 +126,7 @@ class RecommendedProduct:
         return self._manufacturer_product_number
 
     @manufacturer_product_number.setter
-    def manufacturer_product_number(self, manufacturer_product_number):
+    def manufacturer_product_number(self, manufacturer_product_number) -> None:
         """
         Sets the manufacturer_product_number of this RecommendedProduct.
 
@@ -150,7 +150,7 @@ class RecommendedProduct:
         return self._manufacturer_name
 
     @manufacturer_name.setter
-    def manufacturer_name(self, manufacturer_name):
+    def manufacturer_name(self, manufacturer_name) -> None:
         """
         Sets the manufacturer_name of this RecommendedProduct.
 
@@ -174,7 +174,7 @@ class RecommendedProduct:
         return self._primary_photo
 
     @primary_photo.setter
-    def primary_photo(self, primary_photo):
+    def primary_photo(self, primary_photo) -> None:
         """
         Sets the primary_photo of this RecommendedProduct.
 
@@ -198,7 +198,7 @@ class RecommendedProduct:
         return self._product_description
 
     @product_description.setter
-    def product_description(self, product_description):
+    def product_description(self, product_description) -> None:
         """
         Sets the product_description of this RecommendedProduct.
 
@@ -222,7 +222,7 @@ class RecommendedProduct:
         return self._quantity_available
 
     @quantity_available.setter
-    def quantity_available(self, quantity_available):
+    def quantity_available(self, quantity_available) -> None:
         """
         Sets the quantity_available of this RecommendedProduct.
 
@@ -246,7 +246,7 @@ class RecommendedProduct:
         return self._unit_price
 
     @unit_price.setter
-    def unit_price(self, unit_price):
+    def unit_price(self, unit_price) -> None:
         """
         Sets the unit_price of this RecommendedProduct.
 
@@ -270,7 +270,7 @@ class RecommendedProduct:
         return self._product_url
 
     @product_url.setter
-    def product_url(self, product_url):
+    def product_url(self, product_url) -> None:
         """
         Sets the product_url of this RecommendedProduct.
 
@@ -288,9 +288,7 @@ class RecommendedProduct:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -314,7 +312,7 @@ class RecommendedProduct:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

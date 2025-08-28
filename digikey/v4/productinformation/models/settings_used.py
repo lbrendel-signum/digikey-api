@@ -41,7 +41,7 @@ class SettingsUsed:
         "filters": "Filters",
     }
 
-    def __init__(self, customer_id=None, search_locale=None, filters=None):
+    def __init__(self, customer_id=None, search_locale=None, filters=None) -> None:
         """SettingsUsed - a model defined in Swagger"""
         self._customer_id = None
         self._search_locale = None
@@ -67,7 +67,7 @@ class SettingsUsed:
         return self._customer_id
 
     @customer_id.setter
-    def customer_id(self, customer_id):
+    def customer_id(self, customer_id) -> None:
         """
         Sets the customer_id of this SettingsUsed.
 
@@ -89,7 +89,7 @@ class SettingsUsed:
         return self._search_locale
 
     @search_locale.setter
-    def search_locale(self, search_locale):
+    def search_locale(self, search_locale) -> None:
         """
         Sets the search_locale of this SettingsUsed.
 
@@ -109,7 +109,7 @@ class SettingsUsed:
         return self._filters
 
     @filters.setter
-    def filters(self, filters):
+    def filters(self, filters) -> None:
         """
         Sets the filters of this SettingsUsed.
 
@@ -125,9 +125,7 @@ class SettingsUsed:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -151,7 +149,7 @@ class SettingsUsed:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

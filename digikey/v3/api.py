@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class DigikeyApiWrapper:
-    def __init__(self, wrapped_function, module):
+    def __init__(self, wrapped_function, module) -> None:
         self.sandbox = False
 
         apinames = {
@@ -78,7 +78,7 @@ class DigikeyApiWrapper:
         self.wrapped_function = wrapped_function
 
     @staticmethod
-    def _remaining_requests(header, api_limits):
+    def _remaining_requests(header, api_limits) -> None:
         try:
             rate_limit = header["X-RateLimit-Limit"]
             rate_limit_rem = header["X-RateLimit-Remaining"]
@@ -95,7 +95,7 @@ class DigikeyApiWrapper:
                 api_limits["api_requests_remaining"] = None
 
     @staticmethod
-    def _store_api_statuscode(statuscode, status):
+    def _store_api_statuscode(statuscode, status) -> None:
         if status is not None and type(status) == dict:
             status["code"] = int(statuscode)
 
@@ -115,7 +115,7 @@ class DigikeyApiWrapper:
 
             return api_response[0]
         except ApiException as e:
-            logger.error(f"Exception when calling {self.wrapped_function}: {e}")
+            logger.exception(f"Exception when calling {self.wrapped_function}: {e}")
             self._store_api_statuscode(e.status, status)
 
 
@@ -135,6 +135,7 @@ def product_details(*args, **kwargs) -> ProductDetails:
     if args:
         logger.info(f"Get product details for: {args[0]}")
         return client.call_api_function(*args, **kwargs)
+    return None
 
 
 def digi_reel_pricing(*args, **kwargs) -> DigiReelPricing:
@@ -143,6 +144,7 @@ def digi_reel_pricing(*args, **kwargs) -> DigiReelPricing:
     if args:
         logger.info(f"Calculate the DigiReel pricing for {args[0]} with quantity {args[1]}")
         return client.call_api_function(*args, **kwargs)
+    return None
 
 
 def suggested_parts(*args, **kwargs) -> ProductDetails:
@@ -153,6 +155,7 @@ def suggested_parts(*args, **kwargs) -> ProductDetails:
             f"Retrieve detailed product information and two suggested products for: {args[0]}"
         )
         return client.call_api_function(*args, **kwargs)
+    return None
 
 
 def manufacturer_product_details(*args, **kwargs) -> KeywordSearchResponse:
@@ -172,6 +175,7 @@ def status_salesorder_id(*args, **kwargs) -> OrderStatusResponse:
     if args:
         logger.info(f"Get order details for: {args[0]}")
         return client.call_api_function(*args, **kwargs)
+    return None
 
 
 def salesorder_history(*args, **kwargs) -> [SalesOrderHistoryItem]:

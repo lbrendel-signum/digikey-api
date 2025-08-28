@@ -61,7 +61,7 @@ class ProductPricingVariation:
         my_pricing=None,
         is_tariff_active=None,
         digi_reeling_fee=None,
-    ):
+    ) -> None:
         """ProductPricingVariation - a model defined in Swagger"""
         self._digi_key_product_number = None
         self._quantity_availablefor_package_type = None
@@ -102,7 +102,7 @@ class ProductPricingVariation:
         return self._digi_key_product_number
 
     @digi_key_product_number.setter
-    def digi_key_product_number(self, digi_key_product_number):
+    def digi_key_product_number(self, digi_key_product_number) -> None:
         """
         Sets the digi_key_product_number of this ProductPricingVariation.
 
@@ -126,7 +126,7 @@ class ProductPricingVariation:
         return self._quantity_availablefor_package_type
 
     @quantity_availablefor_package_type.setter
-    def quantity_availablefor_package_type(self, quantity_availablefor_package_type):
+    def quantity_availablefor_package_type(self, quantity_availablefor_package_type) -> None:
         """
         Sets the quantity_availablefor_package_type of this ProductPricingVariation.
 
@@ -148,7 +148,7 @@ class ProductPricingVariation:
         return self._package_type
 
     @package_type.setter
-    def package_type(self, package_type):
+    def package_type(self, package_type) -> None:
         """
         Sets the package_type of this ProductPricingVariation.
 
@@ -170,7 +170,7 @@ class ProductPricingVariation:
         return self._market_place
 
     @market_place.setter
-    def market_place(self, market_place):
+    def market_place(self, market_place) -> None:
         """
         Sets the market_place of this ProductPricingVariation.
 
@@ -194,7 +194,7 @@ class ProductPricingVariation:
         return self._standard_pricing
 
     @standard_pricing.setter
-    def standard_pricing(self, standard_pricing):
+    def standard_pricing(self, standard_pricing) -> None:
         """
         Sets the standard_pricing of this ProductPricingVariation.
 
@@ -218,7 +218,7 @@ class ProductPricingVariation:
         return self._my_pricing
 
     @my_pricing.setter
-    def my_pricing(self, my_pricing):
+    def my_pricing(self, my_pricing) -> None:
         """
         Sets the my_pricing of this ProductPricingVariation.
 
@@ -242,7 +242,7 @@ class ProductPricingVariation:
         return self._is_tariff_active
 
     @is_tariff_active.setter
-    def is_tariff_active(self, is_tariff_active):
+    def is_tariff_active(self, is_tariff_active) -> None:
         """
         Sets the is_tariff_active of this ProductPricingVariation.
 
@@ -266,7 +266,7 @@ class ProductPricingVariation:
         return self._digi_reeling_fee
 
     @digi_reeling_fee.setter
-    def digi_reeling_fee(self, digi_reeling_fee):
+    def digi_reeling_fee(self, digi_reeling_fee) -> None:
         """
         Sets the digi_reeling_fee of this ProductPricingVariation.
 
@@ -284,9 +284,7 @@ class ProductPricingVariation:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -310,7 +308,7 @@ class ProductPricingVariation:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

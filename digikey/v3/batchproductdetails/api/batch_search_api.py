@@ -26,13 +26,13 @@ class BatchSearchApi:
     Ref: https://github.com/swagger-api/swagger-codegen
     """
 
-    def __init__(self, api_client=None):
+    def __init__(self, api_client=None) -> None:
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
 
     def batch_product_details(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -60,13 +60,12 @@ class BatchSearchApi:
             return self.batch_product_details_with_http_info(
                 authorization, x_digikey_client_id, **kwargs
             )
-        (data) = self.batch_product_details_with_http_info(
+        return self.batch_product_details_with_http_info(
             authorization, x_digikey_client_id, **kwargs
         )
-        return data
 
     def batch_product_details_with_http_info(self, authorization, x_digikey_client_id, **kwargs):
-        """
+        r"""
         Retrieve detailed product information including real time pricing and availability.  # noqa: E501
 
         Locale information is required in the headers for accurate pricing and currencies. Locale defaults to United  States.  # noqa: E501
@@ -108,8 +107,9 @@ class BatchSearchApi:
         params = locals()
         for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
+                msg = f"Got an unexpected keyword argument '{key}' to method batch_product_details"
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s' to method batch_product_details" % key
+                    msg
                 )
             params[key] = val
         del params["kwargs"]

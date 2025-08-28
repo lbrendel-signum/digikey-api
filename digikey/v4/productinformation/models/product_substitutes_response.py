@@ -46,7 +46,7 @@ class ProductSubstitutesResponse:
         product_substitutes_count=None,
         product_substitutes=None,
         search_locale_used=None,
-    ):
+    ) -> None:
         """ProductSubstitutesResponse - a model defined in Swagger"""
         self._product_substitutes_count = None
         self._product_substitutes = None
@@ -72,7 +72,7 @@ class ProductSubstitutesResponse:
         return self._product_substitutes_count
 
     @product_substitutes_count.setter
-    def product_substitutes_count(self, product_substitutes_count):
+    def product_substitutes_count(self, product_substitutes_count) -> None:
         """
         Sets the product_substitutes_count of this ProductSubstitutesResponse.
 
@@ -96,7 +96,7 @@ class ProductSubstitutesResponse:
         return self._product_substitutes
 
     @product_substitutes.setter
-    def product_substitutes(self, product_substitutes):
+    def product_substitutes(self, product_substitutes) -> None:
         """
         Sets the product_substitutes of this ProductSubstitutesResponse.
 
@@ -118,7 +118,7 @@ class ProductSubstitutesResponse:
         return self._search_locale_used
 
     @search_locale_used.setter
-    def search_locale_used(self, search_locale_used):
+    def search_locale_used(self, search_locale_used) -> None:
         """
         Sets the search_locale_used of this ProductSubstitutesResponse.
 
@@ -134,9 +134,7 @@ class ProductSubstitutesResponse:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -160,7 +158,7 @@ class ProductSubstitutesResponse:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

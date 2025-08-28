@@ -58,7 +58,7 @@ class LimitedTaxonomy:
         value_id=None,
         parameter=None,
         value=None,
-    ):
+    ) -> None:
         """LimitedTaxonomy - a model defined in Swagger"""
         self._children = None
         self._product_count = None
@@ -97,7 +97,7 @@ class LimitedTaxonomy:
         return self._children
 
     @children.setter
-    def children(self, children):
+    def children(self, children) -> None:
         """
         Sets the children of this LimitedTaxonomy.
 
@@ -121,7 +121,7 @@ class LimitedTaxonomy:
         return self._product_count
 
     @product_count.setter
-    def product_count(self, product_count):
+    def product_count(self, product_count) -> None:
         """
         Sets the product_count of this LimitedTaxonomy.
 
@@ -145,7 +145,7 @@ class LimitedTaxonomy:
         return self._new_product_count
 
     @new_product_count.setter
-    def new_product_count(self, new_product_count):
+    def new_product_count(self, new_product_count) -> None:
         """
         Sets the new_product_count of this LimitedTaxonomy.
 
@@ -169,7 +169,7 @@ class LimitedTaxonomy:
         return self._parameter_id
 
     @parameter_id.setter
-    def parameter_id(self, parameter_id):
+    def parameter_id(self, parameter_id) -> None:
         """
         Sets the parameter_id of this LimitedTaxonomy.
 
@@ -193,7 +193,7 @@ class LimitedTaxonomy:
         return self._value_id
 
     @value_id.setter
-    def value_id(self, value_id):
+    def value_id(self, value_id) -> None:
         """
         Sets the value_id of this LimitedTaxonomy.
 
@@ -217,7 +217,7 @@ class LimitedTaxonomy:
         return self._parameter
 
     @parameter.setter
-    def parameter(self, parameter):
+    def parameter(self, parameter) -> None:
         """
         Sets the parameter of this LimitedTaxonomy.
 
@@ -241,7 +241,7 @@ class LimitedTaxonomy:
         return self._value
 
     @value.setter
-    def value(self, value):
+    def value(self, value) -> None:
         """
         Sets the value of this LimitedTaxonomy.
 
@@ -259,9 +259,7 @@ class LimitedTaxonomy:
         for attr, _ in six.iteritems(self.swagger_types):
             value = getattr(self, attr)
             if isinstance(value, list):
-                result[attr] = list(
-                    map(lambda x: x.to_dict() if hasattr(x, "to_dict") else x, value)
-                )
+                result[attr] = [x.to_dict() if hasattr(x, "to_dict") else x for x in value]
             elif hasattr(value, "to_dict"):
                 result[attr] = value.to_dict()
             elif isinstance(value, dict):
@@ -285,7 +283,7 @@ class LimitedTaxonomy:
         """Returns the string representation of the model"""
         return pprint.pformat(self.to_dict())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """For `print` and `pprint`"""
         return self.to_str()
 

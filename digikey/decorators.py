@@ -24,11 +24,11 @@ def wrap_exception_in(exc_type, catch=Exception):
             try:
                 return func(*args, **kwargs)
             except catch as exc:
-                logger.error('Wrapped error: %s', str(exc))
+                logger.error("Wrapped error: %s", str(exc))
                 message = type(exc).__name__
                 # Add HTTP status code, if one is attached to 'exc'.
                 try:
-                    message += f' {exc.response.status_code}'
+                    message += f" {exc.response.status_code}"
                 except AttributeError:
                     pass
                 raise exc_type(message) from exc
@@ -46,7 +46,8 @@ exponential_backoff = retrying.retry(
     retry_on_exception=lambda exc: isinstance(exc, RequestException),
     wait_exponential_multiplier=100,
     wait_exponential_max=10000,
-    stop_max_delay=20000)
+    stop_max_delay=20000,
+)
 
 
 def retry(func):

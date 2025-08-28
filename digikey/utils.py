@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 URL_MAX_LENGTH = 8000
 
 
-def chunked(list_: List, chunksize: int=20) -> List[List]:
+def chunked(list_: List, chunksize: int = 20) -> List[List]:
     """
     Partitions list into chunks of a given size.
     NOTE: Octopart enforces that its 'parts/match' endpoint take no more
@@ -26,7 +26,7 @@ def chunked(list_: List, chunksize: int=20) -> List[List]:
     """
     chunks: List[List] = []
     for i in range(0, len(list_), chunksize):
-        chunks.append(list_[i:i + chunksize])
+        chunks.append(list_[i : i + chunksize])
     return chunks
 
 
@@ -55,7 +55,7 @@ def split_chunk(chunk: List) -> List[List]:
     Returns:
         list of chunks
     """
-    encoded = urlencode({'queries': json.dumps(chunk)})
+    encoded = urlencode({"queries": json.dumps(chunk)})
     if len(encoded) > URL_MAX_LENGTH:
         # Split chunk in half to avoid HTTP 414 error.
         mid = len(chunk) // 2
@@ -84,20 +84,21 @@ def unique(list_: List) -> List:
     return list(collections.OrderedDict.fromkeys(list_))
 
 
-def sortby_param_str_from_list(sortby: List[Tuple[str, str]]=None) -> str:
+def sortby_param_str_from_list(sortby: List[Tuple[str, str]] = None) -> str:
     """Turns a list of tuples into a string for sending as GET parameter
     >>> sortby_param_str_from_list([('avg_price', 'asc'), ('score', 'desc')])
     'avg_price asc,score desc'
     """
     if sortby and not isinstance(sortby, list):
         raise DigikeyTypeError(
-            '"sortyby" must be a list of tuples of fieldname and one of "asc" '
-            'or "desc"')
+            '"sortyby" must be a list of tuples of fieldname and one of "asc" or "desc"'
+        )
 
     def exc_from_entry(entry):
         return DigikeyTypeError(
             'All "sortby" entries must be a tuple of a fieldname and one of '
-            '"asc" or "desc", not %s' % entry)
+            '"asc" or "desc", not %s' % entry
+        )
 
     out = []
 
@@ -107,9 +108,9 @@ def sortby_param_str_from_list(sortby: List[Tuple[str, str]]=None) -> str:
         except ValueError:
             raise exc_from_entry(entry) from ValueError
 
-        if sort_order not in ('asc', 'desc'):
+        if sort_order not in ("asc", "desc"):
             raise exc_from_entry(entry)
 
         out.append(f"{sort_value} {sort_order}")
 
-    return ','.join(out)
+    return ",".join(out)

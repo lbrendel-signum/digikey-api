@@ -25,6 +25,36 @@ export DIGIKEY_STORAGE_PATH="path/to/cache/dir"
 
 The cache dir is used to store the OAUTH access and refresh token, if you delete it you will need to login again.
 
+## Command Line Interface (CLI)
+
+The package includes a command-line interface for quick access to the API:
+
+```sh
+# Authenticate (saves credentials for future use)
+digikey auth
+
+# Search for parts
+digikey search "resistor 10k"
+digikey search "capacitor 0805" --limit 20
+
+# Get product details
+digikey product-details 296-6501-1-ND
+
+# Get JSON output
+digikey product-details 296-6501-1-ND --json
+
+# Show version
+digikey version
+```
+
+The `auth` command will prompt for your API credentials and initiate the OAuth flow. 
+It saves credentials to `~/.digikey/.env` for future use. To use these credentials 
+in subsequent CLI sessions:
+
+```sh
+export $(cat ~/.digikey/.env | xargs)
+```
+
 # API V4
 ## Register
 Register an app on the Digikey API portal: [Digi-Key API V4](https://developer.digikey.com/get_started). You will need

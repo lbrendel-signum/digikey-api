@@ -73,3 +73,6 @@ generate-v3-api/
 # Other repository dependent
 tests/local/
 .env/config.ini
+
+# Test certificates (generated during OAuth tests)
+*.pem

@@ -1,3 +1,5 @@
+"""API utility functions."""
+
 import collections
 import itertools
 import json
@@ -15,8 +17,9 @@ URL_MAX_LENGTH = 8000
 def chunked(list_: list, chunksize: int = 20) -> list[list]:
     """
     Partitions list into chunks of a given size.
-    NOTE: Octopart enforces that its 'parts/match' endpoint take no more
-    than 20 queries in a single request.
+
+    Octopart enforces that its 'parts/match' endpoint take no more than 20 queries in a single
+    request.
 
     Args:
         list_: list to be partitioned
@@ -25,22 +28,21 @@ def chunked(list_: list, chunksize: int = 20) -> list[list]:
         list of lists.
 
     """
-    chunks: list[list] = []
-    for i in range(0, len(list_), chunksize):
-        chunks.append(list_[i : i + chunksize])
-    return chunks
+    return [list_[i : i + chunksize] for i in range(0, len(list_), chunksize)]
 
 
 def chunk_queries(queries: list) -> list[list]:
     """
-    Partitions list into chunks, and ensures that each chunk is small enough
+    Partitions list into chunks
+
+    Ensures that each chunk is small enough
     to not trigger an HTTP 414 error (Request URI Too Large).
 
     Args:
-        queries (list)
+        queries: List of queries to be partitioned into chunks
 
     Returns:
-        list
+        list of lists
 
     """
     chunks: list[list] = []
@@ -52,16 +54,15 @@ def chunk_queries(queries: list) -> list[list]:
 
 def split_chunk(chunk: list) -> list[list]:
     """
-    Split chunk into smaller pieces if encoding the chunk into a URL would
-    result in an HTTP 414 error.
+    Split chunk into smaller pieces if encoding the chunk into a URL would result in an HTTP 414 error.
 
     Args:
-        chunk (list)
+        chunk: List of queries to be split if too large for URL encoding
 
     Returns:
         list of chunks
 
-    """
+    """  # noqa: E501
     encoded = urlencode({"queries": json.dumps(chunk)})
     if len(encoded) > URL_MAX_LENGTH:
         # Split chunk in half to avoid HTTP 414 error.
@@ -75,6 +76,7 @@ def split_chunk(chunk: list) -> list[list]:
 def flatten(list_of_lists: list[list]) -> list:
     """
     Chain together a list of lists
+
     >>> flatten([[1, 2], [3, 4, 5], ['a']])
     [1, 2, 3, 4, 5, 'a']
     """
@@ -84,6 +86,7 @@ def flatten(list_of_lists: list[list]) -> list:
 def unique(list_: list) -> list:
     """
     Remove duplicate entries from list, keeping it in its original order
+
     >>> unique([1, 2, 2, 3, 4, 6, 2, 5])
     [1, 2, 3, 4, 6, 5]
     >>> unique(['bb', 'aa', 'aa', 'aa', 'aa', 'aa', 'bb'])
@@ -94,7 +97,8 @@ def unique(list_: list) -> list:
 
 def sortby_param_str_from_list(sortby: list[tuple[str, str]] | None = None) -> str:
     """
-    Turns a list of tuples into a string for sending as GET parameter
+    Turn a list of tuples into a string for sending as GET parameter
+
     >>> sortby_param_str_from_list([('avg_price', 'asc'), ('score', 'desc')])
     'avg_price asc,score desc'
     """
@@ -103,7 +107,7 @@ def sortby_param_str_from_list(sortby: list[tuple[str, str]] | None = None) -> s
             '"sortyby" must be a list of tuples of fieldname and one of "asc" or "desc"'
         )
 
-    def exc_from_entry(entry):
+    def exc_from_entry(entry: str) -> DigikeyTypeError:
         return DigikeyTypeError(
             'All "sortby" entries must be a tuple of a fieldname and one of '
             f'"asc" or "desc", not {entry}'

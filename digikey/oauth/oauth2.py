@@ -13,7 +13,7 @@ import requests
 from certauth.certauth import CertificateAuthority
 
 from digikey.constants import USER_AGENT
-from digikey.exceptions import DigikeyOauthException
+from digikey.exceptions import DigikeyOauthError
 
 CA_CERT = "digikey-api.pem"
 TOKEN_STORAGE = "token_storage.json"
@@ -91,7 +91,7 @@ class HTTPServerHandler(BaseHTTPRequestHandler):
             self.server.auth_code = self.auth_code
             self.server.stop = 1
         else:
-            raise DigikeyOauthException(
+            raise DigikeyOauthError(
                 f"Digikey did not return authorization token in request: {self.path}"
             )
 
@@ -192,7 +192,7 @@ class TokenHandler:
             requests.exceptions.RequestException,
             requests.exceptions.HTTPError,
         ) as e:
-            raise DigikeyOauthException(
+            raise DigikeyOauthError(
                 f"TOKEN - Cannot request new token with auth code: {e}"
             )
         else:
@@ -229,7 +229,7 @@ class TokenHandler:
             requests.exceptions.RequestException,
             requests.exceptions.HTTPError,
         ):
-            raise DigikeyOauthException(
+            raise DigikeyOauthError(
                 f"REFRESH - Cannot request new token with refresh token: {error_message}."
             )
         else:
@@ -276,7 +276,7 @@ class TokenHandler:
                 )
                 token_json = self.__refresh_token(token.refresh_token)
                 self.save(token_json)
-            except DigikeyOauthException:
+            except DigikeyOauthError:
                 logger.exception(
                     "REFRESH - Failed to use refresh token, starting new authorization flow."
                 )

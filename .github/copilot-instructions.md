@@ -80,13 +80,15 @@
 - All API calls require OAuth2 authentication
 - Tokens are cached in the directory specified by `DIGIKEY_STORAGE_PATH`
 - The library handles token refresh automatically
-- OAuth callback URL: `https://localhost:8139/digikey_callback`
+- Default grant is the browser authorization-code flow. OAuth callback URL: `https://localhost:8139/digikey_callback`
+- Local tools skip the browser. Call `digikey.use_local_tool()` or set `DIGIKEY_LOCAL_TOOL=1` / `DIGIKEY_NO_BROWSER=1` to use the client-credentials grant. The CLI always does this. Parallel token requests share a file lock.
 
 ### Environment Variables
 - `DIGIKEY_CLIENT_ID` - API client ID
 - `DIGIKEY_CLIENT_SECRET` - API client secret
 - `DIGIKEY_CLIENT_SANDBOX` - Use sandbox API (True/False)
 - `DIGIKEY_STORAGE_PATH` - Directory for token cache
+- `DIGIKEY_LOCAL_TOOL` / `DIGIKEY_NO_BROWSER` - Skip browser verification and use client credentials
 
 ### API Versions
 - **V4** is the current and recommended version

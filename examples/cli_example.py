@@ -77,6 +77,7 @@ def example_search() -> None:
         import digikey
         from digikey.v4.productinformation import KeywordRequest
 
+        digikey.use_local_tool()
         search_request = KeywordRequest(keywords="resistor 10k", record_count=5)
         result = digikey.keyword_search(body=search_request)
 

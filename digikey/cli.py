@@ -3,7 +3,6 @@
 import json
 import logging
 import os
-import sys
 from pathlib import Path
 
 import typer
@@ -22,6 +21,7 @@ app = typer.Typer(
     add_completion=False,
 )
 console = Console()
+err_console = Console(stderr=True)
 
 # Default storage path for authentication tokens
 DEFAULT_STORAGE_PATH = Path.home() / ".digikey"
@@ -43,6 +43,42 @@ def ensure_storage_path() -> Path:
     return storage_path
 
 
+def load_saved_credentials(storage_path: Path | None = None) -> None:
+    """
+    Load Digi-Key keys saved by ``digikey auth`` into the environment.
+
+    Values already set in the environment are left unchanged. The CLI reads
+    these keys before it calls the API so a missing token is not treated as a
+    signal to open a browser.
+    """
+    path = storage_path or Path(os.getenv("DIGIKEY_STORAGE_PATH", DEFAULT_STORAGE_PATH))
+    env_file = path / ".env"
+    if not env_file.is_file():
+        return
+    for raw_line in env_file.read_text().splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if key.startswith("export "):
+            key = key.removeprefix("export ").strip()
+        if not key.startswith("DIGIKEY_"):
+            continue
+        os.environ.setdefault(key, value.strip().strip('"').strip("'"))
+
+
+def prepare_local_session(storage_path: Path | None = None) -> None:
+    """
+    Use saved keys and skip browser verification.
+
+    The CLI is a local tool. It has to know the client id and secret up front,
+    and it must not start a browser login for every process.
+    """
+    load_saved_credentials(storage_path)
+    digikey.use_local_tool()
+
+
 def ensure_credentials() -> bool:
     """
     Check if credentials are configured.
@@ -53,10 +89,9 @@ def ensure_credentials() -> bool:
     client_secret = os.getenv("DIGIKEY_CLIENT_SECRET")
 
     if not client_id or not client_secret:
-        console.print(
+        err_console.print(
             "[red]Error:[/red] API credentials not configured. "
             "Please run [bold]digikey auth[/bold] first.",
-            file=sys.stderr,
         )
         return False
     return True
@@ -92,10 +127,10 @@ def auth(
     ),
 ) -> None:
     """
-    Authenticate with the Digi-Key API.
+    Save API credentials and request an access token.
 
-    This command saves your API credentials as environment variables in a .env file
-    and initiates the OAuth flow to obtain an access token.
+    The token is requested with the client id and secret. A browser login is
+    not opened. Credentials are written to a .env file for later commands.
     """
     # Set storage path
     final_storage_path = Path(storage_path) if storage_path else DEFAULT_STORAGE_PATH
@@ -117,23 +152,26 @@ def auth(
     os.environ["DIGIKEY_STORAGE_PATH"] = str(final_storage_path)
     if sandbox:
         os.environ["DIGIKEY_CLIENT_SANDBOX"] = "True"
+    else:
+        os.environ.pop("DIGIKEY_CLIENT_SANDBOX", None)
+    prepare_local_session(final_storage_path)
 
     console.print(f"[green]✓[/green] Credentials saved to {env_file}")
     console.print(
-        "\n[bold]To use these credentials in future sessions, run:[/bold]\n"
+        "\n[bold]Later commands read this file automatically.[/bold]\n"
+        "You can also load it yourself with:\n"
         f"  export $(cat {env_file} | xargs)"
     )
 
-    # Try to obtain OAuth token
-    console.print("\n[bold]Initiating OAuth authentication flow...[/bold]")
     console.print(
-        "A browser window will open. Please authenticate with your Digi-Key account."
+        "\n[bold]Requesting an access token with your client id and secret.[/bold]"
     )
+    console.print("Browser verification is not required.")
 
     try:
         from digikey.oauth.oauth2 import TokenHandler  # noqa: PLC0415
 
-        token_handler = TokenHandler(version=4, sandbox=sandbox)
+        token_handler = TokenHandler(version=4, sandbox=sandbox, interactive=False)
         token = token_handler.get_access_token()
         console.print(
             f"\n[green]✓[/green] Authentication successful! "
@@ -141,7 +179,7 @@ def auth(
         )
         console.print("\n[bold]You can now use the API commands.[/bold]")
     except Exception as e:
-        console.print(f"\n[red]Error during authentication:[/red] {e}", file=sys.stderr)
+        err_console.print(f"\n[red]Error during authentication:[/red] {e}")
         raise typer.Exit(1) from e
 
 
@@ -159,6 +197,7 @@ def product_details(  # noqa: C901, PLR0912
 
     """
     setup_logging(verbose=verbose)
+    prepare_local_session()
 
     if not ensure_credentials():
         raise typer.Exit(1)
@@ -200,7 +239,7 @@ def product_details(  # noqa: C901, PLR0912
             console.print(f"[yellow]No product found for part number: {part_number}[/yellow]")
 
     except Exception as e:
-        console.print(f"[red]Error:[/red] {e}", file=sys.stderr)
+        err_console.print(f"[red]Error:[/red] {e}")
         if verbose:
             raise
         raise typer.Exit(1) from e
@@ -222,6 +261,7 @@ def search(  # noqa: C901
 
     """
     setup_logging(verbose=verbose)
+    prepare_local_session()
 
     if not ensure_credentials():
         raise typer.Exit(1)
@@ -288,7 +328,7 @@ def search(  # noqa: C901
             console.print(f"[yellow]No results found for: {keywords}[/yellow]")
 
     except Exception as e:
-        console.print(f"[red]Error:[/red] {e}", file=sys.stderr)
+        err_console.print(f"[red]Error:[/red] {e}")
         if verbose:
             raise
         raise typer.Exit(1) from e

@@ -22,9 +22,12 @@ digikey auth
 
 This command will:
 - Prompt you for your Client ID and Client Secret
-- Open a browser window for OAuth authentication
+- Request an access token with those keys (no browser window)
 - Save your credentials to `~/.digikey/.env` for future use
 - Store the OAuth token in `~/.digikey/token_storage.json`
+
+The CLI is a local tool. `search` and `product-details` load `~/.digikey/.env` themselves and reuse
+one token across parallel processes. They do not open a Digi-Key login.
 
 You can also provide credentials directly:
 
@@ -46,7 +49,7 @@ digikey auth --storage-path /path/to/storage
 
 ### 2. Using Saved Credentials
 
-To use saved credentials in future terminal sessions:
+CLI commands load `~/.digikey/.env` automatically. To put the same values in your shell:
 
 ```bash
 export $(cat ~/.digikey/.env | xargs)
@@ -188,7 +191,8 @@ Usage:
 
 ### "API credentials not configured"
 
-If you see this error, you need to either:
+The command stops before calling the API when the client id and secret are missing, so it does not
+open a login. Either:
 1. Run `digikey auth` to save credentials
 2. Set environment variables manually:
    ```bash
@@ -206,13 +210,24 @@ pip install digikey-api[dev]
 
 ### OAuth authentication fails
 
-1. Ensure your OAuth callback URL is set to `https://localhost:8139/digikey_callback` in your Digi-Key API app settings
-2. Check that no other service is using port 8139
-3. Try deleting the token storage and re-authenticating:
-   ```bash
-   rm ~/.digikey/token_storage.json
-   digikey auth
-   ```
+`digikey auth` requests a token with the client id and secret and does not open a browser. If that
+request fails, check that the application is registered and subscribed to the API product you are
+calling.
+
+Library code that still uses the browser flow needs the OAuth callback set to
+`https://localhost:8139/digikey_callback`, and port 8139 has to be free. To force that same browser
+flow off:
+
+```bash
+export DIGIKEY_LOCAL_TOOL=1
+```
+
+To drop a cached token and request a new one:
+
+```bash
+rm ~/.digikey/token_storage.json
+digikey auth
+```
 
 ### Sandbox vs Production
 

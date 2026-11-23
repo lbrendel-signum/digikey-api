@@ -25,7 +25,9 @@ export DIGIKEY_CLIENT_SECRET="client_secret"
 export DIGIKEY_STORAGE_PATH="path/to/cache/dir"
 ```
 
-The cache dir is used to store the OAUTH access and refresh token, if you delete it you will need to login again.
+The cache dir stores the OAuth access token. The `digikey` command is a local tool: it reads keys from
+`~/.digikey/.env` and requests a token with the client id and secret. It does not open a browser.
+If you delete the cache, the next command requests a new token from those keys.
 
 ## Command Line Interface (CLI)
 
@@ -49,9 +51,7 @@ digikey product-details 296-6501-1-ND --json
 digikey version
 ```
 
-The `auth` command will prompt for your API credentials and initiate the OAuth flow.
-It saves credentials to `~/.digikey/.env` for future use. To use these credentials
-in subsequent CLI sessions:
+The `auth` command prompts for your API credentials and requests an access token with the client id and secret. It does not open a browser. Credentials are saved to `~/.digikey/.env`, and later CLI commands load that file on their own. To put the same values in your shell:
 
 ```sh
 export $(cat ~/.digikey/.env | xargs)
@@ -65,12 +65,23 @@ Register an app on the Digikey API portal: [Digi-Key API V4](https://developer.d
 the client ID and the client secret to use the API. You will also need a Digi-Key account to authenticate, using the
 Oauth2 process.
 
-When registering an app the OAuth Callback needs to be set to `https://localhost:8139/digikey_callback`.
+When registering an app for the browser login, the OAuth callback needs to be set to
+`https://localhost:8139/digikey_callback`. Local-tool mode does not use that callback.
 
 ### Use [API V4]
 
-Python will automatically spawn a browser to allow you to authenticate using the Oauth2 process. After obtaining a token
-the library will cache the access token and use the refresh token to automatically refresh your credentials.
+By default, library calls use the browser OAuth flow when no valid token is cached. That opens one
+browser window and listens on the callback above. Parallel calls share that login: other processes
+wait for the saved token instead of each starting a verification.
+
+Call `digikey.use_local_tool()` when this library is itself a local tool. The client id and secret
+are exchanged for an access token (OAuth client-credentials grant) and no browser is opened.
+`DIGIKEY_LOCAL_TOOL=1` or `DIGIKEY_NO_BROWSER=1` does the same thing. The CLI turns this on for
+every command. A cached token is still refreshed in place; an expired browser token is refreshed
+with its refresh token before a new client-credentials token is requested.
+
+Order endpoints that need a signed-in Digi-Key account keep using the browser flow when local-tool
+mode is off.
 
 You can test your application using the sandbox API, the data returned from a Sandbox API may not be complete, but the
 structure of the Sandbox API response will be a representation of what to expect in Production.
@@ -85,6 +96,9 @@ from pathlib import Path
 import digikey
 from digikey.v4.productinformation import KeywordRequest
 from digikey.v4.batchproductdetails import BatchProductDetailsRequest
+
+# Local tool: get the access token from the client id and secret.
+digikey.use_local_tool()
 
 CACHE_DIR = Path('path/to/cache/dir')
 

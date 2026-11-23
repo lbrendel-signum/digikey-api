@@ -1,7 +1,10 @@
+"""Digi-Key OAuth2 token handling."""
+
 import json
 import logging
 import os
 import ssl
+import threading
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from json.decoder import JSONDecodeError
@@ -15,8 +18,19 @@ from certauth.certauth import CertificateAuthority
 from digikey.constants import USER_AGENT
 from digikey.exceptions import DigikeyOauthError
 
+try:
+    import fcntl
+except ImportError:  # pragma: no cover
+    fcntl = None
+
 CA_CERT = "digikey-api.pem"
 TOKEN_STORAGE = "token_storage.json"
+TOKEN_LOCK = "token_storage.lock"
+TOKEN_EXPIRY_MARGIN_SECONDS = 60
+
+_TRUTHY_ENV = {"1", "true", "yes", "on"}
+_PROCESS_TOKEN_LOCKS: dict[str, threading.Lock] = {}
+_PROCESS_TOKEN_LOCKS_GUARD = threading.Lock()
 
 AUTH_URL_V3_PROD = "https://api.digikey.com/v1/oauth2/authorize"
 TOKEN_URL_V3_PROD = "https://api.digikey.com/v1/oauth2/token"
@@ -28,6 +42,65 @@ REDIRECT_URI = "https://localhost:8139/digikey_callback"
 PORT = 8139
 
 logger = logging.getLogger(__name__)
+
+
+def _env_flag(name: str) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return False
+    return value.strip().lower() in _TRUTHY_ENV
+
+
+def use_local_tool(enabled: bool = True) -> None:
+    """
+    Skip browser verification and request tokens with client credentials.
+
+    Enable this when the library runs as a local tool. The client id and secret
+    are exchanged for an access token, and parallel callers share that request
+    instead of each starting a browser login.
+
+    The flag is read when a token is requested, so call this before the API.
+    ``DIGIKEY_LOCAL_TOOL=1`` and ``DIGIKEY_NO_BROWSER=1`` enable the same mode.
+    """
+    os.environ["DIGIKEY_LOCAL_TOOL"] = "1" if enabled else "0"
+
+
+def _process_token_lock(path: Path) -> threading.Lock:
+    key = str(path)
+    with _PROCESS_TOKEN_LOCKS_GUARD:
+        lock = _PROCESS_TOKEN_LOCKS.get(key)
+        if lock is None:
+            lock = threading.Lock()
+            _PROCESS_TOKEN_LOCKS[key] = lock
+        return lock
+
+
+class _FileLock:
+    """Exclusive lock so separate processes share one token request."""
+
+    def __init__(self, path: Path) -> None:
+        self._path = path
+        self._handle = None
+
+    def __enter__(self) -> "_FileLock":
+        self._path.parent.mkdir(parents=True, exist_ok=True)
+        self._handle = self._path.open("a+")
+        if fcntl is not None:
+            fcntl.flock(self._handle.fileno(), fcntl.LOCK_EX)
+        return self
+
+    def __exit__(
+        self,
+        _exc_type: type[BaseException] | None,
+        _exc: BaseException | None,
+        _tb: object,
+    ) -> None:
+        if self._handle is None:
+            return
+        if fcntl is not None:
+            fcntl.flock(self._handle.fileno(), fcntl.LOCK_UN)
+        self._handle.close()
+        self._handle = None
 
 
 class Oauth2Token:
@@ -48,7 +121,7 @@ class Oauth2Token:
 
     @property
     def type(self):
-        return self._token.get("token_type")
+        return self._token.get("token_type") or "Bearer"
 
     def expired(self) -> bool:
         return datetime.now(timezone.utc) >= self.expires
@@ -101,15 +174,23 @@ class HTTPServerHandler(BaseHTTPRequestHandler):
 
 
 class TokenHandler:
-    """Functions used to handle Digikey oAuth"""
+    """
+    Functions used to handle Digikey oAuth.
 
-    def __init__(
+    Set ``interactive`` to False, call :func:`use_local_tool`, or export
+    ``DIGIKEY_LOCAL_TOOL=1`` to request a token with the client id and secret
+    and skip browser verification. Token reads and writes are locked so
+    parallel processes share one request.
+    """
+
+    def __init__(  # noqa: PLR0913
         self,
         a_id: str | None = None,
         a_secret: str | None = None,
         a_token_storage_path: str | None = None,
         version: int = 2,
         sandbox: bool = False,
+        interactive: bool | None = None,
     ) -> None:
         if version in {3, 4}:
             if sandbox:
@@ -144,7 +225,16 @@ class TokenHandler:
         self._secret = a_secret
         self._storage_path = Path(a_token_storage_path)
         self._token_storage_path = self._storage_path.joinpath(TOKEN_STORAGE)
+        self._lock_path = self._storage_path.joinpath(TOKEN_LOCK)
         self._ca_cert = self._storage_path.joinpath(CA_CERT)
+        self._interactive_override = interactive
+
+    @property
+    def interactive(self) -> bool:
+        """Return False when browser verification must be skipped."""
+        if self._interactive_override is not None:
+            return self._interactive_override
+        return not (_env_flag("DIGIKEY_NO_BROWSER") or _env_flag("DIGIKEY_LOCAL_TOOL"))
 
     def __generate_certificate(self):
         ca = CertificateAuthority(
@@ -202,11 +292,7 @@ class TokenHandler:
             )
             logger.info("TOKEN - Successfully retrieved access token.")
 
-        # Create epoch timestamp from expires in, with 1 minute margin
-        token_json["expires"] = (
-            int(token_json["expires_in"]) + datetime.now(timezone.utc).timestamp() - 60
-        )
-        return token_json
+        return self._stamp_token(token_json, "authorization_code")
 
     def __refresh_token(self, refresh_token: str):
         headers = {
@@ -237,85 +323,168 @@ class TokenHandler:
             logger.debug(f"REFRESH - Got access token with value: {token_json['access_token']}")
             logger.info("REFRESH - Successfully retrieved access token.")
 
-        # Create epoch timestamp from expires in, with 1 minute margin
-        token_json["expires"] = (
-            int(token_json["expires_in"]) + datetime.now(timezone.utc).timestamp() - 60
+        return self._stamp_token(token_json, "authorization_code")
+
+    def _stamp_token(self, token_json: dict, grant_type: str) -> dict:
+        try:
+            expires_in = int(token_json["expires_in"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise DigikeyOauthError(
+                "TOKEN - Token response did not include a valid expires_in."
+            ) from exc
+        margin = (
+            TOKEN_EXPIRY_MARGIN_SECONDS if expires_in > TOKEN_EXPIRY_MARGIN_SECONDS else 0
         )
+        token_json["expires"] = expires_in + datetime.now(timezone.utc).timestamp() - margin
+        token_json["grant_type"] = grant_type
         return token_json
 
-    def save(self, json_data) -> None:
-        with open(self._token_storage_path, "w") as f:
-            json.dump(json_data, f)
+    def _client_credentials_token(self) -> dict:
+        """Exchange the client id and secret for an access token. No browser."""
+        headers = {
+            "user-agent": USER_AGENT,
+            "Content-type": "application/x-www-form-urlencoded",
+        }
+        post_data = {
+            "grant_type": "client_credentials",
+            "client_id": self._id,
+            "client_secret": self._secret,
+        }
+        error_message = None
+        try:
+            logger.debug(f"TOKEN - Requesting client-credentials token at {self.token_url}")
+            response = requests.post(
+                self.token_url, headers=headers, data=post_data, timeout=30
+            )
+            try:
+                error_message = response.json().get("error_description")
+            except ValueError:
+                error_message = None
+            response.raise_for_status()
+            token_json = response.json()
+        except (requests.exceptions.RequestException, requests.exceptions.HTTPError) as exc:
+            raise DigikeyOauthError(
+                "TOKEN - Cannot request token with client credentials: "
+                f"{error_message or exc}"
+            ) from exc
+
+        if not token_json.get("access_token"):
+            raise DigikeyOauthError(
+                "TOKEN - Client credentials response did not include an access token."
+            )
+        logger.info("TOKEN - Successfully retrieved access token with client credentials.")
+        return self._stamp_token(token_json, "client_credentials")
+
+    def _browser_token(self) -> dict:
+        """Run the authorization-code flow in a browser and return a token."""
+        open_new(self.__build_authorization_url())
+        filename = self.__generate_certificate()
+        httpd = HTTPServer(
+            ("localhost", PORT),
+            lambda request, address, server: HTTPServerHandler(
+                request, address, server, self._id, self._secret
+            ),
+        )
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain(str(Path(filename)))
+        httpd.socket = context.wrap_socket(
+            httpd.socket,
+            server_side=True,
+        )
+        httpd.stop = 0
+
+        # This function will block until it receives a request
+        while httpd.stop == 0:
+            httpd.handle_request()
+        httpd.server_close()
+
+        # Remove generated certificate
+        try:
+            os.remove(Path(filename))
+            os.remove(self._ca_cert)
+        except OSError:
+            logger.exception("Cannot remove temporary certificates")
+
+        return self.__exchange_for_token(httpd.auth_code)
+
+    def _read_stored_token(self) -> dict | None:
+        try:
+            with self._token_storage_path.open() as handle:
+                token_json = json.load(handle)
+        except (OSError, JSONDecodeError):
+            logger.warning("Oauth2 token storage does not exist or malformed, creating new.")
+            return None
+        if not isinstance(token_json, dict):
+            logger.warning("Oauth2 token storage is malformed, creating new.")
+            return None
+        return token_json
+
+    def _token_from_storage(self, token_json: dict | None) -> Oauth2Token | None:
+        if not token_json:
+            return None
+        if not token_json.get("access_token") or token_json.get("expires") is None:
+            logger.warning("Oauth2 token storage is malformed, creating new.")
+            return None
+        try:
+            return Oauth2Token(token_json)
+        except (TypeError, ValueError, OSError):
+            logger.warning("Oauth2 token storage is malformed, creating new.")
+            return None
+
+    def _obtain_new_token(self, previous: dict | None) -> dict:
+        previous_grant = previous.get("grant_type") if previous else None
+        if previous_grant == "client_credentials" or not self.interactive:
+            if not self.interactive and previous is None:
+                logger.info(
+                    "AUTH - Local tool mode: requesting an access token from the "
+                    "client id and secret. Browser verification is skipped."
+                )
+            else:
+                logger.debug("TOKEN - Requesting a client-credentials access token.")
+            return self._client_credentials_token()
+        logger.info("AUTH - Starting browser authorization.")
+        return self._browser_token()
+
+    def _get_access_token_locked(self) -> Oauth2Token:
+        token_json = self._read_stored_token()
+        token = self._token_from_storage(token_json)
+
+        if token is not None and not token.expired():
+            return token
+
+        if (
+            token is not None
+            and token.refresh_token
+            and (token_json or {}).get("grant_type") != "client_credentials"
+        ):
+            try:
+                logger.debug("REFRESH - Current token is stale, refreshing stored credentials.")
+                token_json = self.__refresh_token(token.refresh_token)
+            except DigikeyOauthError:
+                logger.exception(
+                    "REFRESH - Failed to use refresh token, requesting a new access token."
+                )
+                token_json = self._obtain_new_token(token_json)
+        else:
+            token_json = self._obtain_new_token(None if token is None else token_json)
+
+        self.save(token_json)
+        return Oauth2Token(token_json)
+
+    def save(self, json_data: dict) -> None:
+        """Write the token JSON to the storage path."""
+        with self._token_storage_path.open("w") as handle:
+            json.dump(json_data, handle)
             logger.debug(f"Saved token to: {self._token_storage_path}")
 
     def get_access_token(self) -> Oauth2Token:
         """
-        Fetches the access key using an HTTP server to handle oAuth
-        requests
-           Args:
-               appId:      The assigned App ID
-               appSecret:  The assigned App Secret
+        Return a cached access token, refreshing or requesting one if needed.
+
+        Local-tool mode requests the token with client credentials and does not
+        open a browser. Callers in this process and in other processes share
+        one token request, so a missing token does not start a login per caller.
         """
-        # Check if a token already exists on the storage
-        token_json = None
-        try:
-            with open(self._token_storage_path) as f:
-                token_json = json.load(f)
-        except (OSError, JSONDecodeError):
-            logger.warning("Oauth2 token storage does not exist or malformed, creating new.")
-
-        token = None
-        if token_json is not None:
-            token = Oauth2Token(token_json)
-
-        # Try to refresh the credentials with the stores refresh token
-        if token is not None and token.expired():
-            try:
-                logger.debug(
-                    f"REFRESH - Current token is stale, refresh using: {token.refresh_token}"
-                )
-                token_json = self.__refresh_token(token.refresh_token)
-                self.save(token_json)
-            except DigikeyOauthError:
-                logger.exception(
-                    "REFRESH - Failed to use refresh token, starting new authorization flow."
-                )
-                token_json = None
-
-        # Obtain new credentials using the Oauth flow if no token stored or refresh fails
-        if token_json is None:
-            open_new(self.__build_authorization_url())
-            filename = self.__generate_certificate()
-            httpd = HTTPServer(
-                ("localhost", PORT),
-                lambda request, address, server: HTTPServerHandler(
-                    request, address, server, self._id, self._secret
-                ),
-            )
-            context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-            context.load_cert_chain(str(Path(filename)))
-            httpd.socket = context.wrap_socket(
-                httpd.socket,
-                server_side=True,
-            )
-            httpd.stop = 0
-
-            # This function will block until it receives a request
-            while httpd.stop == 0:
-                httpd.handle_request()
-            httpd.server_close()
-
-            # Remove generated certificate
-            try:
-                os.remove(Path(filename))
-                os.remove(self._ca_cert)
-            except OSError as e:
-                logger.exception(f"Cannot remove temporary certificates: {e}")
-
-            # Get the acccess token from the auth code
-            token_json = self.__exchange_for_token(httpd.auth_code)
-
-            # Save the newly obtained credentials to the filesystem
-            self.save(token_json)
-
-        return Oauth2Token(token_json)
+        thread_lock = _process_token_lock(self._token_storage_path)
+        with thread_lock, _FileLock(self._lock_path):
+            return self._get_access_token_locked()

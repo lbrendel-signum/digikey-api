@@ -75,7 +75,7 @@ def example_search() -> None:
     print("\nMethod 2: Using Python API")
     try:
         import digikey
-        from digikey.v4.productinformation import KeywordRequest
+        from digikey.v4.productinformation import KeywordRequest, ProductSearchApi
 
         search_request = KeywordRequest(keywords="resistor 10k", record_count=5)
         result = digikey.keyword_search(body=search_request)

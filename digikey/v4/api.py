@@ -200,3 +200,12 @@ def batch_product_details(*args, **kwargs) -> BatchProductDetailsResponse:
         logger.debug("CALL -> batch_product_details")
         return client.call_api_function(*args, **kwargs)
     raise DigikeyError("Please provide a valid BatchProductDetailsRequest argument")
+
+
+def product_media(*args, **kwargs) -> bytes:
+    client = DigikeyApiWrapper("media", digikey.v4.productinformation)
+
+    if args:
+        logger.info(f"Get product photo for: {args[0]}")
+        return client.call_api_function(*args, **kwargs)
+    return None

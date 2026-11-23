@@ -256,5 +256,5 @@ class Configuration:
             f"OS: {sys.platform}\n"
             f"Python Version: {sys.version}\n"
             "Version of the API: v3\n"
-            "SDK Package Version: 0.1.0"
+            "SDK Package Version: 0.1.1"
         )
